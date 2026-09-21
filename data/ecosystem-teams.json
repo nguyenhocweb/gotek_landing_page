@@ -1,0 +1,46 @@
+{
+  "section": {
+    "eyebrow": "MÔ HÌNH HỢP TÁC CHIẾN LƯỢC",
+    "title": "Một Hệ Sinh Thái.",
+    "subtitleTitle": "Ba Đội Ngũ, Ba Phần Việc.",
+    "description": "Doanh nghiệp có thể bắt đầu từ một nhu cầu cụ thể rồi kết nối thêm năng lực phù hợp khi dự án cần mở rộng."
+  },
+  "teams": [
+    {
+      "id": "team-gomedia",
+      "position": "left",
+      "name": "Go Media",
+      "tag": "GO MEDIA",
+      "tagClass": "tag-navy",
+      "title": "Xây thương hiệu và tạo nhu cầu thị trường",
+      "logo": "assets/images/partner-go-media.png",
+      "description": "Go Media chuyển mục tiêu kinh doanh thành định hướng thương hiệu, kế hoạch nội dung và hoạt động thương mại điện tử nhất quán trên các kênh.",
+      "link": "#",
+      "btntxt": "Khám phá Go Media"
+    },
+    {
+      "id": "team-gonetwork",
+      "position": "right",
+      "name": "GoNetwork",
+      "tag": "GONETWORK",
+      "tagClass": "tag-cyan",
+      "title": "Kết nối thương hiệu với đúng tiếng nói",
+      "logo": "assets/images/partner-gonetwork.png",
+      "description": "GoNetwork đưa kế hoạch vào mạng lưới nhà sáng tạo, KOL/KOC; làm rõ đối tượng, phạm vi, lịch triển khai và đầu mối phối hợp.",
+      "link": "#",
+      "btntxt": "Khám phá Go Network"
+    },
+    {
+      "id": "team-gotek",
+      "position": "bottom",
+      "name": "Gotek",
+      "tag": "GOTEK",
+      "tagClass": "tag-blue",
+      "title": "Biến chiến lược thành hệ thống vận hành được",
+      "logo": "assets/images/gotek-logo-color.svg",
+      "description": "Gotek xây website, phần mềm, hạ tầng và tự động hóa để dữ liệu, quy trình cùng trải nghiệm số có thể vận hành, theo dõi và mở rộng.",
+      "link": "#",
+      "btntxt": "Khám phá Go Tek"
+    }
+  ]
+}

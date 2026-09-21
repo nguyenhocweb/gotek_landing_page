@@ -1,0 +1,33 @@
+{
+  "categoryTitle": "Dịch vụ phát triển theo yêu cầu",
+  "items": [
+    {
+      "id": "custom-fincloud",
+      "name": "FinCloud High-Availability",
+      "image": "assets/images/banners/hero-main.jpg",
+      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
+      "link": "#contact"
+    },
+    {
+      "id": "custom-logichain",
+      "name": "LogiChain ERP System",
+      "image": "assets/images/projects/mockup_project_2.jpg",
+      "desc": "Hệ thống số hóa quy trình điều phối hơn 300 đầu xe vận tải, tích hợp định vị GPS bản đồ số giúp giảm 35% chi phí rỗng xe.",
+      "link": "#contact"
+    },
+    {
+      "id": "custom-omnichannel",
+      "name": "OmniChannel Retail Platform",
+      "image": "assets/images/projects/mockup_project_1.jpg",
+      "desc": "Ứng dụng di động Flutter đồng bộ kho hàng thời gian thực tại 50+ siêu thị, mang lại trải nghiệm thanh toán 1 chạm 60FPS.",
+      "link": "#contact"
+    },
+    {
+      "id": "custom-synapse",
+      "name": "Synapse Big Data Analytics",
+      "image": "assets/images/banners/hero-portfolio.jpg",
+      "desc": "Nền tảng trực quan hóa dữ liệu lớn và điều phối AI Agent đa tác vụ qua WebSockets, tối ưu 40% chi phí vận hành cloud.",
+      "link": "#contact"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "section": {
+    "title": "Hệ Sinh Thái",
+    "highlightTitle": "Đối Tác Chiến Lược",
+    "subtitle": "Gotek đồng hành phát triển cùng các doanh nghiệp uy tín và tổ chức công nghệ hàng đầu."
+  },
+  "partners": [
+    {
+      "name": "MB Tech",
+      "title": "MB Tech - Đối tác Công nghệ & Tài chính số",
+      "logo": "assets/images/partner_mb_clean.png",
+      "alt": "MB Tech"
+    },
+    {
+      "name": "CloudFly",
+      "title": "CloudFly - Hạ tầng Điện toán Đám mây & Cloud Server",
+      "logo": "assets/images/partner_cloudfly_clean.png",
+      "alt": "CloudFly"
+    },
+    {
+      "name": "Go Media",
+      "title": "Go Media - Truyền thông số & Tiếp thị đa kênh",
+      "logo": "assets/images/partner_gomedia_clean.png",
+      "alt": "Go Media"
+    },
+    {
+      "name": "Go Network",
+      "title": "Go Network - Mạng phân phối & Kết nối hạ tầng",
+      "logo": "assets/images/partner_gonetwork_clean.png",
+      "alt": "Go Network"
+    },
+    {
+      "name": "Apex Networks",
+      "title": "Apex Networks - Giải pháp Mạng & Viễn thông tốc độ cao",
+      "logo": "assets/images/partner_apex_clean.png",
+      "alt": "Apex Networks"
+    },
+    {
+      "name": "CyberNode Security",
+      "title": "CyberNode Security - An ninh mạng & Phòng vệ dữ liệu",
+      "logo": "assets/images/partner_cybernode_clean.png",
+      "alt": "CyberNode Security"
+    },
+    {
+      "name": "Nubus Data",
+      "title": "Nubus Data - Xử lý dữ liệu lớn & Điện toán đám mây",
+      "logo": "assets/images/partner_nubus_clean.png",
+      "alt": "Nubus Data"
+    },
+    {
+      "name": "NeuroSpark AI",
+      "title": "NeuroSpark AI - Trí tuệ nhân tạo & Mô hình học sâu",
+      "logo": "assets/images/partner_neurospark_clean.png",
+      "alt": "NeuroSpark AI"
+    },
+    {
+      "name": "FinVibe",
+      "title": "FinVibe - Cổng thanh toán & Tài chính số",
+      "logo": "assets/images/partner_finvibe_clean.svg",
+      "alt": "FinVibe Payments"
+    },
+    {
+      "name": "NexScale",
+      "title": "NexScale - Hạ tầng Đám mây & Kiến trúc Microservices",
+      "logo": "assets/images/partner_nexscale_clean.svg",
+      "alt": "NexScale Cloud"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "categoryTitle": "Sản phẩm SaaS & nền tảng",
+  "items": [
+    {
+      "id": "fintechpay-platform",
+      "name": "FintechPay Platform",
+      "image": "assets/images/projects/portfolio_saas_1789482343566.jpg",
+      "desc": "Cổng thanh toán & Core Banking microservices chịu tải cao, phục vụ hơn 500.000 người dùng với độ ổn định 99.99%.",
+      "link": "#contact"
+    },
+    {
+      "id": "aura-creative-living",
+      "name": "Aura Creative Living",
+      "image": "assets/images/projects/portfolio_web_1789482363230.jpg",
+      "desc": "Website thương hiệu phong cách Editorial với tương tác 3D WebGL 60FPS, tối ưu SEO Onpage đạt 100/100 Google Lighthouse.",
+      "link": "#contact"
+    },
+    {
+      "id": "megamart-omnichannel",
+      "name": "MegaMart Omnichannel",
+      "image": "assets/images/projects/mockup_project_1.jpg",
+      "desc": "Giải pháp bán lẻ Omnichannel đồng bộ kho hàng và thanh toán thời gian thực tại hơn 50 chuỗi siêu thị trên toàn quốc.",
+      "link": "#contact"
+    },
+    {
+      "id": "synapse-ai-platform",
+      "name": "Synapse AI Platform",
+      "image": "assets/images/banners/hero-portfolio.jpg",
+      "desc": "Nền tảng trực quan hóa dữ liệu lớn và điều phối AI Agent đa tác vụ qua WebSockets, tối ưu 40% chi phí vận hành cloud.",
+      "link": "#contact"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "section": {
+    "title": "Khách Hàng",
+    "highlightTitle": "Nói Gì Về Gotek"
+  },
+  "testimonials": [
+    {
+      "id": "t-01",
+      "name": "Alex Trần",
+      "avatar": "assets/images/customers/customer_1.jpg",
+      "rating": 5,
+      "quote": "Giao diện mượt mà đến khó tin. Đội ngũ Gotek không chỉ code đúng tiến độ mà còn tư vấn tối ưu lại toàn bộ kiến trúc microservices chịu tải cao, giúp hệ thống vận hành trơn tru trong các đợt cao điểm."
+    },
+    {
+      "id": "t-02",
+      "name": "Minh Phạm",
+      "avatar": "assets/images/customers/customer_2.jpg",
+      "rating": 5,
+      "quote": "Team Gotek làm việc rất kỷ luật theo chuẩn Agile Sprint. Từng animation, tốc độ phản hồi 0.2s của giỏ hàng đều được chăm chút tỉ mỉ. Trải nghiệm người dùng được nâng cấp rõ rệt sau khi bàn giao."
+    },
+    {
+      "id": "t-03",
+      "name": "Hoàng Lê",
+      "avatar": "assets/images/customers/customer_3.jpg",
+      "rating": 5,
+      "quote": "Tôi đánh giá rất cao năng lực kỹ thuật của Kỹ sư trưởng Gotek. Mã nguồn cực kỳ sạch, có đầy đủ Unit Test và tài liệu API OpenAPI/Swagger. Chúng tôi dễ dàng mở rộng tính năng mới mà không sợ lỗi."
+    },
+    {
+      "id": "t-04",
+      "name": "Thu Hà",
+      "avatar": "assets/images/customers/customer_4.jpg",
+      "rating": 5,
+      "quote": "Quy trình làm việc của Gotek rất minh bạch, cam kết rõ ràng theo từng tuần và demo liên tục. Dự án bàn giao đúng hạn với đầy đủ tài liệu hướng dẫn và hỗ trợ kỹ thuật tận tâm 24/7."
+    },
+    {
+      "id": "t-05",
+      "name": "Bs. Lan Anh",
+      "avatar": "assets/images/customers/customer_5.jpg",
+      "rating": 5,
+      "quote": "Dữ liệu y tế đòi hỏi chuẩn bảo mật khắt khe. Gotek đã xây dựng cổng thông tin đạt chuẩn an ninh cao, kết nối dữ liệu mượt mà giữa các chi nhánh mà không gặp bất kỳ độ trễ nào."
+    },
+    {
+      "id": "t-06",
+      "name": "Quốc Bảo",
+      "avatar": "assets/images/customers/customer_6.jpg",
+      "rating": 5,
+      "quote": "Trải nghiệm ứng dụng tại chuỗi chi nhánh của chúng tôi đã thay đổi hoàn toàn. Khách hàng khen giao diện rất nhanh và mượt mà, thao tác tiện lợi giúp tối ưu đáng kể thời gian phục vụ."
+    },
+    {
+      "id": "t-07",
+      "name": "Tuấn Đặng",
+      "avatar": "assets/images/customers/customer_1.jpg",
+      "rating": 5,
+      "quote": "Gotek tư vấn giải pháp chuyển đổi số rất thực tế, không vẽ vời tính năng thừa. Hệ thống vận hành cực kỳ ổn định, tiết kiệm hơn 30% chi phí hạ tầng Cloud so với trước đây."
+    },
+    {
+      "id": "t-08",
+      "name": "Diệu Linh",
+      "avatar": "assets/images/customers/customer_2.jpg",
+      "rating": 5,
+      "quote": "Khả năng thấu hiểu trải nghiệm người dùng của team Gotek rất xuất sắc. Từng luồng thao tác đều tự nhiên và mạch lạc, tỷ lệ chuyển đổi đơn hàng tăng hơn 45% sau khi ra mắt phiên bản mới."
+    },
+    {
+      "id": "t-09",
+      "name": "Trọng Nhân",
+      "avatar": "assets/images/customers/customer_3.jpg",
+      "rating": 5,
+      "quote": "Sự chuyên nghiệp và tốc độ xử lý yêu cầu phát sinh của Gotek làm tôi hoàn toàn an tâm. Đây thực sự là đối tác công nghệ đáng tin cậy cho bất kỳ doanh nghiệp nào muốn bứt phá."
+    }
+  ]
+}

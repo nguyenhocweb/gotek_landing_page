@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xem Trước 5 Mẫu Icon - Giải Pháp Chuyên Sâu Gotek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --navy: #0A1F68;
+      --navy-deep: #051036;
+      --blue-accent: #0055FF;
+      --blue-light: #EEF4FF;
+      --slate-body: #4A5568;
+      --border-hairline: rgba(10, 31, 104, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: #F8FAFD;
+      color: #1A202C;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* TOP NAVIGATION TOOLBAR */
+    .preview-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(10, 31, 104, 0.1);
+      padding: 14px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .preview-toolbar-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .preview-brand-info h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-brand-info p {
+      font-size: 0.8rem;
+      color: #718096;
+    }
+
+    .preview-badge-status {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #EBF8FF;
+      color: #2B6CB0;
+      border: 1px solid #BEE3F8;
+    }
+
+    .preview-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #EDF2F7;
+      border: 1px solid transparent;
+      color: #4A5568;
+      font-family: var(--font-family);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      background: #E2E8F0;
+      color: var(--navy);
+    }
+
+    .tab-btn.active {
+      background: var(--blue-accent);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 85, 255, 0.3);
+    }
+
+    /* SECTION PREVIEWS */
+    .container {
+      max-width: 1320px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .model-wrapper {
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1px solid rgba(10, 31, 104, 0.09);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+      margin-bottom: 50px;
+      overflow: hidden;
+      scroll-margin-top: 100px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .model-header {
+      background: linear-gradient(135deg, #F8FAFD 0%, #EEF4FF 100%);
+      border-bottom: 1px solid rgba(10, 31, 104, 0.08);
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .model-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .model-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--blue-accent);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .model-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .model-desc {
+      font-size: 0.85rem;
+      color: #4A5568;
+    }
+
+    .model-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(10, 31, 104, 0.15);
+      color: var(--navy);
+    }
+
+    .model-content {
+      padding: 24px;
+    }
+
+    /* BENTO LAYOUT (MATCHING REAL GOTEK SITE) */
+    .bento-container {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .bento-left {
+      border-radius: 18px;
+      overflow: hidden;
+      height: 100%;
+      min-height: 480px;
+      background: #EDF2F7;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .bento-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bento-grid-matrix {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .bento-cell {
+      background: #FFFFFF;
+      border: 1px solid rgba(10, 31, 104, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .bento-cell:hover {
+      border-color: rgba(0, 85, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(0, 85, 255, 0.08);
+    }
+
+    .bento-cell-full {
+      grid-column: span 2;
+    }
+
+    .bento-heading {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .bento-cell:hover .bento-heading {
+      color: var(--blue-accent);
+    }
+
+    .bento-text {
+      font-size: 0.8rem;
+      color: #5A6A85;
+      line-height: 1.5;
+    }
+
+    /* =========================================================================
+       MẪU 1: MODERN TECH SQUIRCLE (Góc Bo Tròn Pastel Subtle)
+       ========================================================================= */
+    .m1-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .m1-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #EFF6FF;
+      border: 1px solid rgba(0, 85, 255, 0.15);
+      color: var(--blue-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .m1-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+    .m1-cell:hover .m1-icon-box {
+      background: var(--blue-accent);
+      color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(0, 85, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* Mẫu 1 cho Thẻ Full SEO: Dạng ngang (Horizontal flex) */
+    .m1-cell-full {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+    .m1-cell-full .m1-content {
+      flex: 1;
+    }
+
+    /* =========================================================================
+       MẪU 2: INLINE HORIZONTAL DUO-TONE (Icon Cạnh Tiêu Đề, Gam Màu Phân Biệt)
+       ========================================================================= */
+    .m2-heading-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .m2-icon-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .m2-icon-badge svg {
+      width: 18px;
+      height: 18px;
+    }
+    .m2-cell:hover .m2-icon-badge {
+      transform: rotate(6deg) scale(1.08);
+    }
+    /* Các gam màu duo-tone riêng cho từng mục */
+    .m2-uiux { background: #F3E8FF; color: #9333EA; }
+    .m2-mobile { background: #E0F2FE; color: #0284C7; }
+    .m2-frontend { background: #EFF6FF; color: #2563EB; }
+    .m2-backend { background: #FEF3C7; color: #D97706; }
+    .m2-cloud { background: #CCFBF1; color: #0D9488; }
+    .m2-ai { background: #FCE7F3; color: #DB2777; }
+    .m2-seo { background: #DCFCE7; color: #16A34A; }
+
+    /* =========================================================================
+       MẪU 3: CLEAN B2B MINIMALIST (Vòng Tròn Viền Hairline Đôi Tinh Tế)
+       ========================================================================= */
+    .m3-cell {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .m3-ring-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--navy);
+      outline: 4px solid rgba(10, 31, 104, 0.05);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+    .m3-ring-badge svg {
+      width: 20px;
+      height: 20px;
+    }
+    .m3-cell:hover .m3-ring-badge {
+      border-color: var(--blue-accent);
+      outline-color: rgba(0, 85, 255, 0.15);
+      color: var(--blue-accent);
+      transform: scale(1.06);
+    }
+    .m3-content {
+      flex: 1;
+    }
+
+    /* =========================================================================
+       MẪU 4: HIGH-TECH CYBER GLOW (Dark Navy Tile + Neon Glow)
+       ========================================================================= */
+    .m4-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .m4-dark-tile {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0A1F68 0%, #030B24 100%);
+      border: 1px solid rgba(0, 85, 255, 0.3);
+      color: #38BDF8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 85, 255, 0.28);
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .m4-dark-tile svg {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.6));
+    }
+    .m4-cell:hover .m4-dark-tile {
+      box-shadow: 0 6px 20px rgba(0, 85, 255, 0.45);
+      border-color: #38BDF8;
+      transform: translateY(-2px);
+    }
+    .m4-cell-full {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+    .m4-cell-full .m4-content {
+      flex: 1;
+    }
+
+    /* =========================================================================
+       MẪU 5: LUXURY 3D GLASSMORPHISM (Kính Mờ Đổ Bóng + Micro-LED Indicator)
+       ========================================================================= */
+    .m5-cell {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .m5-glass-token {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(235, 243, 255, 0.75));
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 20px -5px rgba(0, 85, 255, 0.12), inset 0 1px 1px #FFFFFF;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .m5-glass-token svg {
+      width: 22px;
+      height: 22px;
+      color: var(--blue-accent);
+    }
+    /* Chấm micro LED nhỏ xíu ở góc trên token */
+    .m5-led-dot {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00E676;
+      box-shadow: 0 0 6px #00E676;
+      border: 1.5px solid #FFFFFF;
+    }
+    .m5-cell:hover .m5-glass-token {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 14px 25px -4px rgba(0, 85, 255, 0.2), inset 0 1px 1px #FFFFFF;
+    }
+    .m5-content {
+      flex: 1;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .bento-container {
+        grid-template-columns: 1fr;
+      }
+      .bento-left {
+        min-height: 380px;
+        height: 380px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bento-grid-matrix {
+        grid-template-columns: 1fr;
+      }
+      .bento-cell-full {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP TOOLBAR -->
+  <header class="preview-toolbar">
+    <div class="preview-toolbar-inner">
+      <div class="preview-brand-info">
+        <h1>
+          <span>5 Mẫu Thiết Kế Icon - Gotek</span>
+          <span class="preview-badge-status">Bản Thử Nghiệm Xem Trước</span>
+        </h1>
+        <p>Bấm chọn tab hoặc cuộn xuống để so sánh và chọn mẫu bạn ưng ý nhất trước khi áp dụng vào code chính</p>
+      </div>
+
+      <nav class="preview-tabs" aria-label="Bộ chọn mẫu">
+        <button class="tab-btn active" onclick="filterModel('all', this)">Xem Cả 5 Mẫu</button>
+        <button class="tab-btn" onclick="filterModel('model-1', this)">Mẫu 1: Modern Squircle</button>
+        <button class="tab-btn" onclick="filterModel('model-2', this)">Mẫu 2: Inline Duo-Tone</button>
+        <button class="tab-btn" onclick="filterModel('model-3', this)">Mẫu 3: B2B Hairline Ring</button>
+        <button class="tab-btn" onclick="filterModel('model-4', this)">Mẫu 4: Cyber Glow</button>
+        <button class="tab-btn" onclick="filterModel('model-5', this)">Mẫu 5: Luxury 3D Glass</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- =====================================================================
+         MẪU 1: MODERN TECH SQUIRCLE
+         ===================================================================== -->
+    <section class="model-wrapper" id="model-1">
+      <div class="model-header">
+        <div class="model-header-left">
+          <div class="model-number">1</div>
+          <div>
+            <h2 class="model-title">Mẫu 1: Modern Tech Squircle (Hộp Bo Tròn Pastel Gotek)</h2>
+            <p class="model-desc">Hộp icon bo tròn 12px đặt phía trên tiêu đề, nền xanh pastel mờ nhẹ, hover đổi màu gradient nổi bật.</p>
+          </div>
+        </div>
+        <span class="model-tag">Khuyên dùng: Hiện đại & Đồng bộ thương hiệu</span>
+      </div>
+
+      <div class="model-content">
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-main.jpg" alt="Gotek Engineer">
+          </div>
+          <div class="bento-grid-matrix">
+
+            <!-- Thẻ 1: UI/UX -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- Pen tool / Layout -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                  <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                  <path d="m2 2 7.586 7.586"/>
+                  <circle cx="11" cy="11" r="2"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="bento-text">Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao cấp.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 2: Mobile App -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- Smartphone -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                  <path d="M12 18h.01"/>
+                  <path d="M9 5h6"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Mobile App</h3>
+                <p class="bento-text">Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 3: Front-end -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- Code Brackets -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                  <line x1="14" x2="10" y1="4" y2="20"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Front-end</h3>
+                <p class="bento-text">React, Next.js với 60FPS.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 4: Backend -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- Server / Microservices -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                  <line x1="6" x2="6.01" y1="6" y2="6"/>
+                  <line x1="6" x2="6.01" y1="18" y2="18"/>
+                  <path d="M18 10v4"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Backend</h3>
+                <p class="bento-text">Microservices an toàn.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 5: Cloud & DevOps -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- Cloud Deploy -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                  <polyline points="13 13 16 10 19 13"/>
+                  <line x1="16" x2="16" y1="10" y2="16"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+                <p class="bento-text">CI/CD AWS &amp; GCP.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 6: Tích Hợp AI -->
+            <div class="bento-cell m1-cell">
+              <div class="m1-icon-box">
+                <!-- AI Sparkle -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                  <path d="M5 3v4"/>
+                  <path d="M19 17v4"/>
+                  <path d="M3 5h4"/>
+                  <path d="M17 19h4"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+                <p class="bento-text">LLM &amp; Tự động hóa.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 7: SEO (Full rộng 2 cột) -->
+            <div class="bento-cell bento-cell-full m1-cell-full">
+              <div class="m1-icon-box">
+                <!-- Rocket Speed / SEO -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                  <path d="M12 9V4s3.03.55 4 2c1.08 1.62 0 5 0 5"/>
+                </svg>
+              </div>
+              <div class="m1-content">
+                <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+                <p class="bento-text">Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MẪU 2: INLINE HORIZONTAL DUO-TONE
+         ===================================================================== -->
+    <section class="model-wrapper" id="model-2">
+      <div class="model-header">
+        <div class="model-header-left">
+          <div class="model-number">2</div>
+          <div>
+            <h2 class="model-title">Mẫu 2: Inline Duo-Tone (Icon Nằm Cạnh Tiêu Đề, Gam Màu Phân Biệt)</h2>
+            <p class="model-desc">Icon nhỏ gọn 32px nằm ngang hàng với tiêu đề, mỗi dịch vụ có mã màu nhận diện riêng (UI tím, App cyan, AI hồng, SEO lục...).</p>
+          </div>
+        </div>
+        <span class="model-tag">Phong cách: SaaS Hiện Đại (Stripe, Vercel)</span>
+      </div>
+
+      <div class="model-content">
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-main.jpg" alt="Gotek Engineer">
+          </div>
+          <div class="bento-grid-matrix">
+
+            <!-- Thẻ 1: UI/UX -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-uiux">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                    <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+              </div>
+              <p class="bento-text">Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao cấp.</p>
+            </div>
+
+            <!-- Thẻ 2: Mobile App -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-mobile">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                    <path d="M12 18h.01"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Mobile App</h3>
+              </div>
+              <p class="bento-text">Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.</p>
+            </div>
+
+            <!-- Thẻ 3: Front-end -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-frontend">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Front-end</h3>
+              </div>
+              <p class="bento-text">React, Next.js với 60FPS.</p>
+            </div>
+
+            <!-- Thẻ 4: Backend -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-backend">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                    <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Backend</h3>
+              </div>
+              <p class="bento-text">Microservices an toàn.</p>
+            </div>
+
+            <!-- Thẻ 5: Cloud & DevOps -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-cloud">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+              </div>
+              <p class="bento-text">CI/CD AWS &amp; GCP.</p>
+            </div>
+
+            <!-- Thẻ 6: Tích Hợp AI -->
+            <div class="bento-cell m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-ai">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+              </div>
+              <p class="bento-text">LLM &amp; Tự động hóa.</p>
+            </div>
+
+            <!-- Thẻ 7: SEO -->
+            <div class="bento-cell bento-cell-full m2-cell">
+              <div class="m2-heading-wrap">
+                <div class="m2-icon-badge m2-seo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                  </svg>
+                </div>
+                <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+              </div>
+              <p class="bento-text">Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MẪU 3: CLEAN B2B MINIMALIST (Hairline Dual-Ring)
+         ===================================================================== -->
+    <section class="model-wrapper" id="model-3">
+      <div class="model-header">
+        <div class="model-header-left">
+          <div class="model-number">3</div>
+          <div>
+            <h2 class="model-title">Mẫu 3: Clean B2B Minimalist (Vòng Tròn Viền Hairline Đôi)</h2>
+            <p class="model-desc">Icon đặt bên trái toàn bộ nội dung trong hình tròn viền đôi thanh lịch, nền trắng tinh tế chuẩn phong cách Agency B2B.</p>
+          </div>
+        </div>
+        <span class="model-tag">Chuẩn Style: B2B Enterprise &amp; Tinh Giản</span>
+      </div>
+
+      <div class="model-content">
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-main.jpg" alt="Gotek Engineer">
+          </div>
+          <div class="bento-grid-matrix">
+
+            <!-- Thẻ 1: UI/UX -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                  <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="bento-text">Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao cấp.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 2: Mobile App -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                  <path d="M12 18h.01"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Mobile App</h3>
+                <p class="bento-text">Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 3: Front-end -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Front-end</h3>
+                <p class="bento-text">React, Next.js với 60FPS.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 4: Backend -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Backend</h3>
+                <p class="bento-text">Microservices an toàn.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 5: Cloud & DevOps -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+                <p class="bento-text">CI/CD AWS &amp; GCP.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 6: Tích Hợp AI -->
+            <div class="bento-cell m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+                <p class="bento-text">LLM &amp; Tự động hóa.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 7: SEO -->
+            <div class="bento-cell bento-cell-full m3-cell">
+              <div class="m3-ring-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                </svg>
+              </div>
+              <div class="m3-content">
+                <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+                <p class="bento-text">Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MẪU 4: HIGH-TECH CYBER GLOW (Dark Tile + Neon)
+         ===================================================================== -->
+    <section class="model-wrapper" id="model-4">
+      <div class="model-header">
+        <div class="model-header-left">
+          <div class="model-number">4</div>
+          <div>
+            <h2 class="model-title">Mẫu 4: High-Tech Cyber Glow (Dark Tile Tỏa Ánh Sáng Neon)</h2>
+            <p class="model-desc">Hộp icon nền xanh đen công nghệ cao, icon màu Electric Cyan phát sáng huyền ảo, tạo cảm giác Deep Tech &amp; AI cực mạnh.</p>
+          </div>
+        </div>
+        <span class="model-tag">Phong cách: AI / Cloud / Cyberpunk Sang Trọng</span>
+      </div>
+
+      <div class="model-content">
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-main.jpg" alt="Gotek Engineer">
+          </div>
+          <div class="bento-grid-matrix">
+
+            <!-- Thẻ 1: UI/UX -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                  <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="bento-text">Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao cấp.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 2: Mobile App -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                  <path d="M12 18h.01"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Mobile App</h3>
+                <p class="bento-text">Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 3: Front-end -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Front-end</h3>
+                <p class="bento-text">React, Next.js với 60FPS.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 4: Backend -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Backend</h3>
+                <p class="bento-text">Microservices an toàn.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 5: Cloud & DevOps -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+                <p class="bento-text">CI/CD AWS &amp; GCP.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 6: Tích Hợp AI -->
+            <div class="bento-cell m4-cell">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+                <p class="bento-text">LLM &amp; Tự động hóa.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 7: SEO -->
+            <div class="bento-cell bento-cell-full m4-cell-full">
+              <div class="m4-dark-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                </svg>
+              </div>
+              <div class="m4-content">
+                <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+                <p class="bento-text">Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MẪU 5: LUXURY 3D GLASSMORPHISM
+         ===================================================================== -->
+    <section class="model-wrapper" id="model-5">
+      <div class="model-header">
+        <div class="model-header-left">
+          <div class="model-number">5</div>
+          <div>
+            <h2 class="model-title">Mẫu 5: Luxury 3D Glass Token (Kính Mờ Đổ Bóng + Micro LED Trạng Thái)</h2>
+            <p class="model-desc">Khối kính mờ đổ bóng 3D cao cấp, góc trên đính micro LED xanh lá biểu thị hệ thống công nghệ luôn hoạt động (uptime 99.99%).</p>
+          </div>
+        </div>
+        <span class="model-tag">Đẳng Cấp: Fintech &amp; Phần Mềm Cao Cấp</span>
+      </div>
+
+      <div class="model-content">
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-main.jpg" alt="Gotek Engineer">
+          </div>
+          <div class="bento-grid-matrix">
+
+            <!-- Thẻ 1: UI/UX -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                  <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="bento-text">Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao cấp.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 2: Mobile App -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                  <path d="M12 18h.01"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Mobile App</h3>
+                <p class="bento-text">Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 3: Front-end -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Front-end</h3>
+                <p class="bento-text">React, Next.js với 60FPS.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 4: Backend -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Backend</h3>
+                <p class="bento-text">Microservices an toàn.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 5: Cloud & DevOps -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+                <p class="bento-text">CI/CD AWS &amp; GCP.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 6: Tích Hợp AI -->
+            <div class="bento-cell m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+                <p class="bento-text">LLM &amp; Tự động hóa.</p>
+              </div>
+            </div>
+
+            <!-- Thẻ 7: SEO -->
+            <div class="bento-cell bento-cell-full m5-cell">
+              <div class="m5-glass-token">
+                <div class="m5-led-dot"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                </svg>
+              </div>
+              <div class="m5-content">
+                <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+                <p class="bento-text">Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function filterModel(modelId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const wrappers = document.querySelectorAll('.model-wrapper');
+      if (modelId === 'all') {
+        wrappers.forEach(w => w.style.display = 'block');
+      } else {
+        wrappers.forEach(w => {
+          if (w.id === modelId) {
+            w.style.display = 'block';
+            w.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            w.style.display = 'none';
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gotek - Tiên Phong Giải Pháp Phần Mềm & Chuyển Đổi Số Doanh Nghiệp</title>
+  <meta name="description"
+    content="Gotek chuyên phát triển Web App cao cấp, Mobile App, tích hợp AI và thiết kế kiến trúc hệ thống chịu tải lớn chuẩn quốc tế." />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheets (Pure Vanilla CSS) -->
+  <link rel="stylesheet" href="css/style.css?v=53" />
+  <link rel="stylesheet" href="css/footer.css?v=22" />
+
+  <!-- GSAP Core (Tương tự landing_page_gotek) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+
+  <!-- =========================================================================
+       1. HEADER (FLOATING PILL - LẤY Y NHƯ CỦA LANDING_PAGE_GOTEK)
+       ========================================================================= -->
+  <header id="main-header"
+    class="fixed top-4 left-0 right-0 z-50 flex justify-center w-full px-4 md:px-6 transition-transform duration-500 transform translate-y-0">
+    <div
+      class="header-pill-inner w-full max-w-6xl bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex justify-between items-center px-4 py-2 md:px-6 md:py-3 border-none">
+      <!-- Logo -->
+      <a href="#hero" class="header-logo flex items-center z-50 relative shrink-0">
+        <img src="./assets/images/gotek-logo-color.svg" alt="Gotek" class="h-7 md:h-9 w-auto object-contain" />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="header-nav hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-bold text-navy nav-links">
+        <a href="#hero" class="text-[#0055FF] transition-colors duration-300 whitespace-nowrap">Trang chủ</a>
+        <a href="#about" class="hover:text-[#0055FF] transition-colors duration-300 whitespace-nowrap">Giới thiệu</a>
+        <a href="#services"
+          class="hover:text-[#0055FF] transition-colors duration-300 inline-flex items-center gap-1 whitespace-nowrap">
+          <span>Dịch vụ</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0055FF" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <a href="#projects" class="hover:text-[#0055FF] transition-colors duration-300 whitespace-nowrap">Dự án</a>
+        <a href="#careers" class="hover:text-[#0055FF] transition-colors duration-300 whitespace-nowrap">Tuyển dụng</a>
+        <a href="#contact" class="hover:text-[#0055FF] transition-colors duration-300 whitespace-nowrap">Liên hệ</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="header-actions hidden lg:flex items-center gap-6 shrink-0">
+        <!-- Language Switcher -->
+        <div class="lang-switcher flex items-center gap-2.5 text-sm font-bold text-gray-500">
+          <button class="active text-navy transition-colors hover:text-[#0055FF]">VI</button>
+          <button class="hover:text-[#0055FF] transition-colors">EN</button>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="#contact"
+          class="magnetic-btn header-cta-btn flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0055FF] text-white text-sm font-bold hover:bg-blue-700 transition-all duration-300 shadow-md whitespace-nowrap group">
+          BẮT ĐẦU TRAO ĐỔI
+          <svg class="w-4 h-4 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 19L19 5M19 5v10M19 5H9">
+            </path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-btn"
+        class="lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none z-50 relative ml-auto"
+        aria-label="Toggle Menu">
+        <span class="w-6 h-0.5 bg-navy rounded-full transition-transform duration-300 origin-center"></span>
+        <span class="w-6 h-0.5 bg-navy rounded-full transition-opacity duration-300"></span>
+        <span class="w-6 h-0.5 bg-navy rounded-full transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay (Drawer trượt từ phải sang, phủ lên cả header, chứa logo icon không chữ, VN/EN và CTA cùng hàng chức năng) -->
+  <div id="mobile-menu-overlay"
+    class="fixed inset-0 bg-navy/30 backdrop-blur-sm z-[99] invisible opacity-0 transition-opacity duration-300">
+    <div
+      class="mobile-menu-drawer fixed top-0 right-0 bottom-0 w-[280px] max-w-[85vw] bg-white shadow-2xl z-[100] flex flex-col justify-start pt-5 pb-8 px-6 border-l border-slate-200/60 rounded-none transform translate-x-full">
+      <!-- Drawer Top Bar: Logo Gotek Icon + VN/EN Switcher + Close Button -->
+      <div
+        class="mobile-drawer-header flex items-center justify-between w-full pb-4 mb-5 border-b border-slate-100 shrink-0">
+        <!-- Logo Icon (chỉ có biểu tượng ngôi sao Gotek, không có chữ) -->
+        <a href="#hero" class="drawer-logo flex items-center shrink-0" aria-label="Gotek Home">
+          <img src="./assets/images/logo-icon.png" alt="Gotek" class="h-8 w-auto object-contain" />
+        </a>
+
+        <div class="flex items-center gap-2.5">
+          <!-- Language Switcher: VN / EN -->
+          <div class="mobile-lang-switcher flex items-center bg-slate-100 rounded-full p-0.5 text-xs font-bold">
+            <button type="button"
+              class="lang-btn active px-2.5 py-1 rounded-full bg-[#0055FF] text-white transition-all shadow-xs">VN</button>
+            <button type="button"
+              class="lang-btn px-2.5 py-1 rounded-full text-navy/70 hover:text-navy transition-all">EN</button>
+          </div>
+
+          <!-- Close Button -->
+          <button id="mobile-menu-close" type="button"
+            class="w-8 h-8 rounded-full flex items-center justify-center text-navy/70 hover:text-navy hover:bg-slate-100 transition-colors"
+            aria-label="Đóng Menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Links + Bắt Đầu Trao Đổi Ngay trong cùng một dãy chức năng -->
+      <nav
+        class="flex flex-col gap-4 text-base font-display font-bold text-navy text-left items-start mobile-nav-links w-full">
+        <a href="#hero" class="mobile-nav-item active text-[#0055FF]">Trang chủ</a>
+        <a href="#about" class="mobile-nav-item">Giới thiệu</a>
+        <a href="#services" class="mobile-nav-item">Dịch vụ</a>
+        <a href="#projects" class="mobile-nav-item">Dự án</a>
+        <a href="#careers" class="mobile-nav-item">Tuyển dụng</a>
+        <a href="#contact"
+          class="mobile-nav-item mobile-cta-item text-[#0055FF] inline-flex items-center gap-2 group whitespace-nowrap">
+          <span>Bắt Đầu Trao Đổi Ngay</span>
+          <svg class="shrink-0 transform group-hover:translate-x-1 transition-transform" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <!-- =========================================================================
+         HERO SECTION: 5 GÓC VUÔNG GOTEK FULL MÀN HÌNH (KHÔNG BO VIỀN, KHÔNG BG CHỮ)
+         ========================================================================= -->
+    <section id="hero" class="hero-five-corners-section">
+      <!-- 1. Lớp SVG Nền 5 Góc Vuông Full Màn Hình (preserveAspectRatio="xMidYMid slice" ôm sát 100% mép màn hình) -->
+      <div class="hero-five-corners-bg">
+        <svg class="hero-svg-desktop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%"
+          preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="shadow-solid" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#0A1F68" flood-opacity="0.12" />
+              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0A1F68" flood-opacity="0.08" />
+            </filter>
+
+            <linearGradient id="solid-royal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2B63FF" />
+              <stop offset="100%" stop-color="#173BFF" />
+            </linearGradient>
+
+            <linearGradient id="solid-cyan" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#22DDE0" />
+              <stop offset="100%" stop-color="#00B4D8" />
+            </linearGradient>
+          </defs>
+
+          <style>
+            .bold-title {
+              font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+              font-size: 40px;
+              font-weight: 800;
+              fill: #FFFFFF;
+              fill-opacity: 0.50;
+              letter-spacing: 0.06em;
+            }
+
+            .bold-desc {
+              font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+              font-size: 15px;
+              font-weight: 600;
+              fill: #FFFFFF;
+              fill-opacity: 0.35;
+            }
+          </style>
+
+          <!-- Nền trắng tinh khôi -->
+          <rect width="1920" height="1080" fill="#FFFFFF" />
+
+          <!-- 1. GÓC TRÊN TRÁI: TÍN (Gotek Royal Blue) -->
+          <g id="wrap-tin" class="hero-svg-corner" data-corner="tin" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tín">
+            <g transform="translate(-140, -160) rotate(19, 360, 360)" filter="url(#shadow-solid)">
+              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
+              <text x="375" y="440" text-anchor="middle" class="bold-title">TÍN</text>
+              <text x="375" y="472" text-anchor="middle" class="bold-desc">Trọn Vẹn Chữ Tín</text>
+            </g>
+          </g>
+
+          <!-- 2. GÓC TRÊN PHẢI: CHUẨN (Gotek Tech Cyan) -->
+          <g id="wrap-chuan" class="hero-svg-corner" data-corner="chuan" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Chuẩn">
+            <g transform="translate(1500, -180) rotate(-22, 260, 260)" filter="url(#shadow-solid)">
+              <rect width="520" height="520" rx="36" fill="url(#solid-cyan)" />
+              <text x="145" y="440" text-anchor="middle" class="bold-title">CHUẨN</text>
+              <text x="145" y="472" text-anchor="middle" class="bold-desc">Chuẩn Mực Bền Vững</text>
+            </g>
+          </g>
+
+          <!-- 3. GÓC DƯỚI PHẢI: TIÊN (Gotek Royal Blue) -->
+          <g id="wrap-tien" class="hero-svg-corner" data-corner="tien" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tiên">
+            <g transform="translate(1520, 710) rotate(22, 260, 260)" filter="url(#shadow-solid)">
+              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
+              <text x="145" y="100" text-anchor="middle" class="bold-title">TIÊN</text>
+              <text x="145" y="132" text-anchor="middle" class="bold-desc">Tiên Phong Giải Pháp</text>
+            </g>
+          </g>
+
+          <!-- 4. DƯỚI GIỮA: NHÂN (Gotek Tech Cyan) -->
+          <g id="wrap-nhan" class="hero-svg-corner" data-corner="nhan" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Nhân">
+            <g transform="translate(710, 850) rotate(45, 250, 250)" filter="url(#shadow-solid)">
+              <rect width="500" height="500" rx="36" fill="url(#solid-cyan)" />
+              <text x="95" y="90" text-anchor="middle" class="bold-title" transform="rotate(-45, 95, 90)">NHÂN</text>
+              <text x="95" y="122" text-anchor="middle" class="bold-desc" transform="rotate(-45, 95, 90)">Nhân Văn Làm
+                Gốc</text>
+            </g>
+          </g>
+
+          <!-- 5. GỐC DƯỚI TRÁI: TỐC (Gotek Royal Blue) -->
+          <g id="wrap-toc" class="hero-svg-corner" data-corner="toc" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tốc">
+            <g transform="translate(-160, 700) rotate(-25, 260, 260)" filter="url(#shadow-solid)">
+              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
+              <text x="375" y="100" text-anchor="middle" class="bold-title">TỐC</text>
+              <text x="375" y="132" text-anchor="middle" class="bold-desc">Tốc Độ &amp; Bứt Phá</text>
+            </g>
+          </g>
+        </svg>
+
+        <!-- 5 THẺ GÓC GOTEK CHO GIAO DIỆN ĐIỆN THOẠI & IPAD (< 1024px) -->
+        <div class="hero-cards-responsive" aria-label="5 Trụ cột Gotek">
+          <!-- 1. Góc Trên Trái: TÍN (Gotek Royal Blue) -->
+          <div class="hero-rcard hero-rcard-tin" data-corner="tin" role="button" tabindex="0" aria-label="Trụ cột Tín">
+            <div class="hero-rcard-content">
+              <span class="hero-rcard-title">TÍN</span>
+              <span class="hero-rcard-desc">Trọn Vẹn Chữ Tín</span>
+            </div>
+          </div>
+
+          <!-- 2. Góc Trên Phải: CHUẨN (Gotek Tech Cyan) -->
+          <div class="hero-rcard hero-rcard-chuan" data-corner="chuan" role="button" tabindex="0" aria-label="Trụ cột Chuẩn">
+            <div class="hero-rcard-content">
+              <span class="hero-rcard-title">CHUẨN</span>
+              <span class="hero-rcard-desc">Chuẩn Mực Bền Vững</span>
+            </div>
+          </div>
+
+          <!-- 3. Góc Dưới Trái: TỐC (Gotek Royal Blue) -->
+          <div class="hero-rcard hero-rcard-toc" data-corner="toc" role="button" tabindex="0" aria-label="Trụ cột Tốc">
+            <div class="hero-rcard-content">
+              <span class="hero-rcard-title">TỐC</span>
+              <span class="hero-rcard-desc">Tốc Độ &amp; Bứt Phá</span>
+            </div>
+          </div>
+
+          <!-- 4. Góc Dưới Phải: TIÊN (Gotek Royal Blue) -->
+          <div class="hero-rcard hero-rcard-tien" data-corner="tien" role="button" tabindex="0" aria-label="Trụ cột Tiên">
+            <div class="hero-rcard-content">
+              <span class="hero-rcard-title">TIÊN</span>
+              <span class="hero-rcard-desc">Tiên Phong Giải Pháp</span>
+            </div>
+          </div>
+
+          <!-- 5. Dưới Giữa: NHÂN (Gotek Tech Cyan) -->
+          <div class="hero-rcard hero-rcard-nhan" data-corner="nhan" role="button" tabindex="0" aria-label="Trụ cột Nhân">
+            <div class="hero-rcard-content">
+              <span class="hero-rcard-title">NHÂN</span>
+              <span class="hero-rcard-desc">Nhân Văn Làm Gốc</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Lớp Phủ Trắng Mờ Nhẹ Tinh Tế -->
+      <div class="hero-five-corners-overlay"></div>
+
+      <!-- 2.5 Ảnh Nền Mờ Đội Ngũ Nhân Viên Gotek & Logo Trên Tường Nằm Phía Sau Chữ -->
+      <div class="hero-team-backdrop" aria-hidden="true">
+        <img src="./assets/images/team/gotek-team-hero.jpg" alt="Đội ngũ kỹ sư nhân viên Gotek và logo trên tường" class="hero-team-img" />
+      </div>
+
+      <!-- 3. Nội Dung Tinh Gọn Ở Giữa - Bỏ Hoàn Toàn Background Của Chữ -->
+      <div class="hero-clean-content">
+        <div class="hero-text-anim-wrap" id="heroTextAnimWrap">
+          <h1 class="hero-clean-title" id="heroTitle">
+            Kiến Tạo Nền Tảng Số, <br />
+            <span class="hero-clean-highlight">Hiệu Quả Tối Đa &amp; Chuẩn Bền Vững.</span>
+          </h1>
+          <p class="hero-clean-desc" id="heroDesc">
+            Gotek đồng hành cùng doanh nghiệp kiến tạo website độc bản, phát triển ứng dụng di động và hệ thống SaaS chịu
+            tải cao — cam kết <strong class="text-blue-accent">mượt mà 60FPS</strong>, bảo mật tuyệt đối và thúc đẩy
+            chuyển đổi thực chất.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         HOME PARTNERS: ĐỐI TÁC TRONG HỆ SINH THÁI (100% CHUẨN GOTEK.ASIA)
+         ========================================================================= -->
+    <section class="home-partners" aria-labelledby="home-partners-title">
+      <div class="home-partners__heading page-shell">
+        <p>ĐỐI TÁC TRONG HỆ SINH THÁI</p>
+        <h2 id="home-partners-title">Cùng kết nối thương hiệu, mạng lưới và công&nbsp;nghệ.</h2>
+      </div>
+      <div class="home-partners__viewport" aria-label="Danh sách đối tác Gotek">
+        <div class="home-partners__track">
+          <!-- Nhóm 1 -->
+          <div class="home-partners__group">
+            <article class="home-partner-card home-partner-card--gomedia">
+              <img src="./assets/images/partners/partner-go-media.png" alt="Go Media" width="2560" height="973" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--gonetwork">
+              <img src="./assets/images/partners/partner-gonetwork.png" alt="GoNetwork" width="694" height="125" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--byteplus">
+              <img src="./assets/images/partners/partner-byteplus.png" alt="BytePlus" width="1200" height="1200" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--trilab">
+              <img src="./assets/images/partners/partner-trilab.png" alt="HILAB" width="117" height="28" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--cloudfly">
+              <img src="./assets/images/partners/partner-cloudfly.png" alt="CloudFly" width="256" height="60" loading="lazy" decoding="async">
+            </article>
+          </div>
+
+          <!-- Nhóm 2 (Nhân đôi để vòng lặp liên tục) -->
+          <div class="home-partners__group" aria-hidden="true">
+            <article class="home-partner-card home-partner-card--gomedia">
+              <img src="./assets/images/partners/partner-go-media.png" alt="" width="2560" height="973" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--gonetwork">
+              <img src="./assets/images/partners/partner-gonetwork.png" alt="" width="694" height="125" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--byteplus">
+              <img src="./assets/images/partners/partner-byteplus.png" alt="" width="1200" height="1200" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--trilab">
+              <img src="./assets/images/partners/partner-trilab.png" alt="" width="117" height="28" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--cloudfly">
+              <img src="./assets/images/partners/partner-cloudfly.png" alt="" width="256" height="60" loading="lazy" decoding="async">
+            </article>
+          </div>
+
+          <!-- Nhóm 3 (Nhân 3 để lặp hoàn toàn mượt mà) -->
+          <div class="home-partners__group" aria-hidden="true">
+            <article class="home-partner-card home-partner-card--gomedia">
+              <img src="./assets/images/partners/partner-go-media.png" alt="" width="2560" height="973" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--gonetwork">
+              <img src="./assets/images/partners/partner-gonetwork.png" alt="" width="694" height="125" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--byteplus">
+              <img src="./assets/images/partners/partner-byteplus.png" alt="" width="1200" height="1200" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--trilab">
+              <img src="./assets/images/partners/partner-trilab.png" alt="" width="117" height="28" loading="lazy" decoding="async">
+            </article>
+            <article class="home-partner-card home-partner-card--cloudfly">
+              <img src="./assets/images/partners/partner-cloudfly.png" alt="" width="256" height="60" loading="lazy" decoding="async">
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. SECTION GIỚI THIỆU: ĐỐI TÁC CÔNG NGHỆ & PHẦN MỀM CHUYÊN NGHIỆP
+         (Chuẩn mẫu người dùng yêu cầu: Bỏ 2 nút bấm, dải 6 số liệu thống kê)
+         ========================================================================= -->
+    <section id="about" class="about-partner-section">
+      <div class="about-partner-inner">
+        <!-- Tiêu đề chính -->
+        <h2 class="partner-title">
+          ĐỐI TÁC CÔNG NGHỆ &amp; PHẦN MỀM CHUYÊN NGHIỆP
+        </h2>
+
+        <!-- Khung chứa văn bản giới thiệu căn lề bằng nhau -->
+        <div class="partner-text-block">
+          <!-- Đoạn mô tả 1 -->
+          <p class="partner-lead">
+            Đội ngũ kỹ sư tại Đà Nẵng chuyên tư vấn kiến trúc, phát triển phần mềm và xây dựng giải pháp số toàn diện, bền
+            vững cho doanh nghiệp.
+          </p>
+
+          <!-- Đoạn mô tả 2 -->
+          <p class="partner-desc">
+            <strong>GOTEK</strong> tự hào là đối tác công nghệ chiến lược đồng hành cùng doanh nghiệp số hóa quy trình và
+            kiến tạo sản phẩm số chuẩn mực. Chúng tôi tập trung chuyên sâu vào: Thiết kế Web Độc Bản, Phát triển Ứng dụng
+            Di Động, Nền tảng SaaS và Vận hành Hạ tầng Đám Mây chịu tải cao.
+          </p>
+        </div>
+
+        <!-- Dải 3 số liệu thống kê then chốt -->
+        <div class="partner-metrics-strip">
+          <div class="metric-cell">
+            <div class="metric-number">30+</div>
+            <div class="metric-label">Dự án triển khai</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-number">98%</div>
+            <div class="metric-label">Khách hàng hài lòng</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-number">99.9%</div>
+            <div class="metric-label">Cam kết Uptime Cloud</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. SECTION GIẢI PHÁP CHUYÊN SÂU (BENTO GRID SOLUTIONS)
+         - Phong cách Clean B2B Minimalist kết hợp Modern AI & SaaS
+         - Không số theo yêu cầu người dùng, màu chữ chuẩn thương hiệu Gotek (Navy + Royal Blue)
+         ========================================================================= -->
+    <section id="services" class="solutions-bento-section">
+      <div class="solutions-container">
+
+        <!-- Header: Tiêu đề + Phụ đề (Đã bỏ DỊCH VỤ CÔNG NGHỆ theo yêu cầu) -->
+        <div class="solutions-header">
+          <h2 class="solutions-title">
+            Giải Pháp <span class="text-brand-gradient">Chuyên Sâu</span>
+          </h2>
+          <p class="solutions-lead">
+            Hệ sinh thái dịch vụ toàn diện giúp doanh nghiệp bứt phá tăng trưởng và tối ưu vận hành số.
+          </p>
+        </div>
+
+        <div class="bento-container">
+          <div class="bento-left">
+            <img src="./assets/images/banners/hero-engineer-nobg.png" alt="Kỹ sư công nghệ Gotek" class="bento-character-img">
+          </div>
+
+
+          <!-- Bento Grid Matrix: Hairline Border Container -->
+          <div class="bento-grid-matrix">
+
+            <!-- HÀNG 1 - THẺ 1: UI/UX (Spans 8 cols) -->
+            <div class="bento-cell">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                  <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                  <path d="m2 2 7.586 7.586"/>
+                  <circle cx="11" cy="11" r="2"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="bento-text ">
+                  Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao
+                  cấp.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- HÀNG 1 - THẺ 2: Mobile App (Spans 4 cols - Đã bỏ Cross-platform & Native) -->
+            <div class="bento-cell">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
+                  <path d="M12 18h.01"/>
+                  <path d="M9 5h6"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Mobile App</h3>
+                <p class="bento-text">
+                  Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.
+                </p>
+              </div>
+            </div>
+
+            <!-- HÀNG 2 - THẺ 3: Front-end (Spans 4 cols) -->
+            <div class="bento-cell ">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                  <line x1="14" x2="10" y1="4" y2="20"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Front-end</h3>
+                <p class="bento-text">
+                  React, Next.js với 60FPS.
+                </p>
+              </div>
+            </div>
+
+            <!-- HÀNG 2 - THẺ 4: Backend (Spans 4 cols) -->
+            <div class="bento-cell ">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                  <line x1="6" x2="6.01" y1="6" y2="6"/>
+                  <line x1="6" x2="6.01" y1="18" y2="18"/>
+                  <path d="M18 10v4"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Backend</h3>
+                <p class="bento-text">
+                  Microservices an toàn.
+                </p>
+              </div>
+            </div>
+
+            <!-- HÀNG 2 - THẺ 5: Cloud & DevOps (Spans 4 cols) -->
+            <div class="bento-cell ">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                  <polyline points="13 13 16 10 19 13"/>
+                  <line x1="16" x2="16" y1="10" y2="16"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
+                <p class="bento-text">
+                  CI/CD AWS &amp; GCP.
+                </p>
+              </div>
+            </div>
+
+            <!-- HÀNG 3 - THẺ 6: Tích Hợp AI (Spans 4 cols) -->
+            <div class="bento-cell ">
+              <div class="bento-icon-token" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                  <path d="M5 3v4"/>
+                  <path d="M19 17v4"/>
+                  <path d="M3 5h4"/>
+                  <path d="M17 19h4"/>
+                </svg>
+              </div>
+              <div class="bento-cell-body">
+                <h3 class="bento-heading">Tích Hợp AI</h3>
+                <p class="bento-text">
+                  LLM &amp; Tự động hóa.
+                </p>
+              </div>
+            </div>
+
+            <!-- HÀNG 3 - THẺ 7: Tối Ưu Hiệu Suất & SEO (Spans 8 cols) -->
+            <div class="bento-cell ">
+              <div class="bento-seo-layout">
+                <div class="bento-icon-token" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                    <path d="M12 9V4s3.03.55 4 2c1.08 1.62 0 5 0 5"/>
+                  </svg>
+                </div>
+                <div class="bento-seo-info">
+                  <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
+                  <p class="bento-text">
+                    Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. SECTION DỰ ÁN TIÊU BIỂU (2 CỘT: TRÊN ẢNH, DƯỚI LÀ LOẠI + NAME, DƯỚI NỮA LÀ MÔ TẢ)
+         ========================================================================= -->
+    <section id="projects" class="featured-projects-section">
+      <div class="projects-container">
+
+        <!-- Header Section -->
+        <div class="projects-header">
+          <h2 class="projects-title">
+            <span class="projects-title-main">Dự Án <span class="text-brand-gradient">Tiêu Biểu</span></span>
+            <span class="projects-title-sub">Đã Triển Khai</span>
+          </h2>
+          <p class="projects-lead">
+            Những sản phẩm số tinh hoa được Gotek thiết kế và phát triển độc bản, mang lại giá trị đo lường được cho các
+            doanh nghiệp đối tác.
+          </p>
+        </div>
+
+        <div class="project-3-saas-web-hatang" id="projectsContainer">
+          <!-- Các nhóm dự án được nạp và render tự động từ các tệp JSON độc lập bởi JavaScript -->
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         5. SECTION BẢNG BÁO GIÁ DỊCH VỤ (PRICING SECTION)
+         - Chuẩn mẫu ảnh 1 & 2: 3 thẻ (Web Standard, Enterprise SaaS, Scale & Support)
+         - Viền ruy-băng gấp nếp 3D trên viền
+         - 2 thẻ cạnh khi chưa hover: viền và ruy-băng xám (#94A3B8); khi hover: chuyển xanh công ty Gotek (#0055FF)
+         - Thẻ giữa: Luôn nổi bật màu xanh Gotek & nền Deep Navy
+         - Không bị ngắt xuống dòng giữa chừng
+         ========================================================================= -->
+    <section id="pricing" class="pricing-section">
+      <div class="pricing-container">
+
+        <!-- Header -->
+        <div class="pricing-header">
+          <h2 class="pricing-title">
+            Bảng Báo Giá <span class="text-brand-gradient">Dịch Vụ</span>
+          </h2>
+          <p class="pricing-lead">
+            Lựa chọn gói dịch vụ phù hợp với quy mô và tham vọng công nghệ của doanh nghiệp bạn.
+          </p>
+        </div>
+
+        <!-- Lưới Thẻ Báo Giá (Render động từ data/pricing.json qua JavaScript) -->
+        <div class="pricing-grid" id="pricingGrid">
+          <!-- Nội dung các gói dịch vụ được nạp tự động bằng JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. SECTION QUY TRÌNH THỰC THI (STAGGERED STAIRCASE FLOW - 6 BƯỚC AGILE)
+         ========================================================================= -->
+    <section id="process" class="process-section">
+      <div class="process-container">
+
+        <!-- Section Header -->
+        <div class="process-section-header">
+          <h2 class="process-main-title">
+            <span class="process-title-main">Quy Trình Triển Khai</span>
+            <span class="process-title-sub text-brand-gradient">Dự Án</span>
+          </h2>
+          <p class="process-main-desc">
+            Mọi dự án tại Gotek đều được vận hành tuần tự qua 6 cột mốc rõ ràng, bám sát tiến độ cam kết và minh bạch
+            từng giai đoạn bàn giao.
+          </p>
+        </div>
+
+        <!-- Khung Quy Trình Bậc Thang Zigzag -->
+        <div class="staircase-process-wrap" id="staircaseWrap">
+
+          <!-- Canvas SVG chứa các đường nét đứt mượt mà cắm vào giữa đỉnh thẻ (đứng im) -->
+          <svg id="staircaseSvg" class="staircase-svg-canvas" xmlns="http://www.w3.org/2000/svg">
+            <defs id="staircaseDefs">
+              <!-- Mũi tên xanh sáng Gotek chỉ thẳng đứng xuống (↓) vào đúng giữa đỉnh thẻ -->
+              <marker id="arrowhead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6"
+                orient="auto">
+                <path d="M 1 1.5 L 8 5 L 1 8.5 z" fill="#0055FF" />
+              </marker>
+            </defs>
+            <g id="staircasePathGroup"></g>
+          </svg>
+
+          <!-- Lưới các bước quy trình bậc thang -->
+          <div class="staircase-grid">
+
+            <!-- CỘT TRÁI: Bước 1, Bước 3, Bước 5 -->
+            <div class="staircase-col">
+              <!-- BƯỚC 1 -->
+              <div class="step-card tone-azure" id="card1">
+                <div class="step-card-header">
+                  <span class="step-card-num">1.</span>
+                  <h3 class="step-card-title">Khảo Sát &amp; Xác Lập Scope</h3>
+                </div>
+                <p class="step-card-desc">
+                  Tiếp nhận bài toán, khảo sát thực tế và thiết lập tài liệu kiến trúc kỹ thuật (SRS) cùng lộ trình
+                  Sprint chi tiết.
+                </p>
+              </div>
+
+              <!-- BƯỚC 3 -->
+              <div class="step-card" id="card3">
+                <div class="step-card-header">
+                  <span class="step-card-num">3.</span>
+                  <h3 class="step-card-title">Phát Triển Front-end &amp; Back-end</h3>
+                </div>
+                <p class="step-card-desc">
+                  Lập trình giao diện 60FPS mượt mà và xây dựng hệ thống backend microservices chịu tải cao, bảo mật cấp
+                  doanh nghiệp.
+                </p>
+              </div>
+
+              <!-- BƯỚC 5 -->
+              <div class="step-card tone-azure" id="card5">
+                <div class="step-card-header">
+                  <span class="step-card-num">5.</span>
+                  <h3 class="step-card-title">Triển Khai Cloud &amp; CI/CD</h3>
+                </div>
+                <p class="step-card-desc">
+                  Cấu hình hạ tầng đám mây (AWS/GCP), tự động hóa pipeline CI/CD, thiết lập tường lửa WAF và chuyển giao
+                  dữ liệu an toàn.
+                </p>
+              </div>
+            </div>
+
+            <!-- CỘT PHẢI: Bước 2, Bước 4, Bước 6 (So le chúc xuống 135px) -->
+            <div class="staircase-col col-right">
+              <!-- BƯỚC 2 -->
+              <div class="step-card" id="card2">
+                <div class="step-card-header">
+                  <span class="step-card-num">2.</span>
+                  <h3 class="step-card-title">Thiết Kế UX/UI Độc Bản</h3>
+                </div>
+                <p class="step-card-desc">
+                  Xây dựng Wireframe và Figma Prototype tương tác cao, bám sát bộ nhận diện thương hiệu và tối ưu chuyển
+                  đổi người dùng.
+                </p>
+              </div>
+
+              <!-- BƯỚC 4 -->
+              <div class="step-card tone-azure" id="card4">
+                <div class="step-card-header">
+                  <span class="step-card-num">4.</span>
+                  <h3 class="step-card-title">Kiểm Thử Toàn Diện QA/QC</h3>
+                </div>
+                <p class="step-card-desc">
+                  Kiểm thử đa thiết bị, quét lỗ hổng an ninh mạng, rà soát hiệu năng tải trang đạt chuẩn Core Web Vitals
+                  95+ của Google.
+                </p>
+              </div>
+
+              <!-- BƯỚC 6 (Finish Milestone) -->
+              <div class="step-card is-final" id="card6">
+                <div class="step-card-header">
+                  <span class="step-card-num">6.</span>
+                  <h3 class="step-card-title">Bàn Giao &amp; Bảo Hành 24/7</h3>
+                </div>
+                <p class="step-card-desc">
+                  Bàn giao 100% mã nguồn bản quyền, đào tạo vận hành cho nhân sự doanh nghiệp và cam kết hỗ trợ kỹ thuật
+                  dài hạn.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. SECTION HỆ SINH THÁI ĐỐI TÁC (MẪU 2: CHECKERBOARD LOGO GRID)
+         ========================================================================= -->
+    <section id="ecosystem" class="ecosystem-section">
+      <div class="ecosystem-container">
+        <!-- Header -->
+        <div class="ecosystem-header">
+          <h2 class="ecosystem-title" id="ecosystemTitle">
+            <span class="ecosystem-title-main">Hệ Sinh Thái</span>
+            <span class="ecosystem-title-sub text-brand-gradient">Đối Tác Chiến Lược</span>
+          </h2>
+          <p class="ecosystem-subtitle" id="ecosystemSubtitle">
+            Gotek tự hào đồng hành và kiến tạo giá trị công nghệ bền vững cùng các doanh nghiệp, tổ chức uy tín hàng
+            đầu.
+          </p>
+        </div>
+
+        <!-- Lưới Logo Đối Tác (Mẫu 2: Checkerboard Grid - Trắng & Xanh Sáng Mờ) -->
+        <div class="ecosystem-partners-grid" id="ecosystemPartnersGrid">
+          <!-- Render tự động qua JavaScript từ data/ecosystem.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. SECTION ĐÁNH GIÁ KHÁCH HÀNG (TESTIMONIALS - BẬC CÁNH CUNG & 3 NÚT TRÒN)
+         ========================================================================= -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="testimonials-container">
+        <!-- Header -->
+        <div class="testimonials-header">
+          <h2 class="testimonials-title" id="testimonialsTitle">
+            <span class="testimonials-title-main">Khách Hàng</span>
+            <span class="testimonials-title-sub text-brand-gradient">Nói Gì Về Gotek</span>
+          </h2>
+        </div>
+
+        <!-- Khung chứa cánh cung uốn cong các thẻ đánh giá (Curved Arc Stage) -->
+        <div class="testimonials-curved-wrapper">
+          <div id="testimonialsStage" class="testimonials-curved-stage">
+            <!-- Render tự động các thẻ đánh giá qua JavaScript từ data/testimonials.json -->
+          </div>
+        </div>
+
+        <!-- Dưới phần cong là các nút tròn chuyển slide (Tối đa đúng 3 nút tròn) -->
+        <div class="testimonials-pagination-dots" id="testimonialsDots">
+          <button class="testimonials-dot active" data-slide="0" aria-label="Trang đánh giá 1"></button>
+          <button class="testimonials-dot" data-slide="1" aria-label="Trang đánh giá 2"></button>
+          <button class="testimonials-dot" data-slide="2" aria-label="Trang đánh giá 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. SECTION HỆ SINH THÁI 3 ĐỘI NGŨ, 3 PHẦN VIỆC (MÔ HÌNH VÒNG XOÁY 3 LỰC LƯỢNG)
+         ========================================================================= -->
+    <!-- SVG ClipPath Definitions for Ecosystem Frames -->
+    <svg width="0" height="0" style="position: absolute; pointer-events: none;" aria-hidden="true">
+      <defs>
+        <!-- KHUNG 1: Hình thù y hệt Ảnh 1 (Dành cho Go Media & Gotek) -->
+        <clipPath id="ecosystemShapePillar1" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0.147,0.000 C 0.090,0.021 0.035,0.075 0.011,0.133 C 0.000,0.191 0.000,0.276 0.003,0.348 C 0.006,0.419 0.020,0.488 0.027,0.560 C 0.033,0.631 0.021,0.710 0.040,0.775 C 0.059,0.840 0.090,0.912 0.139,0.949 C 0.188,0.986 0.263,0.989 0.332,0.997 C 0.400,1.000 0.482,1.000 0.549,0.996 C 0.617,0.986 0.680,0.967 0.737,0.936 C 0.794,0.905 0.850,0.863 0.892,0.811 C 0.934,0.759 0.970,0.690 0.987,0.623 C 1.000,0.556 1.000,0.477 0.992,0.410 C 0.977,0.343 0.941,0.273 0.899,0.223 C 0.857,0.172 0.798,0.136 0.741,0.106 C 0.683,0.075 0.620,0.056 0.556,0.040 C 0.491,0.023 0.423,0.014 0.355,0.008 C 0.287,0.001 0.205,0.000 0.147,0.000 Z" />
+        </clipPath>
+
+        <!-- KHUNG 2: Khung y hệt Ảnh 2 (Dành cho Go Network - Trúc tím) -->
+        <clipPath id="ecosystemShapePillar2" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0.381,0.000 C 0.320,0.012 0.256,0.049 0.218,0.095 C 0.180,0.141 0.183,0.218 0.155,0.276 C 0.127,0.334 0.076,0.384 0.052,0.441 C 0.027,0.498 0.000,0.567 0.006,0.620 C 0.014,0.674 0.053,0.735 0.098,0.760 C 0.143,0.785 0.221,0.750 0.277,0.772 C 0.332,0.795 0.378,0.859 0.432,0.893 C 0.486,0.928 0.545,0.973 0.602,0.980 C 0.659,0.987 0.734,0.971 0.774,0.934 C 0.814,0.896 0.815,0.812 0.844,0.755 C 0.873,0.698 0.924,0.649 0.948,0.591 C 0.972,0.532 1.000,0.459 0.987,0.405 C 0.974,0.351 0.911,0.312 0.869,0.265 C 0.828,0.218 0.787,0.164 0.738,0.123 C 0.690,0.082 0.638,0.040 0.579,0.020 C 0.519,0.000 0.441,0.000 0.381,0.000 Z" />
+        </clipPath>
+      </defs>
+    </svg>
+
+    <section id="ecosystem-teams" class="ecosystem-teams-section">
+      <div class="ecosystem-teams-container">
+        <!-- Section Header: Ở trên là tiêu đề một hệ sinh thái (Đã bỏ MÔ HÌNH HỢP TÁC CHIẾN LƯỢC theo yêu cầu) -->
+        <div class="ecosystem-teams-header">
+          <h2 class="ecosystem-teams-title" id="ecosystemTeamsTitle">
+            Một Hệ Sinh Thái. <br class="hidden sm:inline" />Ba Đội Ngũ, Ba Phần Việc.
+          </h2>
+          <p class="ecosystem-teams-desc" id="ecosystemTeamsDesc">
+            Doanh nghiệp có thể bắt đầu từ một nhu cầu cụ thể rồi kết nối thêm năng lực phù hợp khi dự án cần mở rộng.
+          </p>
+        </div>
+
+        <!-- Ecosystem Zig-Zag Flow: Cấu trúc so le 3 hàng đối xứng theo chuẩn Image 1 -->
+        <div class="ecosystem-zigzag-container" id="ecosystemStage">
+          <!-- 1. HÀNG 1: GO MEDIA (Nội dung bên Trái, Visual bên Phải) -->
+          <article class="ecosystem-zigzag-row" id="ecosystem-gomedia">
+            <div class="ecosystem-zigzag-content">
+              <div class="ecosystem-zigzag-brand-wrap">
+                <img src="assets/images/partner-go-media.png" alt="Go Media" class="ecosystem-zigzag-brand-logo" />
+              </div>
+              <h3 class="ecosystem-zigzag-title">
+                Xây dựng thương hiệu &amp; tạo nhu cầu thị trường
+              </h3>
+              <p class="ecosystem-zigzag-desc">
+                Go Media chuyển mục tiêu kinh doanh thành định hướng thương hiệu, kế hoạch nội dung và hoạt động thương
+                mại điện tử nhất quán trên các kênh.
+              </p>
+              <p class="ecosystem-zigzag-desc">
+                Từ bộ nhận diện số đến các chiến dịch truyền thông đa kênh, từng điểm chạm đều được thiết kế bài bản
+                nhằm khơi dậy nhu cầu thực tế của khách hàng, tạo lập vị thế vững chắc và mở rộng thị trường.
+              </p>
+              <div class="ecosystem-zigzag-action">
+                <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
+                  <span>Khám phá Go Media</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="ecosystem-zigzag-visual">
+              <div class="ecosystem-blob-art-container shape-pillar-1-container">
+                <div class="ecosystem-blob-frame shape-pillar-1">
+                  <img src="assets/images/ecosystem/gomedia-team.jpg"
+                    alt="Đội ngũ Go Media - Xây dựng thương hiệu và tạo nhu cầu thị trường" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. HÀNG 2: GONETWORK (Visual bên Trái, Nội dung bên Phải - So le) -->
+          <article class="ecosystem-zigzag-row is-reversed" id="ecosystem-gonetwork">
+            <div class="ecosystem-zigzag-content">
+              <div class="ecosystem-zigzag-brand-wrap">
+                <img src="assets/images/partner-gonetwork.png" alt="GoNetwork" class="ecosystem-zigzag-brand-logo" />
+              </div>
+              <h3 class="ecosystem-zigzag-title">
+                Kết nối thương hiệu với đúng mạng lưới tiếng nói
+              </h3>
+              <p class="ecosystem-zigzag-desc">
+                GoNetwork đưa kế hoạch vào mạng lưới nhà sáng tạo, KOL/KOC: làm rõ đối tượng, phạm vi, lịch triển khai
+                và đầu mối phối hợp bài bản.
+              </p>
+              <p class="ecosystem-zigzag-desc">
+                Thay vì quảng bá một chiều, thương hiệu tiếp cận người tiêu dùng thông qua những câu chuyện chân thực và
+                gần gũi, giúp thông điệp lan tỏa tự nhiên với tỷ lệ tương tác và chuyển đổi cao nhất.
+              </p>
+              <div class="ecosystem-zigzag-action">
+                <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
+                  <span>Khám phá Go Network</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="ecosystem-zigzag-visual">
+              <div class="ecosystem-blob-art-container shape-pillar-2-container">
+                <div class="ecosystem-blob-frame shape-pillar-2">
+                  <img src="assets/images/ecosystem/gonetwork-team.jpg"
+                    alt="Đội ngũ GoNetwork - Kết nối thương hiệu với đúng tiếng nói" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. HÀNG 3: GOTEK (Nội dung bên Trái, Visual bên Phải) -->
+          <article class="ecosystem-zigzag-row" id="ecosystem-gotek">
+            <div class="ecosystem-zigzag-content">
+              <div class="ecosystem-zigzag-brand-wrap">
+                <img src="assets/images/gotek-logo-color.svg" alt="Gotek" class="ecosystem-zigzag-brand-logo" />
+              </div>
+              <h3 class="ecosystem-zigzag-title">
+                Biến chiến lược thành hệ thống vận hành thực tế
+              </h3>
+              <p class="ecosystem-zigzag-desc">
+                Gotek xây website, phần mềm, hạ tầng và tự động hóa để dữ liệu, quy trình cùng trải nghiệm số có thể vận
+                hành, theo dõi và mở rộng không giới hạn.
+              </p>
+              <p class="ecosystem-zigzag-desc">
+                Mọi điểm chạm từ tiếp thị và mạng lưới đối tác đều được Gotek kết nối liền mạch vào hệ thống dữ liệu tập
+                trung, giúp doanh nghiệp kiểm soát toàn diện và sẵn sàng bứt phá tăng trưởng.
+              </p>
+              <div class="ecosystem-zigzag-action">
+                <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
+                  <span>Khám phá Go Tek</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="ecosystem-zigzag-visual">
+              <div class="ecosystem-blob-art-container shape-pillar-3-container">
+                <div class="ecosystem-blob-frame shape-pillar-3">
+                  <img src="assets/images/ecosystem/gotek-team.jpg"
+                    alt="Đội ngũ Gotek - Biến chiến lược thành hệ thống vận hành được" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. SECTION CÂU HỎI THƯỜNG GẶP (FAQ - ROLLER WHEEL CUỘN 7 CÂU & KHUNG TRẢ LỜI)
+         ========================================================================= -->
+    <section id="faq" class="faq-section">
+      <div class="faq-container">
+        <!-- Header ở trên (Không màu nền) -->
+        <div class="faq-header">
+          <h2 class="faq-title" id="faqTitle">
+            Câu Hỏi <span class="text-brand-gradient">Thường Gặp</span>
+          </h2>
+          <p class="faq-subtitle" id="faqSubtitle">
+            Giải đáp những thắc mắc phổ biến nhất để bạn hoàn toàn an tâm khi lựa chọn Gotek làm đối tác công nghệ chiến
+            lược.
+          </p>
+        </div>
+
+        <!-- Khung 2 Cột: Trái là con lăn danh sách câu hỏi (Roller Wheel), Phải là khung câu trả lời -->
+        <div class="faq-roller-layout" id="faqRollerLayout">
+          <!-- Cột Trái: Con lăn câu hỏi dạng viên thuốc có hiệu ứng mờ dần 2 đầu (Hình 2) -->
+          <div class="faq-roller-col">
+            <div class="faq-roller-viewport" id="faqRollerViewport">
+              <div class="faq-roller-track" id="faqRollerTrack">
+                <!-- Render tự động qua JavaScript từ data/faq.json -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Cột Phải: Khung câu trả lời nổi bật -->
+          <div class="faq-roller-answer-pane">
+            <div class="faq-roller-answer-card" id="faqAnswerCard">
+              <!-- Render động khi câu hỏi ở giữa thay đổi -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SVG Icon Sprite for Gotek Footer -->
+    <svg class="gotek-icon-sprite" style="display: none;" aria-hidden="true">
+      <symbol id="gotek-icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></symbol>
+      <symbol id="gotek-icon-arrow-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
+      <symbol id="gotek-icon-arrow-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"></path></symbol>
+      <symbol id="gotek-icon-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+      <symbol id="gotek-icon-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-10 6L2 7"></path></symbol>
+      <symbol id="gotek-icon-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.65 2.62a2 2 0 0 1-.45 2.11L8.04 9.72a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0 1 22 16.92Z"></path></symbol>
+      <symbol id="gotek-icon-brand-facebook" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a9 9 0 0 1 1.141.195v3.325a9 9 0 0 0-.653-.036 27 27 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.7 1.7 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647"></path></symbol>
+      <symbol id="gotek-icon-brand-instagram" viewBox="0 0 24 24"><path d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388 5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552 1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388 5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912.056-1.28.07-1.69.063-4.948-.006-3.258-.02-3.667-.081-4.947-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123 5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895 3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228-.06-1.264-.072-1.644-.08-4.848-.006-3.204.006-3.583.061-4.848.05-1.169.246-1.805.408-2.228.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417 1.265-.06 1.644-.072 4.848-.08 3.203-.006 3.583.006 4.85.062 1.168.05 1.804.244 2.227.408.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227.06 1.265.074 1.645.08 4.848.005 3.203-.006 3.583-.061 4.848-.051 1.17-.245 1.805-.408 2.23-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442 1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024 6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16 4 4 0 0 1 8 12.008"></path></symbol>
+      <symbol id="gotek-icon-brand-threads" viewBox="0 0 24 24"><path d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934 1.168 19.934 6.121 24 12.024 24c4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"></path></symbol>
+      <symbol id="gotek-icon-brand-x" viewBox="0 0 24 24"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"></path></symbol>
+    </svg>
+
+    <!-- Gotek Footer 100% Exact Clone from Gotek.asia -->
+    <footer id="contact" class="site-footer gotek-footer page-shell" data-gotek-footer-version="1.12.6-mail-only">
+      <section class="gotek-footer-cta" aria-labelledby="footer-cta-title">
+        <div>
+          <p>CÔNG NGHỆ VIỆT, VƯƠN TẦM QUỐC TẾ</p>
+          <h2 id="footer-cta-title"><span class="gt-line">Biến một <strong>nhu&nbsp;cầu&nbsp;rõ&nbsp;ràng</strong></span><span class="gt-line">thành hệ thống có thể vận hành và phát triển.</span></h2>
+        </div>
+        <a href="https://gotek.asia/contact/"><span>Bắt đầu trao đổi</span><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-arrow-up-right"></use></svg></a>
+      </section>
+
+      <div class="gotek-footer-main">
+        <div class="gotek-footer-brand">
+          <a class="gotek-footer-logo" href="#hero" aria-label="Gotek — Trang chủ"><img src="./assets/images/gotek-logo-color.svg" alt="gotek" width="149" height="63"></a>
+          <p>Gotek là đội ngũ công nghệ tại Đà Nẵng, kết nối sản phẩm số, phát triển phần mềm và hạ tầng để đồng hành cùng doanh nghiệp từ yêu cầu đến vận hành.</p>
+          <div class="gotek-footer-social" aria-label="Mạng xã hội Gotek"><a href="https://www.facebook.com/gotek.asia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><svg class="gotek-icon brand-icon" aria-hidden="true" focusable="false"><use href="#gotek-icon-brand-facebook"></use></svg><span class="screen-reader-text">Facebook</span></a><a href="https://www.instagram.com/gotek.asia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg class="gotek-icon brand-icon" aria-hidden="true" focusable="false"><use href="#gotek-icon-brand-instagram"></use></svg><span class="screen-reader-text">Instagram</span></a><a href="https://www.threads.com/@gotek.asia" target="_blank" rel="noopener noreferrer" aria-label="Threads" title="Threads"><svg class="gotek-icon brand-icon" aria-hidden="true" focusable="false"><use href="#gotek-icon-brand-threads"></use></svg><span class="screen-reader-text">Threads</span></a><a href="https://x.com/gotek_asia" target="_blank" rel="noopener noreferrer" aria-label="X" title="X"><svg class="gotek-icon brand-icon" aria-hidden="true" focusable="false"><use href="#gotek-icon-brand-x"></use></svg><span class="screen-reader-text">X</span></a></div>
+        </div>
+
+        <div class="gotek-footer-column gotek-footer-accordion is-open" data-footer-accordion="">
+          <h3 class="gotek-footer-accordion__heading">Liên kết nhanh</h3>
+          <button class="gotek-footer-accordion__trigger" type="button" aria-expanded="true" aria-controls="gotek-footer-quick-links"><span>Liên kết nhanh</span><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-arrow-down"></use></svg></button>
+          <nav class="gotek-footer-accordion__panel" id="gotek-footer-quick-links" aria-label="Liên kết nhanh">
+            <a href="#hero">Trang chủ</a><a href="https://gotek.asia/gioi-thieu/">Giới thiệu</a><a href="https://gotek.asia/dich-vu/">Dịch vụ</a><a href="https://gotek.asia/insights/">Blog</a><a href="https://gotek.asia/tuyen-dung/">Tuyển dụng</a><a href="https://gotek.asia/contact/">Liên hệ</a>          </nav>
+        </div>
+
+        <div class="gotek-footer-column gotek-footer-accordion is-open" data-footer-accordion="">
+          <h3 class="gotek-footer-accordion__heading">Dịch vụ</h3>
+          <button class="gotek-footer-accordion__trigger" type="button" aria-expanded="true" aria-controls="gotek-footer-service-links"><span>Dịch vụ</span><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-arrow-down"></use></svg></button>
+          <nav class="gotek-footer-accordion__panel" id="gotek-footer-service-links" aria-label="Dịch vụ Gotek">
+            <a href="https://gotek.asia/dichvu/dich-vu-saas/">SaaS &amp; nền tảng</a><a href="https://gotek.asia/dich-vu/thiet-ke-website/">Thiết kế Website</a><a href="https://gotek.asia/dich-vu/hosting/">Hạ tầng &amp; vận hành</a>          </nav>
+        </div>
+
+        <div class="gotek-footer-column gotek-footer-info">
+          <h3>Thông tin</h3>
+          <address><a class="gotek-footer-office-title" href="https://share.google/7CH8yM1CBF2qkzYtL" target="_blank" rel="noopener noreferrer"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-map-pin"></use></svg><span>Go&nbsp;Media Agency Đà&nbsp;Nẵng</span></a><span>91 Thành Thái, Cẩm Lệ, Đà Nẵng</span></address>
+          <a class="gotek-footer-info-contact" href="mailto:info@gotek.asia"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-mail"></use></svg><span>info@gotek.asia</span></a>
+          <a class="gotek-footer-info-contact" href="tel:+84978970605"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>+84 97 897 0605</span></a>          <a href="https://gotek.asia/sitemap/">Sơ đồ website</a>
+        </div>
+      </div>
+
+      <div class="gotek-footer-base">
+        <span>© 2026 Gotek. Bảo lưu mọi quyền.</span>
+        <span>Công nghệ Việt, vươn tầm quốc tế.</span>
+        <a class="gotek-back-to-top" href="#top">Về đầu trang <svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-arrow-up"></use></svg></a>
+      </div>
+    </footer>
+
+
+  </main>
+
+
+
+  <!-- Scripts -->
+  <!-- 1. Nạp GotekDataStore trước (chứa dữ liệu hoặc fetch từ data/*.json) -->
+  <script src="data/data-store.js?v=4"></script>
+  <!-- 2. Nạp main logic (module ES) -->
+  <script type="module" src="js/main.js?v=41"></script>
+</body>
+
+</html>

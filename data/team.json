@@ -1,0 +1,34 @@
+[
+  {
+    "id": "team-01",
+    "name": "Lê Nguyễn Cẩm Chi",
+    "role": "CEO & Sáng Lập Viên",
+    "avatar": "assets/images/team/avatar_ceo_1.jpg",
+    "bio": "Hơn 12 năm kinh nghiệm điều hành và tư vấn chiến lược chuyển đổi số cho các tập đoàn đa quốc gia.",
+    "skills": ["Chiến lược số", "Quản trị sản phẩm", "Lãnh đạo"]
+  },
+  {
+    "id": "team-02",
+    "name": "Trần Quốc Toàn",
+    "role": "Giám Đốc Kỹ Thuật (CTO)",
+    "avatar": "assets/images/team/avatar_ceo_1.jpg",
+    "bio": "Chuyên gia kiến trúc hệ thống phân tán, nguyên Lead Architect tại các kỳ lân công nghệ Đông Nam Á.",
+    "skills": ["Microservices", "Cloud DevOps", "An ninh mạng"]
+  },
+  {
+    "id": "team-03",
+    "name": "Nguyễn Minh Châu",
+    "role": "Giám Đốc Thiết Kế (Head of Design)",
+    "avatar": "assets/images/team/avatar_ceo_1.jpg",
+    "bio": "Đạt nhiều giải thưởng thiết kế quốc tế, kiến tạo trải nghiệm người dùng tinh tế và đột phá.",
+    "skills": ["Design System", "UX Research", "Motion Interaction"]
+  },
+  {
+    "id": "team-04",
+    "name": "Phạm Hoàng Nam",
+    "role": "Trưởng Nhóm AI & Dữ Liệu Lớn",
+    "avatar": "assets/images/team/avatar_ceo_1.jpg",
+    "bio": "Tiến sĩ Khoa học Máy tính, chủ nhiệm nhiều đề tài nghiên cứu về Large Language Models và Computer Vision.",
+    "skills": ["Machine Learning", "RAG Systems", "Python/PyTorch"]
+  }
+]

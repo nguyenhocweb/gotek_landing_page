@@ -1,0 +1,72 @@
+[
+  {
+    "id": "fintechpay-platform",
+    "title": "FintechPay Platform",
+    "category": "Fintech & SaaS",
+    "image": "assets/images/projects/portfolio_saas_1789482343566.jpg",
+    "summary": "Cổng thanh toán & Core Banking microservices chịu tải cao, phục vụ hơn 500.000 người dùng với độ ổn định tuyệt đối.",
+    "kpis": [
+      { "label": "Tải xử lý", "value": "15.000 TPS" },
+      { "label": "Uptime", "value": "99.99%" },
+      { "label": "Tăng trưởng", "value": "+180%" }
+    ],
+    "tech": ["Node.js", "Redis", "Kafka", "Docker", "PostgreSQL"],
+    "link": "#"
+  },
+  {
+    "id": "megamart-retail",
+    "title": "MegaMart Omnichannel",
+    "category": "Mobile App Bán Lẻ",
+    "image": "assets/images/projects/mockup_project_1.jpg",
+    "summary": "Ứng dụng di động Flutter đồng bộ kho hàng thời gian thực tại 50+ siêu thị, mang lại trải nghiệm thanh toán 1 chạm 60FPS.",
+    "kpis": [
+      { "label": "Lượt tải", "value": "250K+" },
+      { "label": "Đánh giá", "value": "4.9 ★" },
+      { "label": "Giảm lỗi tồn", "value": "-95%" }
+    ],
+    "tech": ["Flutter", "Golang", "MongoDB", "Firebase"],
+    "link": "#"
+  },
+  {
+    "id": "synapse-intelligence",
+    "title": "Synapse AI Platform",
+    "category": "AI & Big Data",
+    "image": "assets/images/banners/hero-portfolio.jpg",
+    "summary": "Nền tảng trực quan hóa dữ liệu lớn và điều phối AI Agent đa tác vụ qua WebSockets, tối ưu 40% chi phí vận hành cloud.",
+    "kpis": [
+      { "label": "Tiết kiệm chi phí", "value": "-40%" },
+      { "label": "Độ chính xác", "value": "98.5%" },
+      { "label": "Phản hồi AI", "value": "< 1.2s" }
+    ],
+    "tech": ["Python", "FastAPI", "Next.js", "pgvector", "LangChain"],
+    "link": "#"
+  },
+  {
+    "id": "aura-creative-living",
+    "title": "Aura Creative Living",
+    "category": "Web App Cao Cấp",
+    "image": "assets/images/projects/portfolio_web_1789482363230.jpg",
+    "summary": "Website thương hiệu Editorial với trải nghiệm tương tác 3D mượt mà, tối ưu SEO Onpage đạt điểm tuyệt đối Google Lighthouse.",
+    "kpis": [
+      { "label": "Lighthouse Score", "value": "100/100" },
+      { "label": "Tốc độ tải trang", "value": "0.6s" },
+      { "label": "Tỷ lệ chuyển đổi", "value": "+65%" }
+    ],
+    "tech": ["Next.js", "TailwindCSS", "Three.js", "Vercel"],
+    "link": "#"
+  },
+  {
+    "id": "logichain-erp",
+    "title": "LogiChain ERP",
+    "category": "ERP Vận Tải & Kho Bãi",
+    "image": "assets/images/projects/mockup_project_2.jpg",
+    "summary": "Hệ thống số hóa quy trình điều phối hơn 300 đầu xe vận tải, tích hợp định vị GPS bản đồ số giúp giảm 35% chi phí rỗng xe.",
+    "kpis": [
+      { "label": "Số xe điều phối", "value": "300+ xe" },
+      { "label": "Giảm thời gian chờ", "value": "-50%" },
+      { "label": "Tiết kiệm chi phí", "value": "-35%" }
+    ],
+    "tech": ["React", "NestJS", "PostGIS", "Redis"],
+    "link": "#"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "categoryTitle": "Website và landing pages",
+  "items": [
+    {
+      "id": "logichain-cloud",
+      "name": "LogiChain Cloud Logistics",
+      "image": "assets/images/projects/mockup_project_2.jpg",
+      "desc": "Hệ thống số hóa logistics và điều phối tự động hơn 300 đầu xe vận tải liên tỉnh qua bản đồ số GIS thông minh.",
+      "link": "#contact"
+    },
+    {
+      "id": "fincloud-ops",
+      "name": "FinCloud High-Availability",
+      "image": "assets/images/banners/hero-main.jpg",
+      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
+      "link": "#contact"
+    },
+    {
+      "id": "fincloud-ops2",
+      "name": "FinCloud High-Availability",
+      "image": "assets/images/banners/hero-main.jpg",
+      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
+      "link": "#contact"
+    },
+    {
+      "id": "fincloud-ops3",
+      "name": "FinCloud High-Availability",
+      "image": "assets/images/banners/hero-main.jpg",
+      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
+      "link": "#contact"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "section": {
+    "tag": "GIẢI ĐÁP THẮC MẮC",
+    "title": "Câu Hỏi",
+    "highlightTitle": "Thường Gặp",
+    "subtitle": "Giải đáp những thắc mắc phổ biến nhất để bạn hoàn toàn an tâm khi lựa chọn Gotek làm đối tác công nghệ chiến lược."
+  },
+  "support": {
+    "title": "Chưa tìm thấy câu trả lời bạn cần?",
+    "description": "Đội ngũ kỹ sư trưởng sẵn sàng tư vấn trực tiếp và khảo sát bài toán kỹ thuật của bạn hoàn toàn miễn phí.",
+    "ctaText": "Tư vấn qua Zalo",
+    "ctaLink": "https://zalo.me/0978970605"
+  },
+  "items": [
+    {
+      "id": "faq-01",
+      "num": "01",
+      "category": "CHI PHÍ DỰ ÁN",
+      "question": "Chi phí phát triển một website hoặc phần mềm là bao nhiêu?",
+      "answer": "Chi phí phụ thuộc vào quy mô tính năng, kiến trúc hệ thống và công nghệ lựa chọn. Gotek luôn khảo sát kỹ lưỡng và cung cấp báo giá chi tiết, minh bạch theo từng Sprint bàn giao, cam kết không phát sinh chi phí ẩn trong suốt quá trình triển khai."
+    },
+    {
+      "id": "faq-02",
+      "num": "02",
+      "category": "TIẾN ĐỘ & THỜI GIAN",
+      "question": "Thời gian hoàn thành và bàn giao dự án mất bao lâu?",
+      "answer": "Một dự án tiêu chuẩn thường kéo dài từ 4 đến 8 tuần tùy theo phạm vi công việc. Đội ngũ áp dụng quy trình Agile Sprint hàng tuần, demo sản phẩm thực tế định kỳ vào mỗi thứ Sáu để khách hàng luôn chủ động nắm bắt tiến độ và góp ý kịp thời."
+    },
+    {
+      "id": "faq-03",
+      "num": "03",
+      "category": "BẢN QUYỀN SOURCE CODE",
+      "question": "Gotek có bàn giao 100% bản quyền mã nguồn (Source Code) không?",
+      "answer": "Chắc chắn có. Toàn bộ 100% bản quyền mã nguồn sạch, tài liệu kiến trúc kỹ thuật (System Architecture), tài liệu API OpenAPI/Swagger và toàn quyền quản trị tài nguyên Cloud sẽ được chuyển giao trọn vẹn cho doanh nghiệp của bạn."
+    },
+    {
+      "id": "faq-04",
+      "num": "04",
+      "category": "BẢO HÀNH & BẢO TRÌ",
+      "question": "Chính sách bảo hành, bảo trì và hỗ trợ kỹ thuật sau bàn giao ra sao?",
+      "answer": "Gotek cam kết bảo hành kỹ thuật 12 tháng miễn phí và hỗ trợ giám sát hệ thống 24/7. Chúng tôi tổ chức các buổi đào tạo chuyển giao công nghệ cho nhân sự nội bộ của bạn, đồng thời sẵn sàng đồng hành mở rộng tính năng theo các giai đoạn phát triển tiếp theo."
+    },
+    {
+      "id": "faq-05",
+      "num": "05",
+      "category": "BẢO MẬT & NDA",
+      "question": "Dữ liệu và ý tưởng kinh doanh của doanh nghiệp có được bảo mật không?",
+      "answer": "Gotek ký thỏa thuận bảo mật NDA pháp lý trước khi tiếp cận dữ liệu hoặc thảo luận chi tiết bài toán kinh doanh. Tất cả mã nguồn và dữ liệu kiểm thử đều được lưu trữ trên môi trường phân quyền bảo mật riêng biệt."
+    },
+    {
+      "id": "faq-06",
+      "num": "06",
+      "category": "MỞ RỘNG TÍNH NĂNG",
+      "question": "Gotek có hỗ trợ nâng cấp và phát triển tính năng mới sau này không?",
+      "answer": "Hoàn toàn có. Kiến trúc do Gotek xây dựng tuân thủ quy chuẩn Module hóa và Clean Architecture, giúp bạn dễ dàng bổ sung tính năng mới, kết nối AI hoặc mở rộng quy mô người dùng mà không cần đập đi xây lại."
+    },
+    {
+      "id": "faq-07",
+      "num": "07",
+      "category": "HẠ TẦNG & CHỊU TẢI",
+      "question": "Hệ thống có chịu tải được lượng người dùng lớn cùng lúc không?",
+      "answer": "Có. Đội ngũ Gotek thiết kế hạ tầng Cloud Auto-scaling trên AWS/GCP, kết hợp Redis Caching và Cloudflare CDN giúp hệ thống chịu tải hàng triệu lượt truy cập đồng thời với độ trễ cực thấp và ổn định 99.9% Uptime."
+    },
+    {
+      "id": "faq-08",
+      "num": "08",
+      "category": "LỘ TRÌNH THANH TOÁN",
+      "question": "Phương thức và lộ trình thanh toán dự án được chia như thế nào?",
+      "answer": "Lộ trình thanh toán được chia nhỏ theo 3 - 4 giai đoạn gắn liền với kết quả bàn giao thực tế (Khởi động -> Hoàn thiện UI/UX -> Bàn giao bản Beta kiểm thử -> Bàn giao nghiệm thu chính thức), đảm bảo an tâm và quyền lợi tối đa cho khách hàng."
+    },
+    {
+      "id": "faq-09",
+      "num": "09",
+      "category": "HỢP TÁC MVP",
+      "question": "Doanh nghiệp có thể bắt đầu từ một tính năng nhỏ trước được không?",
+      "answer": "Hoàn toàn được. Gotek khuyến khích phát triển theo mô hình MVP (Minimum Viable Product) để đưa sản phẩm ra thị trường nhanh nhất, kiểm chứng nhu cầu thực tế rồi mới mở rộng các phân hệ tiếp theo."
+    },
+    {
+      "id": "faq-10",
+      "num": "10",
+      "category": "ĐỘI NGŨ CHUYÊN MÔN",
+      "question": "Nhân sự trực tiếp thực hiện dự án có trình độ chuyên môn ra sao?",
+      "answer": "100% dự án tại Gotek được dẫn dắt bởi Solution Architect và Senior Developer có từ 5-8 năm kinh nghiệm thực chiến trong các bài toán High-Load và Enterprise Architecture."
+    }
+  ]
+}

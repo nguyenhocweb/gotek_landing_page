@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "name": "Gotek",
+    "legalName": "Công Ty Cổ Phần Công Nghệ Gotek",
+    "slogan": "Tiên phong kiến tạo giải pháp số & phần mềm doanh nghiệp chất lượng cao",
+    "logo": "assets/images/logo.png",
+    "yearFounded": 2020
+  },
+  "contact": {
+    "hotline": "0988.123.456",
+    "phoneDisplay": "0988 123 456",
+    "email": "contact@gotek.vn",
+    "address": "Tầng 8, Tòa nhà Gotek Tower, Số 123 Đường Công Nghệ, Cầu Giấy, Hà Nội",
+    "workingHours": "Thứ 2 - Thứ 6: 08:30 - 18:00 (Hỗ trợ khẩn cấp 24/7)"
+  },
+  "navigation": [
+    { "label": "Trang chủ", "href": "#hero" },
+    { "label": "Về chúng tôi", "href": "#about" },
+    { "label": "Dịch vụ", "href": "#services" },
+    { "label": "Dự án", "href": "#projects" },
+    { "label": "Bảng giá", "href": "#pricing" },
+    { "label": "Quy trình", "href": "#process" },
+    { "label": "Tuyển dụng", "href": "#careers" },
+    { "label": "Đội ngũ", "href": "#team" },
+    { "label": "Liên hệ", "href": "#contact" }
+  ],
+  "socials": [
+    { "name": "Facebook", "icon": "facebook", "url": "https://facebook.com/gotek" },
+    { "name": "LinkedIn", "icon": "linkedin", "url": "https://linkedin.com/company/gotek" },
+    { "name": "GitHub", "icon": "github", "url": "https://github.com/gotek" }
+  ],
+  "stats": [
+    { "number": "50+", "label": "Dự án bàn giao chuẩn SLA" },
+    { "number": "99.8%", "label": "Độ khả dụng hệ thống" },
+    { "number": "60 FPS", "label": "Chuẩn hiệu năng tương tác" },
+    { "number": "100%", "label": "Bàn giao mã nguồn độc quyền" }
+  ]
+}

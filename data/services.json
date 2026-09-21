@@ -1,0 +1,86 @@
+[
+  {
+    "id": "web-development",
+    "title": "Phát Triển Web App Cao Cấp",
+    "description": "Xây dựng ứng dụng web hiện đại, kiến trúc module chịu tải lớn, chuẩn SEO 100% Google Lighthouse và tối ưu chuyển đổi vượt trội.",
+    "icon": "globe",
+    "image": "assets/images/services/service-1.jpg",
+    "badge": "Chủ Lực",
+    "features": [
+      "Next.js / React / Vue SPA & SSR",
+      "Giao diện chuẩn Responsive 60FPS",
+      "Tối ưu Core Web Vitals tuyệt đối",
+      "Tích hợp cổng thanh toán & ERP"
+    ]
+  },
+  {
+    "id": "mobile-app",
+    "title": "Ứng Dụng Di Động iOS & Android",
+    "description": "Thiết kế và lập trình mobile app đa nền tảng mượt mà, đồng bộ dữ liệu thời gian thực và thông báo đẩy tức thì.",
+    "icon": "smartphone",
+    "image": "assets/images/services/service-2.jpg",
+    "badge": "Hot",
+    "features": [
+      "Flutter / React Native Native-like",
+      "Bảo mật vân tay & FaceID chuẩn ngân hàng",
+      "Offline-first sync dữ liệu thông minh",
+      "Hỗ trợ đăng ký và duyệt App Store / CH Play"
+    ]
+  },
+  {
+    "id": "ai-solutions",
+    "title": "Giải Pháp Trí Tuệ Nhân Tạo & AI Agent",
+    "description": "Tích hợp AI chuyên sâu, tự động hóa quy trình chăm sóc khách hàng bằng Chatbot thông minh và trích xuất dữ liệu tự động.",
+    "icon": "cpu",
+    "image": "assets/images/services/service-3.jpg",
+    "badge": "Tiên Phong",
+    "features": [
+      "AI Agent RAG hỏi đáp trên tài liệu nội bộ",
+      "Xử lý ngôn ngữ tự nhiên Tiếng Việt xuất sắc",
+      "Phân tích dữ liệu & dự báo xu hướng",
+      "Tối ưu chi phí API Cloud lên đến 40%"
+    ]
+  },
+  {
+    "id": "system-architecture",
+    "title": "Kiến Trúc Hệ Thống & Cloud DevOps",
+    "description": "Tư vấn thiết kế Microservices, di chuyển dữ liệu lên AWS / Google Cloud và tự động hóa triển khai CI/CD chuẩn quốc tế.",
+    "icon": "server",
+    "image": "assets/images/services/service-4.jpg",
+    "badge": "Bảo Mật",
+    "features": [
+      "Docker & Kubernetes Containerization",
+      "Giám sát Prometheus & Grafana 24/7",
+      "Chịu tải cao hàng triệu requests/phút",
+      "Bảo vệ DDoS & chuẩn hóa an toàn thông tin"
+    ]
+  },
+  {
+    "id": "uiux-design",
+    "title": "Thiết Kế UI/UX & Design System",
+    "description": "Nghiên cứu hành vi người dùng, kiến tạo giao diện đẳng cấp tinh tế và đồng bộ bộ thư viện Design System chuẩn thương hiệu.",
+    "icon": "palette",
+    "image": "assets/images/services/service-5.jpg",
+    "badge": "Sáng Tạo",
+    "features": [
+      "Nghiên cứu UX Research & Persona khách hàng",
+      "Wireframe & Prototype tương tác cao",
+      "Design System toàn diện trên Figma",
+      "Bàn giao tokens chuẩn lập trình viên"
+    ]
+  },
+  {
+    "id": "digital-transformation",
+    "title": "Số Hóa & Quản Trị Doanh Nghiệp (ERP/CRM)",
+    "description": "May đo phần mềm quản lý nội bộ theo đặc thù từng doanh nghiệp, kết nối chuỗi cung ứng, kho bãi và tài chính tức thời.",
+    "icon": "layers",
+    "image": "assets/images/services/service-1.jpg",
+    "badge": "Doanh Nghiệp",
+    "features": [
+      "Quản lý nhân sự, chấm công, tính lương",
+      "Quản trị kho vận & điều phối tự động",
+      "Báo cáo tài chính & dashboard quản trị CEO",
+      "Tích hợp hóa đơn điện tử & chữ ký số"
+    ]
+  }
+]
