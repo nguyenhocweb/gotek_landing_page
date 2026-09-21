@@ -4,7 +4,7 @@
 
 ---
 
-## 🏛️ 1. Cấu Trúc Kiến Trúc Dự Án (Project Architecture)
+## 🏛️ Cấu Trúc Kiến Trúc Dự Án (Project Architecture)
 
 Dự án được phân tách module rõ ràng, hoàn toàn không phụ thuộc framework cồng kềnh, dễ dàng bảo trì và mở rộng:
 
@@ -53,76 +53,3 @@ gotek/
     ├── testimonials.json           # Đánh giá chứng thực từ khách hàng và đối tác
     └── data-store.js               # Module nạp dữ liệu thông minh (hỗ trợ cả HTTP Fetch lẫn file://)
 ```
-
----
-
-## 🚀 2. Hướng Dẫn Cài Đặt & Chạy Dự Án
-
-### Cách 1: Chạy trực tiếp qua trình duyệt (Không cần cài đặt)
-Nhấp đúp chuột vào file `index.html` để mở ngay trên Google Chrome, Microsoft Edge, Mozilla Firefox hoặc Safari.
-
-### Cách 2: Chạy qua Local Server (Khuyên dùng)
-```bash
-# Sử dụng Python có sẵn trên máy
-python -m http.server 8099
-
-# Hoặc dùng extension Live Server trên VS Code (nhấn "Go Live")
-```
-Truy cập website tại: `http://localhost:8099`
-
----
-
-## 💎 3. Nhật Ký Nâng Cấp & Thay Đổi Giao Diện (Visual Changelog)
-
-Dưới đây là chi tiết các hạng mục nâng cấp giao diện thực hiện theo chuẩn thiết kế quốc tế và nhận diện thương hiệu **Gotek.asia**:
-
-### 1. Nâng cấp Dải Đối Tác Trong Hệ Sinh Thái (Home Partners Marquee)
-- **Trước đây:** Dải lặp lại các logo Gotek đơn sắc màu xanh.
-- **Sau khi nâng cấp:**
-  - Cào và đồng bộ chuẩn 100% theo trang gốc [gotek.asia](https://gotek.asia/).
-  - **Badge định danh:** `ĐỐI TÁC TRONG HỆ SINH THÁI` viền xanh mảnh với nền pastel dịu nhẹ.
-  - **Tiêu đề phụ:** `Cùng kết nối thương hiệu, mạng lưới và công nghệ.`.
-  - **Ticker băng chuyền vô tận (Infinite Marquee):** 5 thương hiệu đối tác chiến lược:
-    1. **Go Media** (Digital Marketing & Ecommerce)
-    2. **GoNetwork** (Giải pháp mạng lưới & affiliate)
-    3. **BytePlus** (Hạ tầng công nghệ ByteDance)
-    4. **HILAB** (Viện nghiên cứu & công nghệ)
-    5. **CloudFly** (Hạ tầng điện toán đám mây Cloud Server)
-  - Chuyển động 60FPS mượt mà, tự động tạm dừng khi rê chuột (`hover: paused`).
-
-### 2. Tinh chỉnh Section Giải Pháp Chuyên Sâu (Bento Grid Solutions)
-- **Tách nền ảnh nhân vật kỹ sư (Transparent PNG 100%):**
-  - Thay thế ảnh JPG nền xám cũ bằng file PNG tách nền chuẩn xác (`hero-engineer-nobg.png`).
-  - **Bỏ hoàn toàn màu nền và viền khung ảnh:** Khung chứa ảnh nhân vật hoàn toàn trong suốt (`background: transparent !important; border: none !important; box-shadow: none !important`), hòa nhập tự nhiên vào nền website.
-  - **Cân chỉnh bố cục:** Chiều cao và vị trí của kỹ sư cầm laptop khớp hoàn hảo với 4 hàng thẻ dịch vụ bên phải.
-- **Bổ sung hệ thống Icon SVG Vector công nghệ cao:**
-  - Tích hợp 7 biểu tượng vector sắc nét màu **Gotek Royal Blue (#0055FF)**:
-    - 🎨 *Thiết Kế UI/UX Độc Bản:* Icon Bút vẽ đồ họa & Cung cong vector (Pen tool).
-    - 📱 *Mobile App:* Icon Smartphone Native hiển thị mượt mà trên iOS & Android.
-    - 💻 *Front-end:* Icon Thẻ đóng mở code lập trình (`< />`) React, Next.js 60FPS.
-    - 🗄️ *Backend:* Icon Máy chủ Server rack & Microservices bảo mật cao.
-    - ☁️ *Cloud & DevOps:* Icon Đám mây & Mũi tên tự động triển khai CI/CD (AWS & GCP).
-    - ✨ *Tích Hợp AI:* Icon Ngôi sao thuật toán thông minh (AI Sparkles) & LLM.
-    - 🚀 *Tối Ưu Hiệu Suất & SEO:* Icon Tên lửa bứt phá tốc độ Core Web Vitals tối đa.
-  - **Trạng thái tĩnh:** Icon tinh giản, không viền, không bóng mờ, loại bỏ các chấm màu thừa.
-  - **Hiệu ứng Hover:** Khi người dùng rê chuột vào thẻ dịch vụ, icon sẽ hiển thị **viền bo góc tròn mềm mại (10px)** kèm nền pastel xanh thanh lịch và phóng nhẹ `scale(1.06)`.
-
-### 3. Đồng bộ Footer Đa Tầng & Header Nhận Diện
-- Cập nhật cấu trúc Footer toàn diện: Thông tin doanh nghiệp, giấy phép ĐKKD, hệ thống mạng xã hội, bản đồ chi nhánh và tem chứng nhận DMCA Protected.
-- Đồng bộ logo thương hiệu Gotek chính hãng lên Header và Footer.
-- Tối ưu responsive: Hiển thị full-width thoáng đãng trên màn hình Điện thoại và iPad/Tablet.
-
----
-
-## 📱 4. Bảng Kiểm Tra Tương Thích Thiết Bị (Responsive Matrix)
-
-| Thiết bị / Màn hình | Độ phân giải | Bố cục Nhân vật | Bố cục Lưới Dịch vụ (Bento) | Hiệu ứng Đối tác |
-| :--- | :--- | :--- | :--- | :--- |
-| **Desktop / Laptop** | `> 991px` | Cột trái (Ảnh không nền) | 2 cột thẻ song song + Thẻ SEO full | Marquee chạy ngang vô tận |
-| **Tablet / iPad** | `641px - 991px` | Ẩn nhân vật để tối ưu không gian | 2 cột thẻ thoáng đãng | Marquee tự co giãn tỷ lệ |
-| **Mobile / Smartphone** | `≤ 640px` | Ẩn nhân vật | 1 cột full-width, icon thẳng hàng | Marquee tự điều chỉnh tốc độ |
-
----
-
-## 📜 5. Bản Quyền & Giấy Phép
-© 2026 **Gotek**. Tất cả quyền được bảo lưu. Dự án phát triển theo các chuẩn mực bảo mật và chuyển đổi số tiên tiến.
