@@ -139,23 +139,29 @@ function renderProjectSections(groups) {
     const containerW = container.clientWidth || 1032;
     const screenW = window.innerWidth;
     // Ngưỡng cột theo màn hình:
-    // Desktop lớn (>= 1200px): ~4.1 cột
-    // Laptop / Tablet ngang (992px - 1199px): ~3.4 cột
-    // Tablet dọc / Màn hình vừa (640px - 991px): ~2.5 cột
-    // Mobile (< 640px): ~1.3 cột
+    // Laptop / Desktop lớn: 3 cột để 3 thẻ chiếm vừa vặn 100% khung lớn
+    // Tablet (640px - 991px): 2 cột
+    // Mobile (< 640px): 1.15 cột
     let visibleCols;
-    if (screenW >= 992) visibleCols = 4.1; // Laptop & Desktop: hiển thị 4 cột khít hàng
-    else if (screenW >= 640) visibleCols = 2.5; // Tablet: 2.5 cột
-    else visibleCols = 1.3; // Mobile: 1.3 cột
+    let gap;
+    if (screenW >= 992) {
+      visibleCols = 3;
+      gap = 16;
+    } else if (screenW >= 640) {
+      visibleCols = 2;
+      gap = 14;
+    } else {
+      visibleCols = 1.15;
+      gap = 12;
+    }
 
     // Padding bên trong của khung .project-saas
-    const saasPadding = screenW >= 1200 ? 32 : (screenW >= 768 ? 24 : 18);
-    const gap = screenW >= 1200 ? 14 : (screenW >= 768 ? 12 : 10);
-
+    const saasPadding = screenW >= 1200 ? 36 : (screenW >= 768 ? 28 : 20);
     const trackVisibleW = Math.max(200, containerW - saasPadding);
-    // Độ rộng mỗi thẻ co giãn tương thích tỷ lệ ảnh 16:9 (~230px - 252px)
+
+    // Độ rộng mỗi thẻ co giãn tương thích: 3 thẻ chiếm vừa khít khung lớn (~315px - 330px trên desktop)
     let cardW = Math.floor((trackVisibleW - (visibleCols - 1) * gap) / visibleCols);
-    cardW = Math.max(200, Math.min(cardW, 252));
+    cardW = Math.max(220, Math.min(cardW, 360));
 
     const isLaptop = screenW >= 992;
 

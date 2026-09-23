@@ -20,7 +20,7 @@ import {
 } from './components/scrollAnimations.js?v=13';
 import { initHeroInteractive } from './components/heroInteractive.js?v=9';
 import { initFooterAccordion } from './components/footer.js?v=1';
-import { initApp } from './app.js?v=28';
+import { initApp } from './app.js?v=29';
 
 function startApp() {
   console.log('🚀 Gotek Web Application Initialized.');
