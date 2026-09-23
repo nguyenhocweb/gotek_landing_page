@@ -107,30 +107,19 @@ function renderProjectSections(groups) {
   if (validGroups.length === 0) return;
 
   function renderCard(item) {
+    const link = item.link || '#contact';
+    const isExt = link.startsWith('http');
     return `
       <article class="project-card">
-        <div class="project-image-box">
-          <img src="${item.image}" alt="${item.name || item.title || ''}"
-            class="project-image" loading="lazy" />
-        </div>
-        <div class="project-details">
-          <div class="project-meta-row">
-            <h3 class="project-name">${item.name || item.title || ''}</h3>
+        <a href="${link}" ${isExt ? 'target="_blank" rel="noopener noreferrer"' : ''} class="project-card-link" aria-label="${item.name || ''}">
+          <div class="project-card-header">
+            <h3 class="project-card-title">${item.name || item.title || ''}</h3>
           </div>
-          <p class="project-desc">
-            ${item.desc || item.description || ''}
-          </p>
-          <div class="project-action-row">
-            <a href="${item.link || '#contact'}" ${item.link && item.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="project-btn-detail">
-              <span>Xem Chi Tiết</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
+          <div class="project-scroll-viewport">
+            <img src="${item.image}" alt="${item.name || item.title || ''}"
+                 class="project-scroll-img" loading="lazy" />
           </div>
-        </div>
+        </a>
       </article>
     `;
   }

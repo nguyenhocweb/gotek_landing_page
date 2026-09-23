@@ -3,16 +3,16 @@
   "items": [
     {
       "id": "wechoice-awards-2025",
-      "name": "WeChoice Awards 2025 Portal",
-      "image": "assets/images/projects/project_wechoice.jpg",
-      "desc": "Cổng thông tin và hệ thống bình chọn giải thưởng quốc gia WeChoice Awards, chịu tải hàng triệu lượt truy cập đồng thời với cơ chế vote realtime.",
+      "name": "Cổng Bình Chọn Quốc Gia",
+      "image": "assets/images/projects/long_wechoice.jpg",
+      "desc": "Cổng thông tin và hệ thống bình chọn giải thưởng quốc gia WeChoice Awards.",
       "link": "#contact"
     },
     {
       "id": "gotek-tech-portal",
-      "name": "Gotek Technology Ecosystem Portal",
-      "image": "assets/images/projects/project_gotek.jpg",
-      "desc": "Cổng thông tin nền tảng giải pháp số, kiến trúc Multi-Cloud phân tán và dịch vụ phần mềm doanh nghiệp thế hệ mới chuẩn quốc tế.",
+      "name": "Hệ Sinh Thái Gotek",
+      "image": "assets/images/projects/long_gotek.jpg",
+      "desc": "Cổng thông tin nền tảng giải pháp số và dịch vụ phần mềm doanh nghiệp thế hệ mới.",
       "link": "https://gotek.asia/"
     }
   ]

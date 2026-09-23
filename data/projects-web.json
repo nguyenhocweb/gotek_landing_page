@@ -3,23 +3,23 @@
   "items": [
     {
       "id": "yolife-vn-ecommerce",
-      "name": "YOLIFE - Health & Beauty Store",
-      "image": "assets/images/projects/project_yolife.jpg",
-      "desc": "Website thương mại điện tử D2C và Landing Page tối ưu CRO ngành chăm sóc sức khỏe, giỏ hàng trực tuyến và chuẩn SEO Google.",
+      "name": "Chăm Sóc Sức Khỏe",
+      "image": "assets/images/projects/long_yolife.jpg",
+      "desc": "Website thương mại điện tử D2C và Landing Page tối ưu CRO ngành chăm sóc sức khỏe.",
       "link": "https://yolife.vn/"
     },
     {
       "id": "seoulcenter-landing",
-      "name": "Seoul Center - Hệ Thống Thẩm Mỹ Quốc Tế",
-      "image": "assets/images/projects/project_seoulcenter.jpg",
-      "desc": "Trang đích chiến dịch Mua 1 Được 3 của Seoul Center, tích hợp đồng hồ đếm ngược khan hiếm, cam kết an toàn chuẩn y khoa và quà tặng voucher độc quyền.",
+      "name": "Thẩm Mỹ Quốc Tế",
+      "image": "assets/images/projects/long_seoulcenter.jpg",
+      "desc": "Trang đích chiến dịch Mua 1 Được 3 của Seoul Center chuẩn y khoa.",
       "link": "#contact"
     },
     {
       "id": "futa-residence",
-      "name": "Đà Nẵng Times Square - FUTA Residence",
-      "image": "assets/images/projects/project_futaresidence.jpg",
-      "desc": "Landing page dự án bất động sản nghỉ dưỡng hạng sang bên biển Mỹ Khê của FUTA Land, phối cảnh kiến trúc 3D, mặt bằng căn hộ và tiện ích sống thượng lưu.",
+      "name": "Bất Động Sản Nghỉ Dưỡng",
+      "image": "assets/images/projects/long_futaresidence.jpg",
+      "desc": "Landing page dự án bất động sản nghỉ dưỡng hạng sang bên biển Mỹ Khê của FUTA Land.",
       "link": "#contact"
     }
   ]
