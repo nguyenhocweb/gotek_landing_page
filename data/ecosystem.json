@@ -6,64 +6,316 @@
   },
   "partners": [
     {
-      "name": "MB Tech",
-      "title": "MB Tech - Đối tác Công nghệ & Tài chính số",
-      "logo": "assets/images/partner_mb_clean.png",
-      "alt": "MB Tech"
+      "name": "Vinamilk",
+      "title": "Vinamilk - F&B / Hàng tiêu dùng",
+      "logo": "assets/partner-logos/01-vinamilk.png",
+      "alt": "Vinamilk"
     },
     {
-      "name": "CloudFly",
-      "title": "CloudFly - Hạ tầng Điện toán Đám mây & Cloud Server",
-      "logo": "assets/images/partner_cloudfly_clean.png",
-      "alt": "CloudFly"
+      "name": "Suntory PepsiCo",
+      "title": "Suntory PepsiCo - F&B / Đồ uống",
+      "logo": "assets/partner-logos/02-suntory-pepsico.png",
+      "alt": "Suntory PepsiCo"
     },
     {
-      "name": "Go Media",
-      "title": "Go Media - Truyền thông số & Tiếp thị đa kênh",
-      "logo": "assets/images/partner_gomedia_clean.png",
-      "alt": "Go Media"
+      "name": "Diana",
+      "title": "Diana - Hàng tiêu dùng",
+      "logo": "assets/partner-logos/03-diana.png",
+      "alt": "Diana"
     },
     {
-      "name": "Go Network",
-      "title": "Go Network - Mạng phân phối & Kết nối hạ tầng",
-      "logo": "assets/images/partner_gonetwork_clean.png",
-      "alt": "Go Network"
+      "name": "Nam Nùng",
+      "title": "Nam Nùng - Ẩm thực",
+      "logo": "assets/partner-logos/04-nam-nung.png",
+      "alt": "Nam Nùng"
     },
     {
-      "name": "Apex Networks",
-      "title": "Apex Networks - Giải pháp Mạng & Viễn thông tốc độ cao",
-      "logo": "assets/images/partner_apex_clean.png",
-      "alt": "Apex Networks"
+      "name": "La Roche-Posay",
+      "title": "La Roche-Posay - Dược mỹ phẩm",
+      "logo": "assets/partner-logos/05-la-roche-posay.png",
+      "alt": "La Roche-Posay"
     },
     {
-      "name": "CyberNode Security",
-      "title": "CyberNode Security - An ninh mạng & Phòng vệ dữ liệu",
-      "logo": "assets/images/partner_cybernode_clean.png",
-      "alt": "CyberNode Security"
+      "name": "Top Gia",
+      "title": "Top Gia - Gia dụng",
+      "logo": "assets/partner-logos/06-top-gia.png",
+      "alt": "Top Gia"
     },
     {
-      "name": "Nubus Data",
-      "title": "Nubus Data - Xử lý dữ liệu lớn & Điện toán đám mây",
-      "logo": "assets/images/partner_nubus_clean.png",
-      "alt": "Nubus Data"
+      "name": "Bobby",
+      "title": "Bobby - Mẹ & Bé",
+      "logo": "assets/partner-logos/07-bobby.png",
+      "alt": "Bobby"
     },
     {
-      "name": "NeuroSpark AI",
-      "title": "NeuroSpark AI - Trí tuệ nhân tạo & Mô hình học sâu",
-      "logo": "assets/images/partner_neurospark_clean.png",
-      "alt": "NeuroSpark AI"
+      "name": "Corona Resort & Casino",
+      "title": "Corona Resort & Casino - Nghỉ dưỡng & Giải trí",
+      "logo": "assets/partner-logos/08-corona-resort.png",
+      "alt": "Corona Resort & Casino"
     },
     {
-      "name": "FinVibe",
-      "title": "FinVibe - Cổng thanh toán & Tài chính số",
-      "logo": "assets/images/partner_finvibe_clean.svg",
-      "alt": "FinVibe Payments"
+      "name": "Green+",
+      "title": "Green+ - Dược liệu & Sức khỏe",
+      "logo": "assets/partner-logos/09-green-plus.png",
+      "alt": "Green+"
     },
     {
-      "name": "NexScale",
-      "title": "NexScale - Hạ tầng Đám mây & Kiến trúc Microservices",
-      "logo": "assets/images/partner_nexscale_clean.svg",
-      "alt": "NexScale Cloud"
+      "name": "Kichi-Kichi",
+      "title": "Kichi-Kichi - Ẩm thực / F&B",
+      "logo": "assets/partner-logos/10-kichi-kichi.png",
+      "alt": "Kichi-Kichi"
+    },
+    {
+      "name": "Simple Drink",
+      "title": "Simple Drink - Đồ uống",
+      "logo": "assets/partner-logos/11-simple-drink.png",
+      "alt": "Simple Drink"
+    },
+    {
+      "name": "Popeyes",
+      "title": "Popeyes - Thức ăn nhanh",
+      "logo": "assets/partner-logos/12-popeyes.png",
+      "alt": "Popeyes"
+    },
+    {
+      "name": "JanShop",
+      "title": "JanShop - Thời trang",
+      "logo": "assets/partner-logos/13-janshop.png",
+      "alt": "JanShop"
+    },
+    {
+      "name": "Wyndham Danang Golden Bay",
+      "title": "Wyndham Danang Golden Bay - Khách sạn & Nghỉ dưỡng",
+      "logo": "assets/partner-logos/14-wyndham-danang.png",
+      "alt": "Wyndham Danang Golden Bay"
+    },
+    {
+      "name": "Win / WinMart",
+      "title": "Win / WinMart - Bán lẻ",
+      "logo": "assets/partner-logos/15-win-winmart.png",
+      "alt": "Win / WinMart"
+    },
+    {
+      "name": "Merci Bánh Mì",
+      "title": "Merci Bánh Mì - F&B Bakery",
+      "logo": "assets/partner-logos/16-merci-banh-mi.png",
+      "alt": "Merci Bánh Mì"
+    },
+    {
+      "name": "Lynk & Co",
+      "title": "Lynk & Co - Ô tô / Vận tải",
+      "logo": "assets/partner-logos/17-lynk-and-co.png",
+      "alt": "Lynk & Co"
+    },
+    {
+      "name": "Starbucks",
+      "title": "Starbucks - Chuỗi Cà phê",
+      "logo": "assets/partner-logos/18-starbucks.png",
+      "alt": "Starbucks"
+    },
+    {
+      "name": "Lapin Bakery & Cafe",
+      "title": "Lapin Bakery & Cafe - Bakery & Dessert",
+      "logo": "assets/partner-logos/19-lapin-bakery.png",
+      "alt": "Lapin Bakery & Cafe"
+    },
+    {
+      "name": "Havana",
+      "title": "Havana - Thời trang & Phụ kiện",
+      "logo": "assets/partner-logos/20-havana.png",
+      "alt": "Havana"
+    },
+    {
+      "name": "Chicken Plus+",
+      "title": "Chicken Plus+ - F&B Gà rán",
+      "logo": "assets/partner-logos/21-chicken-plus.png",
+      "alt": "Chicken Plus+"
+    },
+    {
+      "name": "Phở 1954 Coffee",
+      "title": "Phở 1954 Coffee - F&B Coffee",
+      "logo": "assets/partner-logos/22-pho-1954-coffee.png",
+      "alt": "Phở 1954 Coffee"
+    },
+    {
+      "name": "Changhi",
+      "title": "Changhi - Chè & Tráng miệng",
+      "logo": "assets/partner-logos/23-changhi.png",
+      "alt": "Changhi"
+    },
+    {
+      "name": "Flower Studio",
+      "title": "Flower Studio - Nghệ thuật & Hoa",
+      "logo": "assets/partner-logos/24-flower-studio.png",
+      "alt": "Flower Studio"
+    },
+    {
+      "name": "Socos",
+      "title": "Socos - Công nghệ",
+      "logo": "assets/partner-logos/25-socos.png",
+      "alt": "Socos"
+    },
+    {
+      "name": "Sông Thần",
+      "title": "Sông Thần - Công nghiệp & BĐS",
+      "logo": "assets/partner-logos/26-song-than.png",
+      "alt": "Sông Thần"
+    },
+    {
+      "name": "Coca-Cola",
+      "title": "Coca-Cola - Nước giải khát",
+      "logo": "assets/partner-logos/27-coca-cola.png",
+      "alt": "Coca-Cola"
+    },
+    {
+      "name": "Tasco",
+      "title": "Tasco - Hạ tầng giao thông",
+      "logo": "assets/partner-logos/28-tasco.png",
+      "alt": "Tasco"
+    },
+    {
+      "name": "Anh Đức Print",
+      "title": "Anh Đức Print - In ấn & Bao bì",
+      "logo": "assets/partner-logos/29-anh-duc-print.png",
+      "alt": "Anh Đức Print"
+    },
+    {
+      "name": "Aeon",
+      "title": "Aeon - Đại siêu thị & Bán lẻ",
+      "logo": "assets/partner-logos/30-aeon.png",
+      "alt": "Aeon"
+    },
+    {
+      "name": "Houm Design",
+      "title": "Houm Design - Nội thất & Kiến trúc",
+      "logo": "assets/partner-logos/31-houm-design.png",
+      "alt": "Houm Design"
+    },
+    {
+      "name": "Udon Ten",
+      "title": "Udon Ten - Ẩm thực Nhật",
+      "logo": "assets/partner-logos/32-udon-ten.png",
+      "alt": "Udon Ten"
+    },
+    {
+      "name": "Văn Cocktail Bar",
+      "title": "Văn Cocktail Bar - Bar & Lounge",
+      "logo": "assets/partner-logos/33-van-cocktail-bar.png",
+      "alt": "Văn Cocktail Bar"
+    },
+    {
+      "name": "Hybra",
+      "title": "Hybra - Sáng tạo & Thiết kế",
+      "logo": "assets/partner-logos/34-hybra.png",
+      "alt": "Hybra"
+    },
+    {
+      "name": "Kasa Craft Beer",
+      "title": "Kasa Craft Beer - Bia thủ công",
+      "logo": "assets/partner-logos/35-kasa-craft-beer.png",
+      "alt": "Kasa Craft Beer"
+    },
+    {
+      "name": "iSushi",
+      "title": "iSushi - Buffet Nhật Bản",
+      "logo": "assets/partner-logos/36-isushi.png",
+      "alt": "iSushi"
+    },
+    {
+      "name": "Titi Kij",
+      "title": "Titi Kij - Mì cay & Lẩu",
+      "logo": "assets/partner-logos/37-titi-kij.png",
+      "alt": "Titi Kij"
+    },
+    {
+      "name": "Acorn Studio",
+      "title": "Acorn Studio - Sản phẩm sáng tạo",
+      "logo": "assets/partner-logos/38-acorn-studio.png",
+      "alt": "Acorn Studio"
+    },
+    {
+      "name": "Cozy Tea",
+      "title": "Cozy Tea - Trà & Đồ uống",
+      "logo": "assets/partner-logos/39-cozy-tea.png",
+      "alt": "Cozy Tea"
+    },
+    {
+      "name": "Yolife",
+      "title": "Yolife - Chăm sóc sức khỏe",
+      "logo": "assets/partner-logos/40-yolife.png",
+      "alt": "Yolife"
+    },
+    {
+      "name": "Uyên Phương Cosmetic",
+      "title": "Uyên Phương Cosmetic - Mỹ phẩm làm đẹp",
+      "logo": "assets/partner-logos/41-uyen-phuong-cosmetic.png",
+      "alt": "Uyên Phương Cosmetic"
+    },
+    {
+      "name": "The Nam An",
+      "title": "The Nam An - Bất động sản & F&B",
+      "logo": "assets/partner-logos/42-the-nam-an.png",
+      "alt": "The Nam An"
+    },
+    {
+      "name": "W Coffee & Tea",
+      "title": "W Coffee & Tea - Cà phê & Trà",
+      "logo": "assets/partner-logos/43-w-coffee-tea.png",
+      "alt": "W Coffee & Tea"
+    },
+    {
+      "name": "Spicy Box",
+      "title": "Spicy Box - Tokpokki & Fastfood",
+      "logo": "assets/partner-logos/44-spicy-box.png",
+      "alt": "Spicy Box"
+    },
+    {
+      "name": "Anna",
+      "title": "Anna - Thời trang & Phụ kiện",
+      "logo": "assets/partner-logos/45-anna.png",
+      "alt": "Anna"
+    },
+    {
+      "name": "nOt Coffee & Tea",
+      "title": "nOt Coffee & Tea - Cafe & Tea",
+      "logo": "assets/partner-logos/46-not-coffee-tea.png",
+      "alt": "nOt Coffee & Tea"
+    },
+    {
+      "name": "Only Nuts",
+      "title": "Only Nuts - Hạt dinh dưỡng",
+      "logo": "assets/partner-logos/47-only-nuts.png",
+      "alt": "Only Nuts"
+    },
+    {
+      "name": "Nghé Coffee & Vegan",
+      "title": "Nghé Coffee & Vegan - Chay & Cà phê",
+      "logo": "assets/partner-logos/48-nghe-coffee-vegan.png",
+      "alt": "Nghé Coffee & Vegan"
+    },
+    {
+      "name": "160 Store",
+      "title": "160 Store - Thời trang nam",
+      "logo": "assets/partner-logos/49-160-store.png",
+      "alt": "160 Store"
+    },
+    {
+      "name": "Geely",
+      "title": "Geely - Tập đoàn ô tô",
+      "logo": "assets/partner-logos/50-geely.png",
+      "alt": "Geely"
+    },
+    {
+      "name": "Golf Valley Hotel",
+      "title": "Golf Valley Hotel - Khách sạn 4 sao Dalat",
+      "logo": "assets/partner-logos/51-golf-valley-hotel.png",
+      "alt": "Golf Valley Hotel"
+    },
+    {
+      "name": "Yên Yakiniku",
+      "title": "Yên Yakiniku - Nướng Nhật Bản",
+      "logo": "assets/partner-logos/52-yen-yakiniku.png",
+      "alt": "Yên Yakiniku"
     }
   ]
 }

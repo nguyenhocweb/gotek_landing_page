@@ -273,16 +273,17 @@
 .mobile-menu-drawer {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
   height: 100vh;
-  width: 295px;
-  max-width: 86vw;
+  width: 100vw;
+  max-width: 100vw;
   background-color: #FFFFFF;
-  box-shadow: -10px 0 36px rgba(10, 31, 104, 0.16);
-  border-left: 1px solid rgba(10, 31, 104, 0.08);
+  box-shadow: none;
+  border: none;
   border-radius: 0;
-  padding: 20px 22px 28px 22px;
+  padding: 20px 24px 32px 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -292,6 +293,19 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 100;
+}
+
+/* iPad / Tablet (từ 640px trở lên): Để lại y như cũ dạng side drawer góc phải kèm shadow & viền */
+@media (min-width: 640px) {
+  .mobile-menu-drawer {
+    left: auto;
+    right: 0;
+    width: 295px;
+    max-width: 86vw;
+    box-shadow: -10px 0 36px rgba(10, 31, 104, 0.16);
+    border-left: 1px solid rgba(10, 31, 104, 0.08);
+    padding: 20px 22px 28px 22px;
+  }
 }
 
 #mobile-menu-overlay.is-active .mobile-menu-drawer {
@@ -307,6 +321,13 @@
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(10, 31, 104, 0.08);
   flex-shrink: 0;
+}
+
+.mobile-drawer-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
 }
 
 .drawer-logo img {
@@ -339,6 +360,40 @@
   background-color: #0055FF;
   color: #FFFFFF;
   box-shadow: 0 1px 3px rgba(0, 85, 255, 0.25);
+}
+
+/* Nút đóng X (Chuẩn mẫu: Hình vuông bo góc rounded-lg, nền xanh #0055FF, icon X màu trắng) */
+#mobile-menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background-color: #0055FF;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 85, 255, 0.28);
+}
+
+#mobile-menu-close:hover {
+  background-color: #0043CC;
+  color: #FFFFFF;
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0, 85, 255, 0.38);
+}
+
+#mobile-menu-close:active {
+  transform: scale(0.95);
+}
+
+#mobile-menu-close svg {
+  stroke: #FFFFFF;
+  width: 17px;
+  height: 17px;
 }
 
 .mobile-nav-links {

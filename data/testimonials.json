@@ -6,66 +6,99 @@
   "testimonials": [
     {
       "id": "t-01",
-      "name": "Alex Trần",
+      "name": "Bùi Mạnh Đức",
       "avatar": "assets/images/customers/customer_1.jpg",
       "rating": 5,
-      "quote": "Giao diện mượt mà đến khó tin. Đội ngũ Gotek không chỉ code đúng tiến độ mà còn tư vấn tối ưu lại toàn bộ kiến trúc microservices chịu tải cao, giúp hệ thống vận hành trơn tru trong các đợt cao điểm."
+      "time": "Google Maps",
+      "quote": "Tôi khá hài lòng chất lượng dịch vụ thiết kế website tại Gotek, bạn tư vấn và hỗ trợ kỹ thuật nhiệt tình. Website khi demo và thiết kế ra sản phẩm giống hệt."
     },
     {
       "id": "t-02",
-      "name": "Minh Phạm",
+      "name": "Nhi Nguyễn",
       "avatar": "assets/images/customers/customer_2.jpg",
       "rating": 5,
-      "quote": "Team Gotek làm việc rất kỷ luật theo chuẩn Agile Sprint. Từng animation, tốc độ phản hồi 0.2s của giỏ hàng đều được chăm chút tỉ mỉ. Trải nghiệm người dùng được nâng cấp rõ rệt sau khi bàn giao."
+      "time": "Google Maps",
+      "quote": "Tôi là công ty nhỏ, cần website giới thiệu sản phẩm + blog + phần liên hệ. Tôi chọn gói giá vừa phải của Gotek. Họ tư vấn rõ ràng từ đầu: chức năng cần thiết, giao diện mẫu nào phù hợp, SEO cơ bản, hosting, bảo mật. Website hoàn thành trong đúng tiến độ."
     },
     {
       "id": "t-03",
-      "name": "Hoàng Lê",
+      "name": "Rr Rri",
       "avatar": "assets/images/customers/customer_3.jpg",
       "rating": 5,
-      "quote": "Tôi đánh giá rất cao năng lực kỹ thuật của Kỹ sư trưởng Gotek. Mã nguồn cực kỳ sạch, có đầy đủ Unit Test và tài liệu API OpenAPI/Swagger. Chúng tôi dễ dàng mở rộng tính năng mới mà không sợ lỗi."
+      "time": "Google Maps",
+      "quote": "Tôi muốn một website bán hàng với giao diện hiện đại, dễ quản lý được sản phẩm, tính năng thanh toán, cập nhật lịch trình mua hàng... Gotek đã thực hiện tốt hơn mong đợi. Giao diện đẹp, chuẩn SEO, load trang nhanh, đặc biệt là phần admin dễ sử dụng."
     },
     {
       "id": "t-04",
-      "name": "Thu Hà",
+      "name": "Nam Nguyễn",
       "avatar": "assets/images/customers/customer_4.jpg",
       "rating": 5,
-      "quote": "Quy trình làm việc của Gotek rất minh bạch, cam kết rõ ràng theo từng tuần và demo liên tục. Dự án bàn giao đúng hạn với đầy đủ tài liệu hướng dẫn và hỗ trợ kỹ thuật tận tâm 24/7."
+      "time": "Google Maps",
+      "quote": "Trước khi hợp tác với Gotek, website công ty tôi thường xuyên bị downtime, tốc độ tải trang rất chậm, khách vào chán, thoát nhiều. Sau khi sử dụng Hosting + website do Gotek triển khai, uptime tốt hơn rõ rệt."
     },
     {
       "id": "t-05",
-      "name": "Bs. Lan Anh",
+      "name": "Vũ Thành",
       "avatar": "assets/images/customers/customer_5.jpg",
       "rating": 5,
-      "quote": "Dữ liệu y tế đòi hỏi chuẩn bảo mật khắt khe. Gotek đã xây dựng cổng thông tin đạt chuẩn an ninh cao, kết nối dữ liệu mượt mà giữa các chi nhánh mà không gặp bất kỳ độ trễ nào."
+      "time": "Google Maps",
+      "quote": "Gotek thiết kế website chuẩn, team SEO bên mình không cần tối ưu gì thêm, mở index chạy live chỉ hơn 1 tháng là lên top nhiều từ khóa mà chưa cần tốn tài nguyên. Cám ơn team, chúc Gotek ngày càng phát triển."
     },
     {
       "id": "t-06",
-      "name": "Quốc Bảo",
+      "name": "Hải Đào",
       "avatar": "assets/images/customers/customer_6.jpg",
       "rating": 5,
-      "quote": "Trải nghiệm ứng dụng tại chuỗi chi nhánh của chúng tôi đã thay đổi hoàn toàn. Khách hàng khen giao diện rất nhanh và mượt mà, thao tác tiện lợi giúp tối ưu đáng kể thời gian phục vụ."
+      "time": "Google Maps",
+      "quote": "Gotek đã giúp công ty mình thiết kế website chuẩn SEO, giao diện đẹp và rất dễ sử dụng. Đội ngũ hỗ trợ nhiệt tình, giải đáp nhanh chóng mọi thắc mắc. Rất hài lòng với dịch vụ, chắc chắn sẽ tiếp tục hợp tác lâu dài."
     },
     {
       "id": "t-07",
-      "name": "Tuấn Đặng",
+      "name": "Gamer Kenz",
       "avatar": "assets/images/customers/customer_1.jpg",
       "rating": 5,
-      "quote": "Gotek tư vấn giải pháp chuyển đổi số rất thực tế, không vẽ vời tính năng thừa. Hệ thống vận hành cực kỳ ổn định, tiết kiệm hơn 30% chi phí hạ tầng Cloud so với trước đây."
+      "time": "Google Maps",
+      "quote": "Website do Gotek thiết kế chạy rất mượt, tối ưu SEO tốt nên chỉ sau vài tháng đã có thứ hạng cao trên Google. Giao diện hiện đại, thân thiện với người dùng. Đội ngũ hỗ trợ tận tình, mình rất hài lòng."
     },
     {
       "id": "t-08",
-      "name": "Diệu Linh",
+      "name": "Hiền Trần",
       "avatar": "assets/images/customers/customer_2.jpg",
       "rating": 5,
-      "quote": "Khả năng thấu hiểu trải nghiệm người dùng của team Gotek rất xuất sắc. Từng luồng thao tác đều tự nhiên và mạch lạc, tỷ lệ chuyển đổi đơn hàng tăng hơn 45% sau khi ra mắt phiên bản mới."
+      "time": "Google Maps",
+      "quote": "Mình yêu cầu nhiều tính năng đặc biệt trên website và Gotek đều đáp ứng được. Sản phẩm hoàn thiện vượt mong đợi, vừa đẹp vừa dễ quản lý. Đây chắc chắn là đơn vị thiết kế web đáng tin cậy."
     },
     {
       "id": "t-09",
-      "name": "Trọng Nhân",
+      "name": "Điện Tử Cân",
       "avatar": "assets/images/customers/customer_3.jpg",
       "rating": 5,
-      "quote": "Sự chuyên nghiệp và tốc độ xử lý yêu cầu phát sinh của Gotek làm tôi hoàn toàn an tâm. Đây thực sự là đối tác công nghệ đáng tin cậy cho bất kỳ doanh nghiệp nào muốn bứt phá."
+      "time": "Google Maps",
+      "quote": "Thiết kế website OK, đẹp, support nhiệt tình mỗi khi mình cần. 10/10."
+    },
+    {
+      "id": "t-10",
+      "name": "Thế Nam Phạm",
+      "avatar": "assets/images/customers/customer_4.jpg",
+      "rating": 5,
+      "time": "Google Maps",
+      "quote": "Mình sử dụng dịch vụ hosting và server của Gotek hơn 6 tháng nay, tốc độ ổn định, ít khi gặp lỗi. Khi có vấn đề kỹ thuật thì đội support xử lý cực nhanh. Giá cả cũng hợp lý so với chất lượng."
+    },
+    {
+      "id": "t-11",
+      "name": "Warzone COD",
+      "avatar": "assets/images/customers/customer_5.jpg",
+      "rating": 5,
+      "time": "Google Maps",
+      "quote": "Ấn tượng nhất ở Gotek là phong cách làm việc chuyên nghiệp và thân thiện. Từ khâu tư vấn đến triển khai đều rõ ràng, minh bạch. Sản phẩm bàn giao đúng hẹn và vượt mong đợi."
+    },
+    {
+      "id": "t-12",
+      "name": "Kadupul Spa",
+      "avatar": "assets/images/customers/customer_6.jpg",
+      "rating": 5,
+      "time": "Google Maps",
+      "quote": "Good web services, speed support. Highly recommended for business website."
     }
   ]
 }

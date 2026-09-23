@@ -121,9 +121,9 @@ function renderProjectSections(groups) {
             ${item.desc || item.description || ''}
           </p>
           <div class="project-action-row">
-            <a href="${item.link || '#contact'}" class="project-btn-detail">
+            <a href="${item.link || '#contact'}" ${item.link && item.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="project-btn-detail">
               <span>Xem Chi Tiết</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -138,30 +138,54 @@ function renderProjectSections(groups) {
   function updateProjectLayout() {
     const containerW = container.clientWidth || 1032;
     const screenW = window.innerWidth;
-    // Ngưỡng cột theo màn hình: Desktop (>= 1200px): 3 cột, Tablet (768px - 1199px): 2 cột, Mobile (< 768px): 1 cột
-    const visibleCols = screenW >= 1200 ? 3 : (screenW >= 768 ? 2 : 1);
+    // Ngưỡng cột theo màn hình:
+    // Desktop lớn (>= 1200px): ~4.1 cột
+    // Laptop / Tablet ngang (992px - 1199px): ~3.4 cột
+    // Tablet dọc / Màn hình vừa (640px - 991px): ~2.5 cột
+    // Mobile (< 640px): ~1.3 cột
+    let visibleCols;
+    if (screenW >= 992) visibleCols = 4.1; // Laptop & Desktop: hiển thị 4 cột khít hàng
+    else if (screenW >= 640) visibleCols = 2.5; // Tablet: 2.5 cột
+    else visibleCols = 1.3; // Mobile: 1.3 cột
 
     // Padding bên trong của khung .project-saas
-    const saasPadding = screenW >= 1200 ? 56 : (screenW >= 768 ? 40 : 28);
-    const gap = screenW >= 1200 ? 24 : (screenW >= 768 ? 20 : 16);
+    const saasPadding = screenW >= 1200 ? 32 : (screenW >= 768 ? 24 : 18);
+    const gap = screenW >= 1200 ? 14 : (screenW >= 768 ? 12 : 10);
 
-    const trackVisibleW = Math.max(260, containerW - saasPadding);
-    // Độ rộng mỗi thẻ để vừa đủ hiển thị đúng 3 item trên Laptop / Desktop (hoặc 2 trên Tablet, 1 trên Mobile)
-    const cardW = Math.floor((trackVisibleW - (visibleCols - 1) * gap) / visibleCols);
+    const trackVisibleW = Math.max(200, containerW - saasPadding);
+    // Độ rộng mỗi thẻ co giãn tương thích tỷ lệ ảnh 16:9 (~230px - 252px)
+    let cardW = Math.floor((trackVisibleW - (visibleCols - 1) * gap) / visibleCols);
+    cardW = Math.max(200, Math.min(cardW, 252));
+
+    const isLaptop = screenW >= 992;
 
     container.innerHTML = validGroups.map((group, gIdx) => {
       const itemsCount = group.items.length;
-      // Kiểm tra xem số thẻ có lớn hơn số cột hiển thị của khung không
-      const isOverflow = itemsCount > visibleCols;
+      // Tính tổng độ rộng thực tế của tất cả items (bao gồm thẻ cardW và khoảng cách gap)
+      const totalItemsWidth = itemsCount > 0 ? (itemsCount * cardW + (itemsCount - 1) * gap) : 0;
 
-      // Hướng chạy:
+      // FEEDBACK:
+      // - Chỉ áp dụng với laptop (screenW >= 992px):
+      //   + Nếu có từ 4 cái trở lên (itemsCount >= 4): CÓ AUTOMATION (chạy marquee lặp vô tận)
+      //   + Dưới 4 cái (< 4): KHÔNG CÓ AUTOMATION (đứng im tĩnh hoàn toàn)
+      // - Với mobile / tablet (screenW < 992px):
+      //   + Tự động chạy marquee nếu số thẻ vượt quá số cột nhìn thấy (tràn khung)
+      let isOverflow;
+      if (isLaptop) {
+        isOverflow = itemsCount >= 4;
+      } else {
+        const fullCols = Math.floor(visibleCols);
+        isOverflow = itemsCount > fullCols || totalItemsWidth > trackVisibleW;
+      }
+
+      // Hướng chạy khi có overflow:
       // Cái đầu (gIdx 0): Phải sang Trái (RTL)
       // Cái thứ 2 (gIdx 1): Trái sang Phải (LTR)
       // Cái thứ 3 (gIdx 2): Phải sang Trái (RTL)
       const direction = (gIdx % 2 === 0) ? 'rtl' : 'ltr';
 
-      // Nếu lớn hơn khung cột: nhân đôi danh sách thẻ để tạo vòng lặp chạy vô tận không bị ngắt
-      // Nếu nhỏ hơn hoặc bằng khung cột: chỉ render đúng số thẻ ban đầu và đứng im
+      // Nếu lớn hơn khung cột (overflow): nhân đôi danh sách thẻ để tạo vòng lặp chạy vô tận
+      // Nếu nhỏ hơn hoặc bằng khung cột (không overflow): chỉ render đúng số thẻ ban đầu và đứng im
       const cardsHtml = isOverflow
         ? group.items.map(renderCard).join('') + group.items.map(renderCard).join('')
         : group.items.map(renderCard).join('');
@@ -387,13 +411,8 @@ function renderTestimonials(testimonialsData) {
     }
   }
 
-  // 3 slide ứng với 3 nút tròn:
-  // Slide 0 -> trung tâm là thẻ 1 (nhóm 0, 1, 2)
-  // Slide 1 -> trung tâm là thẻ 4 (nhóm 3, 4, 5)
-  // Slide 2 -> trung tâm là thẻ 7 (nhóm 6, 7, 8)
-  const slideCenters = [1, 4, 7];
-  let currentSlideIndex = 0;
-  let currentCenter = slideCenters[0];
+  // Chuyển slide từng thẻ tuần tự (chỉ 1 thẻ mỗi lần):
+  let currentCenter = 0;
   let isAnimating = false;
   let animStartCenter = currentCenter;
   let animTargetCenter = currentCenter;
@@ -458,8 +477,6 @@ function renderTestimonials(testimonialsData) {
     }
   }
 
-  let lastSingleMode = isSingleMode();
-
   function getNormalizedActiveIndex() {
     return ((Math.round(currentCenter) % N) + N) % N;
   }
@@ -469,22 +486,20 @@ function renderTestimonials(testimonialsData) {
     const dots = Array.from(dotsContainer.querySelectorAll('.testimonials-dot'));
     if (dots.length === 0) return;
 
-    if (isSingleMode()) {
-      const total = dots.length;
-      if (total <= 5) {
-        dots.forEach((d, i) => {
-          d.style.display = 'inline-block';
-          d.classList.toggle('active', i === activeIdx);
-          d.classList.remove('dot-small');
-        });
-        return;
-      }
-
-      // Tối đa hiện 5 nút: Nút active nằm ở giữa, các nút còn lại cách xa thì ẩn
+    const total = dots.length;
+    if (window.innerWidth >= 768) {
+      // Desktop / Laptop: Hiển thị các chấm điều hướng tương ứng từng thẻ, active lướt theo từng thẻ
+      dots.forEach((d, i) => {
+        d.style.display = 'inline-block';
+        d.classList.toggle('active', i === activeIdx);
+        d.classList.remove('dot-small');
+      });
+    } else {
+      // Mobile: Sliding window tối đa 5 nút gọn gàng
       let startIndex = activeIdx - 2;
       if (startIndex < 0) startIndex = 0;
       if (startIndex > total - 5) startIndex = total - 5;
-      const endIndex = startIndex + 4; // hiển thị đúng 5 nút
+      const endIndex = startIndex + 4;
 
       dots.forEach((d, i) => {
         const isActive = (i === activeIdx);
@@ -499,17 +514,9 @@ function renderTestimonials(testimonialsData) {
             d.classList.remove('dot-small');
           }
         } else {
-          // Các nút còn lại cách xa thì ẩn bớt
           d.style.display = 'none';
           d.classList.remove('dot-small');
         }
-      });
-    } else {
-      // Desktop: 3 nút slide
-      dots.forEach((d, i) => {
-        d.style.display = 'inline-block';
-        d.classList.toggle('active', i === activeIdx);
-        d.classList.remove('dot-small');
       });
     }
   }
@@ -518,40 +525,23 @@ function renderTestimonials(testimonialsData) {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
 
-    if (isSingleMode()) {
-      // Hiển thị đúng số lượng bình luận (N nút), tối đa hiển thị 5 nút cùng lúc
-      for (let i = 0; i < N; i++) {
-        const btn = document.createElement('button');
-        btn.className = 'testimonials-dot';
-        btn.setAttribute('data-card-index', i);
-        btn.setAttribute('aria-label', `Bình luận ${i + 1}`);
-        btn.addEventListener('click', () => {
-          const currentNormalized = getNormalizedActiveIndex();
-          let diff = i - currentNormalized;
-          if (diff > N / 2) diff -= N;
-          if (diff < -N / 2) diff += N;
-          startMoveTo(currentCenter + diff);
-          restartTimer();
-        });
-        dotsContainer.appendChild(btn);
-      }
-      updateDots(getNormalizedActiveIndex());
-    } else {
-      // Desktop: 3 nút slide nhóm 3
-      const numSlides = Math.ceil(N / 3);
-      for (let s = 0; s < numSlides; s++) {
-        const btn = document.createElement('button');
-        btn.className = 'testimonials-dot' + (s === currentSlideIndex ? ' active' : '');
-        btn.setAttribute('data-slide', s);
-        btn.setAttribute('aria-label', `Trang đánh giá ${s + 1}`);
-        btn.addEventListener('click', () => {
-          goToSlide(s);
-          restartTimer();
-        });
-        dotsContainer.appendChild(btn);
-      }
-      updateDots(currentSlideIndex);
+    // Hiển thị nút tròn tương ứng với từng thẻ đánh giá (chuyển 1 thẻ mỗi lần)
+    for (let i = 0; i < N; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'testimonials-dot';
+      btn.setAttribute('data-card-index', i);
+      btn.setAttribute('aria-label', `Đánh giá ${i + 1}`);
+      btn.addEventListener('click', () => {
+        const currentNormalized = getNormalizedActiveIndex();
+        let diff = i - currentNormalized;
+        if (diff > N / 2) diff -= N;
+        if (diff < -N / 2) diff += N;
+        startMoveTo(currentCenter + diff);
+        restartTimer();
+      });
+      dotsContainer.appendChild(btn);
     }
+    updateDots(getNormalizedActiveIndex());
   }
 
   // Vòng lặp chuyển động men theo quỹ đạo cong qua requestAnimationFrame
@@ -571,65 +561,29 @@ function renderTestimonials(testimonialsData) {
       isAnimating = false;
       currentCenter = ((animTargetCenter % N) + N) % N;
       updateArcPositions(currentCenter);
-      if (isSingleMode()) {
-        updateDots(getNormalizedActiveIndex());
-      } else {
-        updateDots(currentSlideIndex);
-      }
+      updateDots(getNormalizedActiveIndex());
     }
   }
 
-  function startMoveTo(newTarget, slideIdx) {
+  function startMoveTo(newTarget) {
     animStartCenter = currentCenter;
     animTargetCenter = newTarget;
     animStartTime = performance.now();
     isAnimating = true;
 
-    if (isSingleMode()) {
-      const targetActive = ((Math.round(newTarget) % N) + N) % N;
-      updateDots(targetActive);
-    } else {
-      if (slideIdx !== undefined) {
-        currentSlideIndex = slideIdx;
-      } else {
-        const activeCard = ((Math.round(newTarget) % N) + N) % N;
-        currentSlideIndex = Math.floor(activeCard / 3) % 3;
-      }
-      updateDots(currentSlideIndex);
-    }
+    const targetActive = ((Math.round(newTarget) % N) + N) % N;
+    updateDots(targetActive);
 
     requestAnimationFrame(animateFrame);
   }
 
-  function isSingleMode() {
-    return window.innerWidth < 1024;
-  }
-
+  // Chuyển qua đúng 1 item mỗi lần
   function nextCard() {
-    const step = isSingleMode() ? 1 : 3;
-    startMoveTo(currentCenter + step);
+    startMoveTo(currentCenter + 1);
   }
 
   function prevCard() {
-    const step = isSingleMode() ? 1 : 3;
-    startMoveTo(currentCenter - step);
-  }
-
-  // Chuyển sang slide
-  function goToSlide(targetSlideIdx) {
-    if (isSingleMode()) {
-      nextCard();
-      return;
-    }
-    targetSlideIdx = (targetSlideIdx + 3) % 3;
-    if (targetSlideIdx === currentSlideIndex && !isAnimating) return;
-
-    let slideDiff = targetSlideIdx - currentSlideIndex;
-    if (slideDiff === 2) slideDiff = -1;
-    if (slideDiff === -2) slideDiff = 1;
-
-    const deltaCenter = slideDiff * 3;
-    startMoveTo(currentCenter + deltaCenter, targetSlideIdx);
+    startMoveTo(currentCenter - 1);
   }
 
   // Gắn sự kiện click thẻ lân cận để lướt mượt về trung tâm
@@ -700,11 +654,7 @@ function renderTestimonials(testimonialsData) {
   // Resize window: Cập nhật lại vị trí mượt mà
   window.addEventListener('resize', () => {
     updateArcPositions(currentCenter);
-    const curMode = isSingleMode();
-    if (curMode !== lastSingleMode) {
-      lastSingleMode = curMode;
-      buildDots();
-    }
+    updateDots(getNormalizedActiveIndex());
   });
 
   // Khởi tạo hiển thị ban đầu
@@ -714,10 +664,18 @@ function renderTestimonials(testimonialsData) {
 }
 
 /**
- * Render Hệ Sinh Thái Đối Tác (Mẫu 2: Checkerboard Logo Grid)
+ * Render Hệ Sinh Thái Đối Tác (Mẫu 2: Checkerboard Logo Grid 2 Dòng, Có Slider & Tự Động Chuyển Sau 3s Nếu > 2 Dòng)
  */
+let ecosystemSliderTimer = null;
+let ecosystemSliderState = {
+  currentSlide: 0,
+  totalSlides: 1,
+  isPaused: false,
+  partners: []
+};
+
 function renderEcosystem(ecosystem) {
-  if (!ecosystem) return;
+  if (!ecosystem || !$('#ecosystemSliderTrack')) return;
 
   // Render Header section
   const titleEl = $('#ecosystemTitle');
@@ -729,16 +687,222 @@ function renderEcosystem(ecosystem) {
     subEl.textContent = ecosystem.section.subtitle;
   }
 
-  // Render Lưới Đối Tác Doanh Nghiệp (Mẫu 2)
-  const partnersGrid = $('#ecosystemPartnersGrid');
-  if (partnersGrid && ecosystem.partners) {
-    partnersGrid.innerHTML = ecosystem.partners.map(p => `
-      <div class="ecosystem-partner-item" title="${p.title || p.name}">
-        <img src="${p.logo}" alt="${p.alt || p.name}" loading="lazy" />
+  if (!ecosystem.partners || !ecosystem.partners.length) return;
+  ecosystemSliderState.partners = ecosystem.partners;
+
+  setupEcosystemCarousel();
+}
+
+function setupEcosystemCarousel() {
+  const partners = ecosystemSliderState.partners;
+  const track = $('#ecosystemSliderTrack');
+  const wrapper = $('#ecosystemSliderWrapper');
+  const controls = $('#ecosystemControls');
+  const dotsContainer = $('#ecosystemDots');
+  const prevBtn = $('#ecosystemPrevBtn');
+  const nextBtn = $('#ecosystemNextBtn');
+
+  if (!track || !wrapper) return;
+
+  // Xác định số cột cho 1 dòng (Desktop: 5, Tablet ngang: 4, Tablet dọc: 3, Mobile: 2)
+  const width = window.innerWidth;
+  const cols = width > 1024 ? 5 : (width > 768 ? 4 : (width > 540 ? 3 : 2));
+  const itemsPerSlide = cols * 2; // BẮT BUỘC ĐÚNG 2 DÒNG THEO YÊU CẦU
+  const totalSlides = Math.ceil(partners.length / itemsPerSlide);
+  ecosystemSliderState.totalSlides = totalSlides;
+
+  // Dọn dẹp timer cũ nếu có
+  if (ecosystemSliderTimer) {
+    clearInterval(ecosystemSliderTimer);
+    ecosystemSliderTimer = null;
+  }
+
+  // Nếu số đối tác <= 2 dòng: chỉ hiển thị 1 trang tĩnh, ẩn controls
+  if (totalSlides <= 1) {
+    if (controls) controls.style.display = 'none';
+    track.style.transform = 'none';
+    const topRow = partners.slice(0, cols);
+    const bottomRow = partners.slice(cols, cols * 2);
+    track.innerHTML = `
+      <div class="ecosystem-slide">
+        <div class="ecosystem-staggered-grid">
+          <div class="ecosystem-staggered-row ecosystem-row-top">
+            ${topRow.map(p => `
+              <div class="ecosystem-partner-item" title="${p.title || p.name}">
+                <img src="${p.logo}" alt="${p.alt || p.name}" />
+              </div>
+            `).join('')}
+          </div>
+          <div class="ecosystem-staggered-row ecosystem-row-bottom">
+            ${bottomRow.map(p => `
+              <div class="ecosystem-partner-item" title="${p.title || p.name}">
+                <img src="${p.logo}" alt="${p.alt || p.name}" />
+              </div>
+            `).join('')}
+          </div>
+        </div>
       </div>
+    `;
+    return;
+  }
+
+  // Nếu nhiều hơn 2 dòng: Hiển thị bộ điều khiển & kích hoạt auto-play 3s
+  if (controls) controls.style.display = 'flex';
+
+  // Render các slide (mỗi slide đúng 2 dòng xen kẽ nhau)
+  let slidesHTML = '';
+  for (let i = 0; i < totalSlides; i++) {
+    let slideItems = partners.slice(i * itemsPerSlide, (i + 1) * itemsPerSlide);
+    // Nếu slide cuối không đủ số lượng lấp đầy 2 hàng, lấy xoay vòng từ đầu danh sách để slide luôn vuông vắn cân xứng
+    if (slideItems.length < itemsPerSlide) {
+      slideItems = slideItems.concat(partners.slice(0, itemsPerSlide - slideItems.length));
+    }
+    const topRow = slideItems.slice(0, cols);
+    const bottomRow = slideItems.slice(cols, cols * 2);
+    slidesHTML += `
+      <div class="ecosystem-slide" data-slide-index="${i}">
+        <div class="ecosystem-staggered-grid">
+          <div class="ecosystem-staggered-row ecosystem-row-top">
+            ${topRow.map(p => `
+              <div class="ecosystem-partner-item" title="${p.title || p.name}">
+                <img src="${p.logo}" alt="${p.alt || p.name}" />
+              </div>
+            `).join('')}
+          </div>
+          <div class="ecosystem-staggered-row ecosystem-row-bottom">
+            ${bottomRow.map(p => `
+              <div class="ecosystem-partner-item" title="${p.title || p.name}">
+                <img src="${p.logo}" alt="${p.alt || p.name}" />
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  track.innerHTML = slidesHTML;
+
+  // Render các nút tròn Pagination Dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = Array.from({ length: totalSlides }, (_, i) => `
+      <button class="ecosystem-dot ${i === 0 ? 'active' : ''}" data-index="${i}" aria-label="Trang đối tác ${i + 1}"></button>
     `).join('');
   }
+
+  function goToSlide(index) {
+    if (ecosystemSliderState.totalSlides <= 1) return;
+    ecosystemSliderState.currentSlide = (index + ecosystemSliderState.totalSlides) % ecosystemSliderState.totalSlides;
+    track.style.transform = `translateX(-${ecosystemSliderState.currentSlide * 100}%)`;
+
+    // Cập nhật trạng thái active của dots
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.ecosystem-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === ecosystemSliderState.currentSlide);
+      });
+    }
+  }
+
+  function nextSlide() {
+    goToSlide(ecosystemSliderState.currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(ecosystemSliderState.currentSlide - 1);
+  }
+
+  // Bắt đầu autoplay sau 3s (3000ms) chuyển 1 lần
+  function startAutoplay() {
+    if (ecosystemSliderTimer) clearInterval(ecosystemSliderTimer);
+    ecosystemSliderTimer = setInterval(() => {
+      if (!ecosystemSliderState.isPaused) {
+        nextSlide();
+      }
+    }, 3000);
+  }
+
+  // Gắn sự kiện nút bấm điều khiển
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      prevSlide();
+      startAutoplay(); // Reset timer 3s
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      nextSlide();
+      startAutoplay(); // Reset timer 3s
+    };
+  }
+
+  if (dotsContainer) {
+    dotsContainer.onclick = (e) => {
+      const btn = e.target.closest('.ecosystem-dot');
+      if (btn) {
+        const idx = parseInt(btn.dataset.index, 10);
+        if (!isNaN(idx)) {
+          goToSlide(idx);
+          startAutoplay(); // Reset timer 3s
+        }
+      }
+    };
+  }
+
+  // Tạm dừng khi hover, tiếp tục khi rời chuột
+  wrapper.onmouseenter = () => { ecosystemSliderState.isPaused = true; };
+  wrapper.onmouseleave = () => { ecosystemSliderState.isPaused = false; };
+  if (controls) {
+    controls.onmouseenter = () => { ecosystemSliderState.isPaused = true; };
+    controls.onmouseleave = () => { ecosystemSliderState.isPaused = false; };
+  }
+
+  // Hỗ trợ cảm ứng vuốt trên Mobile / iPad (Touch Swipe)
+  let touchStartX = 0;
+  let touchEndX = 0;
+  wrapper.ontouchstart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    ecosystemSliderState.isPaused = true;
+  };
+  wrapper.ontouchend = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    ecosystemSliderState.isPaused = false;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+      startAutoplay();
+    }
+  };
+
+  // Tạm dừng khi chuyển tab trình duyệt
+  document.addEventListener('visibilitychange', () => {
+    ecosystemSliderState.isPaused = document.hidden;
+  });
+  document.addEventListener('visibilitychange', () => {
+    ecosystemSliderState.isPaused = document.hidden;
+  });
+
+  // Khởi động từ slide 0
+  ecosystemSliderState.currentSlide = 0;
+  goToSlide(0);
+  startAutoplay();
 }
+
+// Xử lý khi thay đổi kích thước cửa sổ (Resize debounced)
+let ecoResizeTimer = null;
+let ecoLastWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+  clearTimeout(ecoResizeTimer);
+  ecoResizeTimer = setTimeout(() => {
+    if (Math.abs(window.innerWidth - ecoLastWidth) > 40) {
+      ecoLastWidth = window.innerWidth;
+      if (ecosystemSliderState.partners && ecosystemSliderState.partners.length) {
+        setupEcosystemCarousel();
+      }
+    }
+  }, 250);
+});
 
 /**
  * Render Hệ Sinh Thái 3 Đội Ngũ, 3 Phần Việc (Bố cục Zig-Zag so le theo mẫu Image 1)
@@ -758,7 +922,11 @@ function renderEcosystemTeams(data) {
     eyebrowEl.textContent = data.section.eyebrow;
   }
   if (titleEl && data.section) {
-    titleEl.innerHTML = `${data.section.title} <br class="hidden sm:inline" />${data.section.subtitleTitle || ''}`;
+    let sub = data.section.subtitleTitle || '';
+    if (sub.includes('Ba Đội Ngũ') && !sub.includes('text-brand-gradient')) {
+      sub = sub.replace('Ba Đội Ngũ', '<span class="text-brand-gradient">Ba Đội Ngũ</span>');
+    }
+    titleEl.innerHTML = `${data.section.title} <br class="hidden sm:inline" />${sub}`;
   }
   if (descEl && data.section) {
     descEl.textContent = data.section.description;
@@ -954,28 +1122,53 @@ function renderFAQ(faqData) {
 
   const supportData = activeData.support || defaultFAQ.support;
 
-  // Render danh sách câu hỏi vào track (mặc định mở câu đầu tiên)
-  const defaultIndex = 0;
-  trackEl.innerHTML = activeData.items.map((item, idx) => `
-    <div class="faq-roller-item ${idx === defaultIndex ? 'is-center is-open' : ''}" data-index="${idx}" role="button" tabindex="0" aria-label="${item.question}">
-      <div class="faq-accordion-header">
-        <span class="faq-roller-item-text">${item.question}</span>
-        <span class="faq-roller-item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-          </svg>
-        </span>
-      </div>
-      <div class="faq-accordion-body">
-        <div class="faq-accordion-body-inner">
-          <p class="faq-accordion-answer">${item.answer}</p>
-        </div>
-      </div>
-    </div>
-  `).join('');
+  // 3. Render danh sách câu hỏi vào track với cấu trúc 5 Set nhân bản để cuộn vòng lặp vô tận (Infinite Looping Cylinder)
+  // Set 2 là Set chính (Canonical). Set 0, 1 nằm trước; Set 3, 4 nằm sau.
+  // Khi ở đầu danh sách (Câu hỏi 1), các câu hỏi cuối (Q8, Q9, Q10) từ Set 1 tự động hiển thị ở trên theo yêu cầu.
+  const N = activeData.items.length;
+  const numSets = 5;
+  const canonicalSetIndex = 2; // Set 2 ở vị trí trung tâm
+  let trackHTML = '';
 
-  const items = Array.from(trackEl.querySelectorAll('.faq-roller-item'));
-  let currentCenterIndex = defaultIndex;
+  for (let s = 0; s < numSets; s++) {
+    const isMainSet = (s === canonicalSetIndex);
+    activeData.items.forEach((item, idx) => {
+      const globalIdx = s * N + idx;
+      const isFirstItemInMain = isMainSet && (idx === 0);
+      const isClone = !isMainSet;
+      const isMobileHidden = isMainSet && (idx >= 5); // Mobile/iPad chỉ hiển thị 5 câu đầu
+
+      const itemClasses = [
+        'faq-roller-item',
+        isFirstItemInMain ? 'is-center is-open' : '',
+        isClone ? 'is-clone' : 'is-main',
+        isMobileHidden ? 'faq-mobile-hidden' : ''
+      ].filter(Boolean).join(' ');
+
+      trackHTML += `
+        <div class="${itemClasses}" data-index="${idx}" data-set="${s}" data-global-index="${globalIdx}" role="button" tabindex="0" aria-label="${item.question}">
+          <div class="faq-accordion-header">
+            <span class="faq-roller-item-text">${item.question}</span>
+            <span class="faq-roller-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-accordion-body">
+            <div class="faq-accordion-body-inner">
+              <p class="faq-accordion-answer">${item.answer}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+  trackEl.innerHTML = trackHTML;
+
+  const allItems = Array.from(trackEl.querySelectorAll('.faq-roller-item'));
+  let currentGlobalIndex = canonicalSetIndex * N; // Set 2 item 0 (Câu hỏi 1)
+  let currentCenterRealIndex = 0;
 
   // Hàm cập nhật khung câu trả lời bên phải (dành cho Desktop)
   function updateAnswerCard(index) {
@@ -993,16 +1186,41 @@ function renderFAQ(faqData) {
   }
 
   // Hàm cuộn item vào chính giữa con lăn (chỉ cuộn viewportEl trên Desktop)
-  function scrollItemToCenter(item, smooth = true) {
-    if (window.innerWidth < 1024) return;
+  let isProgrammaticScrolling = false;
+  let programmaticScrollTimer = null;
+
+  function scrollItemToCenter(item, smooth = true, callback = null) {
+    if (window.innerWidth < 1024 || !item) return;
     const vRect = viewportEl.getBoundingClientRect();
     const iRect = item.getBoundingClientRect();
     const currentScroll = viewportEl.scrollTop;
     const offset = (iRect.top + iRect.height / 2) - (vRect.top + vRect.height / 2);
+    const target = currentScroll + offset;
+
+    if (!smooth) {
+      viewportEl.style.scrollSnapType = 'none';
+      viewportEl.scrollTop = target;
+      requestAnimationFrame(() => {
+        viewportEl.style.scrollSnapType = '';
+        updateRollerPhysics();
+        if (callback) callback();
+      });
+      return;
+    }
+
+    isProgrammaticScrolling = true;
+    if (programmaticScrollTimer) clearTimeout(programmaticScrollTimer);
+
     viewportEl.scrollTo({
-      top: currentScroll + offset,
-      behavior: smooth ? 'smooth' : 'auto'
+      top: target,
+      behavior: 'smooth'
     });
+
+    programmaticScrollTimer = setTimeout(() => {
+      isProgrammaticScrolling = false;
+      updateRollerPhysics();
+      if (callback) callback();
+    }, 380);
   }
 
   // Hàm tính toán hiệu ứng mờ dần theo khoảng cách đến tâm (chỉ chạy trên Desktop)
@@ -1011,18 +1229,20 @@ function renderFAQ(faqData) {
     const vRect = viewportEl.getBoundingClientRect();
     const centerY = vRect.top + vRect.height / 2;
 
-    let closestIdx = 0;
+    let closestRealIdx = 0;
+    let closestGlobalIdx = currentGlobalIndex;
     let minDistance = Infinity;
     const maxDist = 210;
 
-    items.forEach((item, idx) => {
+    allItems.forEach((item) => {
       const iRect = item.getBoundingClientRect();
       const itemCenterY = iRect.top + iRect.height / 2;
       const dist = Math.abs(centerY - itemCenterY);
 
       if (dist < minDistance) {
         minDistance = dist;
-        closestIdx = idx;
+        closestRealIdx = parseInt(item.dataset.index, 10);
+        closestGlobalIdx = parseInt(item.dataset.globalIndex, 10);
       }
 
       if (dist < 32) {
@@ -1049,9 +1269,28 @@ function renderFAQ(faqData) {
     });
 
     // Cập nhật câu trả lời nếu câu ở giữa thay đổi
-    if (closestIdx !== currentCenterIndex && minDistance < 42) {
-      currentCenterIndex = closestIdx;
-      updateAnswerCard(closestIdx);
+    if (closestRealIdx !== currentCenterRealIndex && minDistance < 42) {
+      currentCenterRealIndex = closestRealIdx;
+      currentGlobalIndex = closestGlobalIdx;
+      updateAnswerCard(closestRealIdx);
+    }
+  }
+
+  // Giữ vị trí cuộn thủ công luôn nằm quanh Set 2 trung tâm, tránh chạm mép track
+  function handleScrollLoop() {
+    if (isProgrammaticScrolling || window.innerWidth < 1024) return;
+    if (allItems.length <= N) return;
+    const singleSetHeight = allItems[N].offsetTop - allItems[0].offsetTop;
+    if (singleSetHeight <= 0) return;
+
+    if (viewportEl.scrollTop >= 3.5 * singleSetHeight) {
+      viewportEl.style.scrollSnapType = 'none';
+      viewportEl.scrollTop -= singleSetHeight;
+      viewportEl.style.scrollSnapType = '';
+    } else if (viewportEl.scrollTop < 1.5 * singleSetHeight) {
+      viewportEl.style.scrollSnapType = 'none';
+      viewportEl.scrollTop += singleSetHeight;
+      viewportEl.style.scrollSnapType = '';
     }
   }
 
@@ -1061,6 +1300,7 @@ function renderFAQ(faqData) {
     if (window.innerWidth < 1024) return;
     if (!isTicking) {
       requestAnimationFrame(() => {
+        handleScrollLoop();
         updateRollerPhysics();
         isTicking = false;
       });
@@ -1069,39 +1309,69 @@ function renderFAQ(faqData) {
   }, { passive: true });
 
   // Khi click vào bất kỳ câu hỏi nào
-  items.forEach((item, idx) => {
+  allItems.forEach((item) => {
     item.addEventListener('click', () => {
       const isMobile = window.innerWidth < 1024;
       if (isMobile) {
         // Giao diện nhỏ: Accordion Mẫu 1 (mở / đóng mượt mà)
         const wasOpen = item.classList.contains('is-open');
-        items.forEach(i => {
+        allItems.forEach(i => {
           i.classList.remove('is-open');
         });
         if (!wasOpen) {
           item.classList.add('is-open');
         }
       } else {
-        // Desktop: cuộn vào giữa con lăn và khởi động lại chu kỳ 3 giây
-        scrollItemToCenter(item, true);
+        // Desktop: cuộn vào giữa con lăn và cập nhật
+        const gIdx = parseInt(item.dataset.globalIndex, 10);
+        const realIdx = parseInt(item.dataset.index, 10);
+        currentGlobalIndex = gIdx;
+        currentCenterRealIndex = realIdx;
+        updateAnswerCard(realIdx);
+
+        scrollItemToCenter(item, true, () => {
+          // Chuẩn hóa vị trí về lại Set 2 trung tâm (không giật hình)
+          if (currentGlobalIndex < 2 * N || currentGlobalIndex >= 3 * N) {
+            const normalizedGlobal = 2 * N + realIdx;
+            currentGlobalIndex = normalizedGlobal;
+            scrollItemToCenter(allItems[normalizedGlobal], false);
+          }
+        });
         restartFaqTimer();
       }
     });
   });
 
   // =========================================================================
-  // TỰ ĐỘNG CHUYỂN ĐỔI CÂU HỎI MỖI 3 GIÂY (CHỈ ÁP DỤNG TRÊN DESKTOP >= 1024PX)
+  // TỰ ĐỘNG CHUYỂN ĐỔI CÂU HỎI MỖI 2.5 GIÂY (CHỈ ÁP DỤNG TRÊN DESKTOP >= 1024PX)
+  // VÒNG LẶP VÔ TẬN: HẾT CÂU 10 SẼ TỰ ĐỘNG CUỘN TIẾP XUỐNG CÂU 1 MƯỢT MÀ
   // IPAD VÀ MOBILE: KHÔNG CHẠY ANIMATION NÀY, GIỮ NGUYÊN ACCORDION THỦ CÔNG
   // =========================================================================
   let faqAutoTimer = null;
 
   function nextFAQ() {
-    // Chỉ chạy trên Desktop
     if (window.innerWidth < 1024) return;
-    const nextIndex = (currentCenterIndex + 1) % items.length;
-    currentCenterIndex = nextIndex;
-    scrollItemToCenter(items[nextIndex], true);
-    updateAnswerCard(nextIndex);
+    const nextGlobal = currentGlobalIndex + 1;
+    if (nextGlobal >= allItems.length) {
+      currentGlobalIndex = canonicalSetIndex * N;
+      scrollItemToCenter(allItems[currentGlobalIndex], false);
+      return;
+    }
+
+    const nextItem = allItems[nextGlobal];
+    const realIdx = parseInt(nextItem.dataset.index, 10);
+    currentGlobalIndex = nextGlobal;
+    currentCenterRealIndex = realIdx;
+    updateAnswerCard(realIdx);
+
+    scrollItemToCenter(nextItem, true, () => {
+      // Khi đã cuộn vào Set 3 (index >= 3*N), chuẩn hóa êm đềm về Set 2
+      if (currentGlobalIndex >= 3 * N) {
+        const normalizedGlobal = currentGlobalIndex - N;
+        currentGlobalIndex = normalizedGlobal;
+        scrollItemToCenter(allItems[normalizedGlobal], false);
+      }
+    });
   }
 
   function startFaqTimer() {
@@ -1113,7 +1383,7 @@ function renderFAQ(faqData) {
     if (faqAutoTimer) clearInterval(faqAutoTimer);
     faqAutoTimer = setInterval(() => {
       nextFAQ();
-    }, 3000);
+    }, 2500);
   }
 
   function pauseFaqTimer() {
@@ -1143,11 +1413,12 @@ function renderFAQ(faqData) {
   // Xử lý resize màn hình giữa Desktop và Giao diện nhỏ
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
+      scrollItemToCenter(allItems[currentGlobalIndex], false);
       updateRollerPhysics();
       startFaqTimer();
     } else {
       pauseFaqTimer();
-      items.forEach(item => {
+      allItems.forEach(item => {
         item.style.opacity = '';
         item.style.transform = '';
         item.style.pointerEvents = '';
@@ -1155,12 +1426,13 @@ function renderFAQ(faqData) {
     }
   });
 
-  // Khởi tạo câu trả lời và vị trí ban đầu
-  updateAnswerCard(defaultIndex);
+  // Khởi tạo câu trả lời và vị trí ban đầu (căn giữa Câu hỏi 1 ở Set 2)
+  updateAnswerCard(0);
   if (window.innerWidth >= 1024) {
     setTimeout(() => {
-      if (items[defaultIndex]) {
-        scrollItemToCenter(items[defaultIndex], false);
+      const startItem = allItems[currentGlobalIndex];
+      if (startItem) {
+        scrollItemToCenter(startItem, false);
         updateRollerPhysics();
       }
     }, 60);

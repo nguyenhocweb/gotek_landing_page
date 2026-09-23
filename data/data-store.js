@@ -18,7 +18,7 @@
 
 async function fetchJSON(path) {
   try {
-    const res = await fetch(path);
+    const res = await fetch(`${path}?_v=${Date.now()}`);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status} khi tải ${path}`);
     }

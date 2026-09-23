@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gotek - Tiên Phong Giải Pháp Phần Mềm & Chuyển Đổi Số Doanh Nghiệp</title>
+  <title>Thiết kế website chuyên nghiệp, chuẩn SEO | Gotek</title>
   <meta name="description"
-    content="Gotek chuyên phát triển Web App cao cấp, Mobile App, tích hợp AI và thiết kế kiến trúc hệ thống chịu tải lớn chuẩn quốc tế." />
+    content="Gotek thiết kế website theo mục tiêu kinh doanh, tối ưu trải nghiệm, hiệu năng, SEO và khả năng vận hành lâu dài cho doanh nghiệp." />
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
@@ -16,7 +16,7 @@
     rel="stylesheet" />
 
   <!-- Stylesheets (Pure Vanilla CSS) -->
-  <link rel="stylesheet" href="css/style.css?v=53" />
+  <link rel="stylesheet" href="css/style.css?v=81" />
   <link rel="stylesheet" href="css/footer.css?v=22" />
 
   <!-- GSAP Core (Tương tự landing_page_gotek) -->
@@ -89,7 +89,7 @@
   <div id="mobile-menu-overlay"
     class="fixed inset-0 bg-navy/30 backdrop-blur-sm z-[99] invisible opacity-0 transition-opacity duration-300">
     <div
-      class="mobile-menu-drawer fixed top-0 right-0 bottom-0 w-[280px] max-w-[85vw] bg-white shadow-2xl z-[100] flex flex-col justify-start pt-5 pb-8 px-6 border-l border-slate-200/60 rounded-none transform translate-x-full">
+      class="mobile-menu-drawer fixed inset-0 sm:left-auto sm:right-0 sm:w-[295px] sm:max-w-[86vw] w-full max-w-full bg-white z-[100] flex flex-col justify-start pt-5 pb-8 px-6 sm:shadow-2xl sm:border-l sm:border-slate-200/60 rounded-none transform translate-x-full">
       <!-- Drawer Top Bar: Logo Gotek Icon + VN/EN Switcher + Close Button -->
       <div
         class="mobile-drawer-header flex items-center justify-between w-full pb-4 mb-5 border-b border-slate-100 shrink-0">
@@ -98,7 +98,7 @@
           <img src="./assets/images/logo-icon.png" alt="Gotek" class="h-8 w-auto object-contain" />
         </a>
 
-        <div class="flex items-center gap-2.5">
+        <div class="mobile-drawer-actions">
           <!-- Language Switcher: VN / EN -->
           <div class="mobile-lang-switcher flex items-center bg-slate-100 rounded-full p-0.5 text-xs font-bold">
             <button type="button"
@@ -107,9 +107,9 @@
               class="lang-btn px-2.5 py-1 rounded-full text-navy/70 hover:text-navy transition-all">EN</button>
           </div>
 
-          <!-- Close Button -->
+          <!-- Close Button (Chuẩn mẫu: Hình vuông bo góc rounded-lg, nền xanh #0055FF, icon X màu trắng) -->
           <button id="mobile-menu-close" type="button"
-            class="w-8 h-8 rounded-full flex items-center justify-center text-navy/70 hover:text-navy hover:bg-slate-100 transition-colors"
+            class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#0055FF] text-white hover:bg-[#0043CC] transition-all shadow-xs"
             aria-label="Đóng Menu">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -288,6 +288,12 @@
         <img src="./assets/images/team/gotek-team-hero.jpg" alt="Đội ngũ kỹ sư nhân viên Gotek và logo trên tường" class="hero-team-img" />
       </div>
 
+      <!-- 2.7 Logo Gotek Mờ (Chỉ Biểu Tượng Ngôi Sao) & Hào Quang Xanh Tròn Tỏa Dần Từ Trung Tâm Ra -->
+      <div class="hero-watermark-center" aria-hidden="true">
+        <div class="hero-watermark-glow"></div>
+        <img src="./assets/images/logo-icon.png" alt="" class="hero-watermark-logo" />
+      </div>
+
       <!-- 3. Nội Dung Tinh Gọn Ở Giữa - Bỏ Hoàn Toàn Background Của Chữ -->
       <div class="hero-clean-content">
         <div class="hero-text-anim-wrap" id="heroTextAnimWrap">
@@ -382,38 +388,39 @@
       <div class="about-partner-inner">
         <!-- Tiêu đề chính -->
         <h2 class="partner-title">
-          ĐỐI TÁC CÔNG NGHỆ &amp; PHẦN MỀM CHUYÊN NGHIỆP
+          THIẾT KẾ WEBSITE CHUYÊN NGHIỆP · <span class="text-brand-gradient">TRỌN GÓI &amp; CHUẨN SEO</span>
         </h2>
 
         <!-- Khung chứa văn bản giới thiệu căn lề bằng nhau -->
         <div class="partner-text-block">
           <!-- Đoạn mô tả 1 -->
           <p class="partner-lead">
-            Đội ngũ kỹ sư tại Đà Nẵng chuyên tư vấn kiến trúc, phát triển phần mềm và xây dựng giải pháp số toàn diện, bền
-            vững cho doanh nghiệp.
+            Website bắt đầu từ cấu trúc, không bắt đầu từ trang trí —<br class="desktop-br" />
+            Nội dung trước giao diện là triết lý cốt lõi tại Gotek.
           </p>
 
           <!-- Đoạn mô tả 2 -->
           <p class="partner-desc">
-            <strong>GOTEK</strong> tự hào là đối tác công nghệ chiến lược đồng hành cùng doanh nghiệp số hóa quy trình và
-            kiến tạo sản phẩm số chuẩn mực. Chúng tôi tập trung chuyên sâu vào: Thiết kế Web Độc Bản, Phát triển Ứng dụng
-            Di Động, Nền tảng SaaS và Vận hành Hạ tầng Đám Mây chịu tải cao.
+            Chúng tôi làm rõ mục tiêu kinh doanh, nhóm khách hàng<br class="desktop-br" />
+            và hành trình trải nghiệm người dùng trước khi thiết kế.<br class="desktop-br" />
+            Mỗi website bàn giao bởi <strong>GOTEK</strong> là một tác phẩm độc bản,<br class="desktop-br" />
+            tối ưu Core Web Vitals tuyệt đối, chuẩn SEO từ lõi và cam kết đồng hành kỹ thuật dài hạn.
           </p>
         </div>
 
         <!-- Dải 3 số liệu thống kê then chốt -->
         <div class="partner-metrics-strip">
           <div class="metric-cell">
-            <div class="metric-number">30+</div>
-            <div class="metric-label">Dự án triển khai</div>
+            <div class="metric-number">10+</div>
+            <div class="metric-label">Năm kinh nghiệm <br class="metric-br-mobile" />thực chiến</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-number">98%</div>
-            <div class="metric-label">Khách hàng hài lòng</div>
+            <div class="metric-number">1000+</div>
+            <div class="metric-label">Dự án website <br class="metric-br-mobile" />hoàn thành</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-number">99.9%</div>
-            <div class="metric-label">Cam kết Uptime Cloud</div>
+            <div class="metric-number">24/7</div>
+            <div class="metric-label">Hỗ trợ kỹ thuật <br class="metric-br-mobile" />trọn đời</div>
           </div>
         </div>
       </div>
@@ -424,31 +431,34 @@
          - Phong cách Clean B2B Minimalist kết hợp Modern AI & SaaS
          - Không số theo yêu cầu người dùng, màu chữ chuẩn thương hiệu Gotek (Navy + Royal Blue)
          ========================================================================= -->
-    <section id="services" class="solutions-bento-section">
-      <div class="solutions-container">
-
-        <!-- Header: Tiêu đề + Phụ đề (Đã bỏ DỊCH VỤ CÔNG NGHỆ theo yêu cầu) -->
+    <section id="services" class="why-choose-section">
+      <div class="why-choose-wrapper">
+        
+        <!-- Header Section: Tiêu đề + Phụ đề -->
         <div class="solutions-header">
           <h2 class="solutions-title">
-            Giải Pháp <span class="text-brand-gradient">Chuyên Sâu</span>
+            Giải Pháp <span class="text-brand-gradient">Thiết Kế Website</span>
           </h2>
           <p class="solutions-lead">
-            Hệ sinh thái dịch vụ toàn diện giúp doanh nghiệp bứt phá tăng trưởng và tối ưu vận hành số.
+            Hệ thống website độc bản, chuẩn SEO và tối ưu chuyển đổi giúp doanh nghiệp bứt phá doanh thu.
           </p>
         </div>
 
-        <div class="bento-container">
-          <div class="bento-left">
-            <img src="./assets/images/banners/hero-engineer-nobg.png" alt="Kỹ sư công nghệ Gotek" class="bento-character-img">
+        <div class="why-choose-container">
+          <!-- Cột Trái: Ảnh nhân vật kỹ sư Gotek (Đã bỏ toàn bộ chữ theo yêu cầu) -->
+          <div class="why-choose-left-image">
+            <img src="./assets/images/banners/hero-engineer-nobg.png" alt="Kỹ sư công nghệ Gotek" class="why-choose-character-img">
           </div>
 
-
-          <!-- Bento Grid Matrix: Hairline Border Container -->
-          <div class="bento-grid-matrix">
-
-            <!-- HÀNG 1 - THẺ 1: UI/UX (Spans 8 cols) -->
-            <div class="bento-cell">
-              <div class="bento-icon-token" aria-hidden="true">
+          <!-- Cột Phải: Lưới 2 cột giải pháp với khoảng cách đồng đều như Hình 4 -->
+          <div class="why-choose-grid">
+          
+          <!-- Cột 1: UI/UX Độc Bản, Tối Ưu SEO Từ Lõi, Tương Thích Di Động -->
+          <div class="why-feature-col">
+            
+            <!-- Item 1: Thiết Kế UI/UX Độc Bản -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m12 19 7-7 3 3-7 7-3-3z"/>
                   <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
@@ -456,132 +466,110 @@
                   <circle cx="11" cy="11" r="2"/>
                 </svg>
               </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Thiết Kế UI/UX Độc Bản</h3>
-                <p class="bento-text ">
-                  Giao diện độc bản, tính toán tối ưu hành vi người dùng và phản ánh chuẩn xác định vị thương hiệu cao
-                  cấp.
-                </p>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Thiết Kế UI/UX Độc Bản</h3>
+                <p class="why-feature-desc">Không dùng giao diện mẫu có sẵn. Mỗi website là một tác phẩm sáng tạo riêng biệt, chuẩn UX/UI tôn vinh bản sắc thương hiệu.</p>
               </div>
-
             </div>
 
-            <!-- HÀNG 1 - THẺ 2: Mobile App (Spans 4 cols - Đã bỏ Cross-platform & Native) -->
-            <div class="bento-cell">
-              <div class="bento-icon-token" aria-hidden="true">
+            <!-- Item 2: Tối Ưu Hóa SEO Từ Lõi -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                </svg>
+              </div>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Tối Ưu Hóa SEO Từ Lõi</h3>
+                <p class="why-feature-desc">Cấu trúc code sạch, HTML ngữ nghĩa và Schema đầy đủ ngay từ khởi đầu giúp website dễ dàng leo top Google.</p>
+              </div>
+            </div>
+
+            <!-- Item 3: Tương Thích Hoàn Hảo Di Động -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="14" height="20" x="5" y="2" rx="3" ry="3"/>
                   <path d="M12 18h.01"/>
                   <path d="M9 5h6"/>
                 </svg>
               </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Mobile App</h3>
-                <p class="bento-text">
-                  Trải nghiệm mượt mà trên iOS &amp; Android với Native &amp; Flutter.
-                </p>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Tương Thích Hoàn Hảo Di Động</h3>
+                <p class="why-feature-desc">Hiển thị mượt mà trên mọi thiết bị di động, tablet và desktop với trải nghiệm đồng nhất và trực quan.</p>
               </div>
             </div>
-
-            <!-- HÀNG 2 - THẺ 3: Front-end (Spans 4 cols) -->
-            <div class="bento-cell ">
-              <div class="bento-icon-token" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"/>
-                  <polyline points="8 6 2 12 8 18"/>
-                  <line x1="14" x2="10" y1="4" y2="20"/>
-                </svg>
-              </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Front-end</h3>
-                <p class="bento-text">
-                  React, Next.js với 60FPS.
-                </p>
-              </div>
-            </div>
-
-            <!-- HÀNG 2 - THẺ 4: Backend (Spans 4 cols) -->
-            <div class="bento-cell ">
-              <div class="bento-icon-token" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
-                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
-                  <line x1="6" x2="6.01" y1="6" y2="6"/>
-                  <line x1="6" x2="6.01" y1="18" y2="18"/>
-                  <path d="M18 10v4"/>
-                </svg>
-              </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Backend</h3>
-                <p class="bento-text">
-                  Microservices an toàn.
-                </p>
-              </div>
-            </div>
-
-            <!-- HÀNG 2 - THẺ 5: Cloud & DevOps (Spans 4 cols) -->
-            <div class="bento-cell ">
-              <div class="bento-icon-token" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-                  <polyline points="13 13 16 10 19 13"/>
-                  <line x1="16" x2="16" y1="10" y2="16"/>
-                </svg>
-              </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Cloud &amp; DevOps</h3>
-                <p class="bento-text">
-                  CI/CD AWS &amp; GCP.
-                </p>
-              </div>
-            </div>
-
-            <!-- HÀNG 3 - THẺ 6: Tích Hợp AI (Spans 4 cols) -->
-            <div class="bento-cell ">
-              <div class="bento-icon-token" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                  <path d="M5 3v4"/>
-                  <path d="M19 17v4"/>
-                  <path d="M3 5h4"/>
-                  <path d="M17 19h4"/>
-                </svg>
-              </div>
-              <div class="bento-cell-body">
-                <h3 class="bento-heading">Tích Hợp AI</h3>
-                <p class="bento-text">
-                  LLM &amp; Tự động hóa.
-                </p>
-              </div>
-            </div>
-
-            <!-- HÀNG 3 - THẺ 7: Tối Ưu Hiệu Suất & SEO (Spans 8 cols) -->
-            <div class="bento-cell ">
-              <div class="bento-seo-layout">
-                <div class="bento-icon-token" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                    <path d="M12 9V4s3.03.55 4 2c1.08 1.62 0 5 0 5"/>
-                  </svg>
-                </div>
-                <div class="bento-seo-info">
-                  <h3 class="bento-heading">Tối Ưu Hiệu Suất &amp; SEO</h3>
-                  <p class="bento-text">
-                    Core Web Vitals tối đa, load trang siêu tốc và chuẩn cấu trúc Schema cho Google Search.
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
 
           </div>
+
+          <!-- Cột 2 (Vách ngăn dọc hairline): CRO, Tốc Độ Siêu Tốc, Bảo Mật, Hỗ Trợ 24/7 -->
+          <div class="why-feature-col why-feature-col--bordered">
+            
+            <!-- Item 4: Tối Ưu Tỷ Lệ Chuyển Đổi (CRO) -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <polyline points="16 11 18 13 22 9"/>
+                </svg>
+              </div>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Tối Ưu Tỷ Lệ Chuyển Đổi (CRO)</h3>
+                <p class="why-feature-desc">Bố cục được nghiên cứu kỹ lưỡng để dẫn dắt người dùng thực hiện hành động liên hệ và mua hàng.</p>
+              </div>
+            </div>
+
+            <!-- Item 5: Tốc Độ Tải Trang Siêu Tốc -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </div>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Tốc Độ Tải Trang Siêu Tốc</h3>
+                <p class="why-feature-desc">Next.js, React kết hợp Redis Caching tối ưu Core Web Vitals xanh tuyệt đối, tăng điểm xếp hạng SEO.</p>
+              </div>
+            </div>
+
+            <!-- Item 6: Bảo Mật Cao & Dễ Quản Trị -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Bảo Mật Cao &amp; Dễ Quản Trị</h3>
+                <p class="why-feature-desc">Trang bị SSL, tường lửa WAF và hệ thống CMS thân thiện giúp dễ dàng cập nhật nội dung mà không cần code.</p>
+              </div>
+            </div>
+
+            <!-- Item 7: Bảo Hành & Đồng Hành Dài Hạn -->
+            <div class="why-feature-item">
+              <div class="why-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+                </svg>
+              </div>
+              <div class="why-feature-content">
+                <h3 class="why-feature-title">Bảo Hành &amp; Đồng Hành Dài Hạn</h3>
+                <p class="why-feature-desc">Hỗ trợ kỹ thuật 24/7, giám sát server và cam kết bảo trì định kỳ cho mọi sản phẩm website sau bàn giao.</p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- =========================================================================
          4. SECTION DỰ ÁN TIÊU BIỂU (2 CỘT: TRÊN ẢNH, DƯỚI LÀ LOẠI + NAME, DƯỚI NỮA LÀ MÔ TẢ)
@@ -644,11 +632,10 @@
         <div class="process-section-header">
           <h2 class="process-main-title">
             <span class="process-title-main">Quy Trình Triển Khai</span>
-            <span class="process-title-sub text-brand-gradient">Dự Án</span>
+            <span class="process-title-sub text-brand-gradient">Website Tại Gotek</span>
           </h2>
           <p class="process-main-desc">
-            Mọi dự án tại Gotek đều được vận hành tuần tự qua 6 cột mốc rõ ràng, bám sát tiến độ cam kết và minh bạch
-            từng giai đoạn bàn giao.
+            Chúng tôi không chỉ làm website "cho có", mà xây dựng một hệ thống kinh doanh và vận hành tự động thực sự qua 6 cột mốc chuyên sâu.
           </p>
         </div>
 
@@ -676,11 +663,10 @@
               <div class="step-card tone-azure" id="card1">
                 <div class="step-card-header">
                   <span class="step-card-num">1.</span>
-                  <h3 class="step-card-title">Khảo Sát &amp; Xác Lập Scope</h3>
+                  <h3 class="step-card-title">Phân Tích Mục Tiêu &amp; Lõi Kinh Doanh</h3>
                 </div>
                 <p class="step-card-desc">
-                  Tiếp nhận bài toán, khảo sát thực tế và thiết lập tài liệu kiến trúc kỹ thuật (SRS) cùng lộ trình
-                  Sprint chi tiết.
+                  Làm rõ mục tiêu bán hàng, SEO hoặc lead gen; phân tích phễu chuyển đổi và hoạch định hạ tầng VPS/CDN/Cache.
                 </p>
               </div>
 
@@ -688,11 +674,10 @@
               <div class="step-card" id="card3">
                 <div class="step-card-header">
                   <span class="step-card-num">3.</span>
-                  <h3 class="step-card-title">Phát Triển Front-end &amp; Back-end</h3>
+                  <h3 class="step-card-title">Thiết Kế UI/UX Độc Bản &amp; Prototype</h3>
                 </div>
                 <p class="step-card-desc">
-                  Lập trình giao diện 60FPS mượt mà và xây dựng hệ thống backend microservices chịu tải cao, bảo mật cấp
-                  doanh nghiệp.
+                  Thiết kế giao diện độc bản dựa trên hành vi khách hàng (UX-driven), mapping rõ luồng chuyển đổi và demo tương tác Figma.
                 </p>
               </div>
 
@@ -700,11 +685,10 @@
               <div class="step-card tone-azure" id="card5">
                 <div class="step-card-header">
                   <span class="step-card-num">5.</span>
-                  <h3 class="step-card-title">Triển Khai Cloud &amp; CI/CD</h3>
+                  <h3 class="step-card-title">Kiểm Thử Đa Thiết Bị &amp; Automation</h3>
                 </div>
                 <p class="step-card-desc">
-                  Cấu hình hạ tầng đám mây (AWS/GCP), tự động hóa pipeline CI/CD, thiết lập tường lửa WAF và chuyển giao
-                  dữ liệu an toàn.
+                  Kiểm tra chức năng trên thiết bị thật, kích hoạt bảo mật SSL/Firewall, cài đặt tracking chuyển đổi và automation.
                 </p>
               </div>
             </div>
@@ -715,11 +699,10 @@
               <div class="step-card" id="card2">
                 <div class="step-card-header">
                   <span class="step-card-num">2.</span>
-                  <h3 class="step-card-title">Thiết Kế UX/UI Độc Bản</h3>
+                  <h3 class="step-card-title">Thiết Kế Kiến Trúc &amp; Cấu Trúc SEO</h3>
                 </div>
                 <p class="step-card-desc">
-                  Xây dựng Wireframe và Figma Prototype tương tác cao, bám sát bộ nhận diện thương hiệu và tối ưu chuyển
-                  đổi người dùng.
+                  Chọn Stack tối ưu (WordPress / Next.js / Laravel), thiết kế cơ sở dữ liệu, URL chuẩn SEO và logic nội dung bài bản.
                 </p>
               </div>
 
@@ -727,11 +710,10 @@
               <div class="step-card tone-azure" id="card4">
                 <div class="step-card-header">
                   <span class="step-card-num">4.</span>
-                  <h3 class="step-card-title">Kiểm Thử Toàn Diện QA/QC</h3>
+                  <h3 class="step-card-title">Lập Trình Chuẩn SEO &amp; Tốc Độ 60FPS</h3>
                 </div>
                 <p class="step-card-desc">
-                  Kiểm thử đa thiết bị, quét lỗ hổng an ninh mạng, rà soát hiệu năng tải trang đạt chuẩn Core Web Vitals
-                  95+ của Google.
+                  Code sạch chuẩn W3C, responsive hoàn hảo mọi thiết bị, tối ưu Core Web Vitals tuyệt đối và cấu hình cache đa tầng.
                 </p>
               </div>
 
@@ -739,11 +721,10 @@
               <div class="step-card is-final" id="card6">
                 <div class="step-card-header">
                   <span class="step-card-num">6.</span>
-                  <h3 class="step-card-title">Bàn Giao &amp; Bảo Hành 24/7</h3>
+                  <h3 class="step-card-title">Bàn Giao Toàn Diện &amp; Bảo Hành 24/7</h3>
                 </div>
                 <p class="step-card-desc">
-                  Bàn giao 100% mã nguồn bản quyền, đào tạo vận hành cho nhân sự doanh nghiệp và cam kết hỗ trợ kỹ thuật
-                  dài hạn.
+                  Chuyển giao 100% full source code và server, hướng dẫn quản trị nội dung dễ dàng cùng cam kết hỗ trợ kỹ thuật trọn đời.
                 </p>
               </div>
             </div>
@@ -752,30 +733,6 @@
 
         </div>
 
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         7. SECTION HỆ SINH THÁI ĐỐI TÁC (MẪU 2: CHECKERBOARD LOGO GRID)
-         ========================================================================= -->
-    <section id="ecosystem" class="ecosystem-section">
-      <div class="ecosystem-container">
-        <!-- Header -->
-        <div class="ecosystem-header">
-          <h2 class="ecosystem-title" id="ecosystemTitle">
-            <span class="ecosystem-title-main">Hệ Sinh Thái</span>
-            <span class="ecosystem-title-sub text-brand-gradient">Đối Tác Chiến Lược</span>
-          </h2>
-          <p class="ecosystem-subtitle" id="ecosystemSubtitle">
-            Gotek tự hào đồng hành và kiến tạo giá trị công nghệ bền vững cùng các doanh nghiệp, tổ chức uy tín hàng
-            đầu.
-          </p>
-        </div>
-
-        <!-- Lưới Logo Đối Tác (Mẫu 2: Checkerboard Grid - Trắng & Xanh Sáng Mờ) -->
-        <div class="ecosystem-partners-grid" id="ecosystemPartnersGrid">
-          <!-- Render tự động qua JavaScript từ data/ecosystem.json -->
-        </div>
       </div>
     </section>
 
@@ -833,7 +790,7 @@
         <!-- Section Header: Ở trên là tiêu đề một hệ sinh thái (Đã bỏ MÔ HÌNH HỢP TÁC CHIẾN LƯỢC theo yêu cầu) -->
         <div class="ecosystem-teams-header">
           <h2 class="ecosystem-teams-title" id="ecosystemTeamsTitle">
-            Một Hệ Sinh Thái. <br class="hidden sm:inline" />Ba Đội Ngũ, Ba Phần Việc.
+            Một Hệ Sinh Thái. <br class="hidden sm:inline" /><span class="text-brand-gradient">Ba Đội Ngũ</span>, Ba Phần Việc.
           </h2>
           <p class="ecosystem-teams-desc" id="ecosystemTeamsDesc">
             Doanh nghiệp có thể bắt đầu từ một nhu cầu cụ thể rồi kết nối thêm năng lực phù hợp khi dự án cần mở rộng.
@@ -1042,7 +999,9 @@
           <h3>Thông tin</h3>
           <address><a class="gotek-footer-office-title" href="https://share.google/7CH8yM1CBF2qkzYtL" target="_blank" rel="noopener noreferrer"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-map-pin"></use></svg><span>Go&nbsp;Media Agency Đà&nbsp;Nẵng</span></a><span>91 Thành Thái, Cẩm Lệ, Đà Nẵng</span></address>
           <a class="gotek-footer-info-contact" href="mailto:info@gotek.asia"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-mail"></use></svg><span>info@gotek.asia</span></a>
-          <a class="gotek-footer-info-contact" href="tel:+84978970605"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>+84 97 897 0605</span></a>          <a href="https://gotek.asia/sitemap/">Sơ đồ website</a>
+          <a class="gotek-footer-info-contact" href="tel:0943581185"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>0943 581 185 (Tư vấn)</span></a>
+          <a class="gotek-footer-info-contact" href="tel:0942568685"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>0942 568 685 (Kỹ thuật)</span></a>
+          <a href="https://gotek.asia/sitemap/">Sơ đồ website</a>
         </div>
       </div>
 
@@ -1060,9 +1019,9 @@
 
   <!-- Scripts -->
   <!-- 1. Nạp GotekDataStore trước (chứa dữ liệu hoặc fetch từ data/*.json) -->
-  <script src="data/data-store.js?v=4"></script>
+  <script src="data/data-store.js?v=5"></script>
   <!-- 2. Nạp main logic (module ES) -->
-  <script type="module" src="js/main.js?v=41"></script>
+  <script type="module" src="js/main.js?v=55"></script>
 </body>
 
 </html>

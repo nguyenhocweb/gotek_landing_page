@@ -8,7 +8,8 @@ import { initMagneticButtons } from './components/magneticBtn.js';
 import { initLeadForm } from './components/form.js';
 import { initCapabilityTabs } from './components/tabs.js';
 import { initProcessConnectors } from './components/processConnectors.js?v=23';
-import { initMetricCounters } from './components/counter.js?v=2';
+import { initCircuitConnectors } from './components/circuitConnectors.js?v=1';
+import { initMetricCounters } from './components/counter.js?v=3';
 import { 
   initAboutScrollAnimation,
   initBentoScrollAnimation, 
@@ -17,9 +18,9 @@ import {
   initProjectsScrollAnimation,
   initPricingScrollAnimation
 } from './components/scrollAnimations.js?v=13';
-import { initHeroInteractive } from './components/heroInteractive.js?v=4';
+import { initHeroInteractive } from './components/heroInteractive.js?v=9';
 import { initFooterAccordion } from './components/footer.js?v=1';
-import { initApp } from './app.js?v=20';
+import { initApp } from './app.js?v=28';
 
 function startApp() {
   console.log('🚀 Gotek Web Application Initialized.');
@@ -41,6 +42,9 @@ function startApp() {
 
   // 5. Khởi tạo đường nối từ vòng tròn trung tâm đến viền đáy thẻ quy trình
   try { initProcessConnectors(); } catch (e) { console.error('Error initProcessConnectors:', e); }
+
+  // 5.1 Khởi tạo các đường kẻ nối circuit diagram cho Giải Pháp Chuyên Sâu
+  try { initCircuitConnectors(); } catch (e) { console.error('Error initCircuitConnectors:', e); }
 
   // 6. Khởi tạo animation từ từ hiện ra cho tiêu đề & đoạn văn bản Giới Thiệu
   try { initAboutScrollAnimation(); } catch (e) { console.error('Error initAboutScrollAnimation:', e); }

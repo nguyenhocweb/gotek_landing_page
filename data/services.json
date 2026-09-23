@@ -1,86 +1,86 @@
 [
   {
-    "id": "web-development",
-    "title": "Phát Triển Web App Cao Cấp",
-    "description": "Xây dựng ứng dụng web hiện đại, kiến trúc module chịu tải lớn, chuẩn SEO 100% Google Lighthouse và tối ưu chuyển đổi vượt trội.",
+    "id": "web-corporate",
+    "title": "Thiết Kế Website Doanh Nghiệp",
+    "description": "Xây dựng website nhận diện đẳng cấp, thể hiện trọn vẹn vị thế thương hiệu, chuẩn SEO 100% Google và tối ưu trải nghiệm đa thiết bị.",
     "icon": "globe",
     "image": "assets/images/services/service-1.jpg",
-    "badge": "Chủ Lực",
+    "badge": "Độc Bản",
     "features": [
-      "Next.js / React / Vue SPA & SSR",
-      "Giao diện chuẩn Responsive 60FPS",
-      "Tối ưu Core Web Vitals tuyệt đối",
-      "Tích hợp cổng thanh toán & ERP"
+      "Giao diện độc bản thiết kế trên Figma",
+      "Tối ưu Core Web Vitals xanh tuyệt đối",
+      "Cấu trúc code chuẩn SEO Google từ lõi",
+      "CMS quản trị trực quan, dễ cập nhật"
     ]
   },
   {
-    "id": "mobile-app",
-    "title": "Ứng Dụng Di Động iOS & Android",
-    "description": "Thiết kế và lập trình mobile app đa nền tảng mượt mà, đồng bộ dữ liệu thời gian thực và thông báo đẩy tức thì.",
-    "icon": "smartphone",
+    "id": "web-ecommerce",
+    "title": "Website Bán Hàng & E-Commerce",
+    "description": "Tối ưu hóa hành trình mua sắm và tỷ lệ chuyển đổi (CRO), tích hợp thanh toán tự động, quản lý đơn hàng và báo cáo doanh thu thông minh.",
+    "icon": "shopping-cart",
     "image": "assets/images/services/service-2.jpg",
-    "badge": "Hot",
+    "badge": "Tối Ưu CRO",
     "features": [
-      "Flutter / React Native Native-like",
-      "Bảo mật vân tay & FaceID chuẩn ngân hàng",
-      "Offline-first sync dữ liệu thông minh",
-      "Hỗ trợ đăng ký và duyệt App Store / CH Play"
+      "Luồng mua hàng 1-click mượt mà 60FPS",
+      "Tích hợp VNPay, MoMo, Visa/Mastercard",
+      "Đồng bộ kho hàng, khuyến mãi & vận chuyển",
+      "Tối ưu Schema sản phẩm leo top Google"
     ]
   },
   {
-    "id": "ai-solutions",
-    "title": "Giải Pháp Trí Tuệ Nhân Tạo & AI Agent",
-    "description": "Tích hợp AI chuyên sâu, tự động hóa quy trình chăm sóc khách hàng bằng Chatbot thông minh và trích xuất dữ liệu tự động.",
-    "icon": "cpu",
+    "id": "web-saas-portal",
+    "title": "Cổng Thông Tin & Web Ứng Dụng",
+    "description": "Phát triển web app, cổng thông tin dữ liệu lớn và hệ thống số hóa nghiệp vụ chuyên biệt với kiến trúc mở rộng linh hoạt.",
+    "icon": "layers",
     "image": "assets/images/services/service-3.jpg",
-    "badge": "Tiên Phong",
+    "badge": "Chịu Tải Lớn",
     "features": [
-      "AI Agent RAG hỏi đáp trên tài liệu nội bộ",
-      "Xử lý ngôn ngữ tự nhiên Tiếng Việt xuất sắc",
-      "Phân tích dữ liệu & dự báo xu hướng",
-      "Tối ưu chi phí API Cloud lên đến 40%"
+      "Frontend React / Next.js SSR hiện đại",
+      "Phân quyền đa cấp RBAC & bảo mật WAF",
+      "Xử lý dữ liệu lớn & API thời gian thực",
+      "Hạ tầng Docker / Cloud Auto-scaling"
     ]
   },
   {
-    "id": "system-architecture",
-    "title": "Kiến Trúc Hệ Thống & Cloud DevOps",
-    "description": "Tư vấn thiết kế Microservices, di chuyển dữ liệu lên AWS / Google Cloud và tự động hóa triển khai CI/CD chuẩn quốc tế.",
-    "icon": "server",
-    "image": "assets/images/services/service-4.jpg",
-    "badge": "Bảo Mật",
-    "features": [
-      "Docker & Kubernetes Containerization",
-      "Giám sát Prometheus & Grafana 24/7",
-      "Chịu tải cao hàng triệu requests/phút",
-      "Bảo vệ DDoS & chuẩn hóa an toàn thông tin"
-    ]
-  },
-  {
-    "id": "uiux-design",
-    "title": "Thiết Kế UI/UX & Design System",
-    "description": "Nghiên cứu hành vi người dùng, kiến tạo giao diện đẳng cấp tinh tế và đồng bộ bộ thư viện Design System chuẩn thương hiệu.",
+    "id": "uiux-prototype",
+    "title": "Thiết Kế UI/UX & Prototype",
+    "description": "Nghiên cứu hành vi người dùng (UX Research), xây dựng Wireframe và Prototype tương tác thực tế trước khi bắt tay lập trình.",
     "icon": "palette",
-    "image": "assets/images/services/service-5.jpg",
+    "image": "assets/images/services/service-4.jpg",
     "badge": "Sáng Tạo",
     "features": [
-      "Nghiên cứu UX Research & Persona khách hàng",
-      "Wireframe & Prototype tương tác cao",
-      "Design System toàn diện trên Figma",
-      "Bàn giao tokens chuẩn lập trình viên"
+      "Mapping luồng chuyển đổi người dùng",
+      "Design System toàn diện theo Brand Kit",
+      "Demo trải nghiệm trực tiếp trên Figma",
+      "Kiểm chứng tính khả dụng trước khi code"
     ]
   },
   {
-    "id": "digital-transformation",
-    "title": "Số Hóa & Quản Trị Doanh Nghiệp (ERP/CRM)",
-    "description": "May đo phần mềm quản lý nội bộ theo đặc thù từng doanh nghiệp, kết nối chuỗi cung ứng, kho bãi và tài chính tức thời.",
-    "icon": "layers",
-    "image": "assets/images/services/service-1.jpg",
-    "badge": "Doanh Nghiệp",
+    "id": "seo-performance",
+    "title": "Tối Ưu Tốc Độ & SEO Tổng Thể",
+    "description": "Nâng cấp website hiện có lên điểm số PageSpeed 95+, tối ưu cấu trúc Technical SEO và thiết lập các phễu tự động hóa.",
+    "icon": "zap",
+    "image": "assets/images/services/service-5.jpg",
+    "badge": "Chuẩn SEO",
     "features": [
-      "Quản lý nhân sự, chấm công, tính lương",
-      "Quản trị kho vận & điều phối tự động",
-      "Báo cáo tài chính & dashboard quản trị CEO",
-      "Tích hợp hóa đơn điện tử & chữ ký số"
+      "Tối ưu hóa LCP, FID, CLS đạt chuẩn Google",
+      "Cấu hình Cache đa tầng Redis / LiteSpeed",
+      "Setup Schema, Sitemap và Technical SEO",
+      "Bảo mật SSL và tường lửa chống DDoS"
+    ]
+  },
+  {
+    "id": "hosting-infrastructure",
+    "title": "Hạ Tầng Cloud & Vận Hành 24/7",
+    "description": "Cung cấp hosting tốc độ cao, VPS riêng biệt và dịch vụ giám sát chủ động, bảo trì định kỳ đảm bảo website vận hành liên tục.",
+    "icon": "server",
+    "image": "assets/images/services/service-1.jpg",
+    "badge": "Vận Hành 24/7",
+    "features": [
+      "Cam kết 99.9% Uptime cho toàn hệ thống",
+      "Sao lưu dữ liệu tự động hàng ngày",
+      "Cảnh báo sự cố và xử lý khẩn cấp 24/7",
+      "Sẵn sàng mở rộng khi traffic tăng vọt"
     ]
   }
 ]

@@ -1,32 +1,25 @@
 {
-  "categoryTitle": "Website và landing pages",
+  "categoryTitle": "Website Thương Mại & Cổng Dịch Vụ",
   "items": [
     {
-      "id": "logichain-cloud",
-      "name": "LogiChain Cloud Logistics",
-      "image": "assets/images/projects/mockup_project_2.jpg",
-      "desc": "Hệ thống số hóa logistics và điều phối tự động hơn 300 đầu xe vận tải liên tỉnh qua bản đồ số GIS thông minh.",
+      "id": "yolife-vn-ecommerce",
+      "name": "YOLIFE - Health & Beauty Store",
+      "image": "assets/images/projects/project_yolife.jpg",
+      "desc": "Website thương mại điện tử D2C và Landing Page tối ưu CRO ngành chăm sóc sức khỏe, giỏ hàng trực tuyến và chuẩn SEO Google.",
+      "link": "https://yolife.vn/"
+    },
+    {
+      "id": "seoulcenter-landing",
+      "name": "Seoul Center - Hệ Thống Thẩm Mỹ Quốc Tế",
+      "image": "assets/images/projects/project_seoulcenter.jpg",
+      "desc": "Trang đích chiến dịch Mua 1 Được 3 của Seoul Center, tích hợp đồng hồ đếm ngược khan hiếm, cam kết an toàn chuẩn y khoa và quà tặng voucher độc quyền.",
       "link": "#contact"
     },
     {
-      "id": "fincloud-ops",
-      "name": "FinCloud High-Availability",
-      "image": "assets/images/banners/hero-main.jpg",
-      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
-      "link": "#contact"
-    },
-    {
-      "id": "fincloud-ops2",
-      "name": "FinCloud High-Availability",
-      "image": "assets/images/banners/hero-main.jpg",
-      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
-      "link": "#contact"
-    },
-    {
-      "id": "fincloud-ops3",
-      "name": "FinCloud High-Availability",
-      "image": "assets/images/banners/hero-main.jpg",
-      "desc": "Hạ tầng Multi-Cloud phân tán AWS & GCP tự động co giãn linh hoạt, bảo mật WAF đa lớp và cam kết Uptime 99.99%.",
+      "id": "futa-residence",
+      "name": "Đà Nẵng Times Square - FUTA Residence",
+      "image": "assets/images/projects/project_futaresidence.jpg",
+      "desc": "Landing page dự án bất động sản nghỉ dưỡng hạng sang bên biển Mỹ Khê của FUTA Land, phối cảnh kiến trúc 3D, mặt bằng căn hộ và tiện ích sống thượng lưu.",
       "link": "#contact"
     }
   ]

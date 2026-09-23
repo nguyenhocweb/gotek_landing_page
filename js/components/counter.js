@@ -9,9 +9,9 @@ export function initMetricCounters() {
   if (!items.length) return;
 
   const config = [
-    { target: 30, suffix: '+', prefix: '', decimals: 0 },
-    { target: 98, suffix: '%', prefix: '', decimals: 0 },
-    { target: 99.9, suffix: '%', prefix: '', decimals: 1 }
+    { target: 10, suffix: '+', prefix: '', decimals: 0 },
+    { target: 1000, suffix: '+', prefix: '', decimals: 0 },
+    { target: 24, suffix: '/7', prefix: '', decimals: 0 }
   ];
 
   // Khởi tạo ban đầu hiển thị số 0 tương ứng

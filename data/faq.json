@@ -1,86 +1,72 @@
 {
   "section": {
-    "tag": "GIẢI ĐÁP THẮC MẮC",
-    "title": "Câu Hỏi",
-    "highlightTitle": "Thường Gặp",
-    "subtitle": "Giải đáp những thắc mắc phổ biến nhất để bạn hoàn toàn an tâm khi lựa chọn Gotek làm đối tác công nghệ chiến lược."
+    "tag": "GIẢI ĐÁP TRƯỚC KHI BẮT ĐẦU",
+    "title": "Câu Hỏi Thường Gặp Về",
+    "highlightTitle": "Thiết Kế Website",
+    "subtitle": "Những thông tin cần làm rõ trước khi Gotek tư vấn cấu trúc, công nghệ và lộ trình phù hợp cho doanh nghiệp."
   },
   "support": {
-    "title": "Chưa tìm thấy câu trả lời bạn cần?",
-    "description": "Đội ngũ kỹ sư trưởng sẵn sàng tư vấn trực tiếp và khảo sát bài toán kỹ thuật của bạn hoàn toàn miễn phí.",
-    "ctaText": "Tư vấn qua Zalo",
-    "ctaLink": "https://zalo.me/0978970605"
+    "title": "Bạn đang chuẩn bị một dự án website?",
+    "description": "Chia sẻ mục tiêu, nhóm người dùng và nội dung hiện có. Gotek sẽ cùng bạn xác định phạm vi phù hợp trước khi triển khai.",
+    "ctaText": "Gửi Yêu Cầu Tư Vấn",
+    "ctaLink": "https://zalo.me/3535048579811648632"
   },
   "items": [
     {
       "id": "faq-01",
       "num": "01",
-      "category": "CHI PHÍ DỰ ÁN",
-      "question": "Chi phí phát triển một website hoặc phần mềm là bao nhiêu?",
-      "answer": "Chi phí phụ thuộc vào quy mô tính năng, kiến trúc hệ thống và công nghệ lựa chọn. Gotek luôn khảo sát kỹ lưỡng và cung cấp báo giá chi tiết, minh bạch theo từng Sprint bàn giao, cam kết không phát sinh chi phí ẩn trong suốt quá trình triển khai."
+      "category": "KHỞI ĐẦU DỰ ÁN",
+      "question": "Gotek cần những thông tin gì để bắt đầu tư vấn?",
+      "answer": "Mục tiêu kinh doanh, nhóm khách hàng mục tiêu, nội dung hiện có, tính năng mong muốn và thời điểm dự kiến ra mắt là những dữ liệu quan trọng nhất để Gotek cùng bạn xác định phạm vi phù hợp trước khi triển khai."
     },
     {
       "id": "faq-02",
       "num": "02",
-      "category": "TIẾN ĐỘ & THỜI GIAN",
-      "question": "Thời gian hoàn thành và bàn giao dự án mất bao lâu?",
-      "answer": "Một dự án tiêu chuẩn thường kéo dài từ 4 đến 8 tuần tùy theo phạm vi công việc. Đội ngũ áp dụng quy trình Agile Sprint hàng tuần, demo sản phẩm thực tế định kỳ vào mỗi thứ Sáu để khách hàng luôn chủ động nắm bắt tiến độ và góp ý kịp thời."
+      "category": "GIAO DIỆN & BẢN QUYỀN",
+      "question": "Website sẽ được thiết kế riêng hay sử dụng giao diện có sẵn?",
+      "answer": "Gotek ưu tiên thiết kế theo nhận diện và mục tiêu riêng (độc bản 100% trên Figma). Chúng tôi không sử dụng template dựng sẵn rẻ tiền; phương án triển khai luôn được cá nhân hóa và thống nhất sau bước phân tích yêu cầu."
     },
     {
       "id": "faq-03",
       "num": "03",
-      "category": "BẢN QUYỀN SOURCE CODE",
-      "question": "Gotek có bàn giao 100% bản quyền mã nguồn (Source Code) không?",
-      "answer": "Chắc chắn có. Toàn bộ 100% bản quyền mã nguồn sạch, tài liệu kiến trúc kỹ thuật (System Architecture), tài liệu API OpenAPI/Swagger và toàn quyền quản trị tài nguyên Cloud sẽ được chuyển giao trọn vẹn cho doanh nghiệp của bạn."
+      "category": "CÔNG NGHỆ NỀN TẢNG",
+      "question": "Nên sử dụng WordPress hay phát triển hệ thống riêng?",
+      "answer": "WordPress phù hợp với website tin tức, nội dung và blog cần xuất bản nhanh; hệ thống riêng (Next.js, Laravel, Node.js) phù hợp khi quy trình, mô hình dữ liệu hoặc các tích hợp nghiệp vụ có yêu cầu đặc thù chịu tải cao."
     },
     {
       "id": "faq-04",
       "num": "04",
-      "category": "BẢO HÀNH & BẢO TRÌ",
-      "question": "Chính sách bảo hành, bảo trì và hỗ trợ kỹ thuật sau bàn giao ra sao?",
-      "answer": "Gotek cam kết bảo hành kỹ thuật 12 tháng miễn phí và hỗ trợ giám sát hệ thống 24/7. Chúng tôi tổ chức các buổi đào tạo chuyển giao công nghệ cho nhân sự nội bộ của bạn, đồng thời sẵn sàng đồng hành mở rộng tính năng theo các giai đoạn phát triển tiếp theo."
+      "category": "SEO & HIỆU NĂNG",
+      "question": "Gotek hỗ trợ SEO và hiệu năng tốc độ tải trang như thế nào?",
+      "answer": "Cấu trúc nội dung, HTML ngữ nghĩa, tốc độ tải trang Core Web Vitals 95+, hiển thị di động responsive và khả năng quản trị được đội ngũ kỹ sư tính toán tối ưu ngay từ giai đoạn thiết kế kiến trúc đầu tiên."
     },
     {
       "id": "faq-05",
       "num": "05",
-      "category": "BẢO MẬT & NDA",
-      "question": "Dữ liệu và ý tưởng kinh doanh của doanh nghiệp có được bảo mật không?",
-      "answer": "Gotek ký thỏa thuận bảo mật NDA pháp lý trước khi tiếp cận dữ liệu hoặc thảo luận chi tiết bài toán kinh doanh. Tất cả mã nguồn và dữ liệu kiểm thử đều được lưu trữ trên môi trường phân quyền bảo mật riêng biệt."
+      "category": "QUẢN TRỊ NỘI DUNG",
+      "question": "Doanh nghiệp có thể tự cập nhật nội dung sau bàn giao không?",
+      "answer": "Hoàn toàn có thể. Hệ thống quản trị (CMS) trực quan, bảng điều khiển phân quyền rõ ràng và tài liệu video hướng dẫn sử dụng chi tiết được chuẩn bị chu đáo theo từng phạm vi bàn giao của dự án."
     },
     {
       "id": "faq-06",
       "num": "06",
-      "category": "MỞ RỘNG TÍNH NĂNG",
-      "question": "Gotek có hỗ trợ nâng cấp và phát triển tính năng mới sau này không?",
-      "answer": "Hoàn toàn có. Kiến trúc do Gotek xây dựng tuân thủ quy chuẩn Module hóa và Clean Architecture, giúp bạn dễ dàng bổ sung tính năng mới, kết nối AI hoặc mở rộng quy mô người dùng mà không cần đập đi xây lại."
+      "category": "QUY TRÌNH HỢP TÁC",
+      "question": "Quy trình tư vấn và triển khai diễn ra như thế nào?",
+      "answer": "Gotek làm rõ nhu cầu thực tế, sau đó đề xuất cấu trúc nội dung, phạm vi tính năng, công nghệ và lộ trình Sprint chi tiết trước khi hai bên thống nhất ký kết hợp đồng và bắt tay triển khai."
     },
     {
       "id": "faq-07",
       "num": "07",
-      "category": "HẠ TẦNG & CHỊU TẢI",
-      "question": "Hệ thống có chịu tải được lượng người dùng lớn cùng lúc không?",
-      "answer": "Có. Đội ngũ Gotek thiết kế hạ tầng Cloud Auto-scaling trên AWS/GCP, kết hợp Redis Caching và Cloudflare CDN giúp hệ thống chịu tải hàng triệu lượt truy cập đồng thời với độ trễ cực thấp và ổn định 99.9% Uptime."
+      "category": "BẢN QUYỀN SOURCE CODE",
+      "question": "Gotek có bàn giao 100% bản quyền mã nguồn (Source Code) không?",
+      "answer": "Chắc chắn có. Toàn bộ mã nguồn bản quyền sạch, tài liệu kiến trúc kỹ thuật và toàn quyền quản trị tài nguyên hosting / máy chủ đều được bàn giao trọn vẹn, không ràng buộc phụ thuộc kỹ thuật."
     },
     {
       "id": "faq-08",
       "num": "08",
-      "category": "LỘ TRÌNH THANH TOÁN",
-      "question": "Phương thức và lộ trình thanh toán dự án được chia như thế nào?",
-      "answer": "Lộ trình thanh toán được chia nhỏ theo 3 - 4 giai đoạn gắn liền với kết quả bàn giao thực tế (Khởi động -> Hoàn thiện UI/UX -> Bàn giao bản Beta kiểm thử -> Bàn giao nghiệm thu chính thức), đảm bảo an tâm và quyền lợi tối đa cho khách hàng."
-    },
-    {
-      "id": "faq-09",
-      "num": "09",
-      "category": "HỢP TÁC MVP",
-      "question": "Doanh nghiệp có thể bắt đầu từ một tính năng nhỏ trước được không?",
-      "answer": "Hoàn toàn được. Gotek khuyến khích phát triển theo mô hình MVP (Minimum Viable Product) để đưa sản phẩm ra thị trường nhanh nhất, kiểm chứng nhu cầu thực tế rồi mới mở rộng các phân hệ tiếp theo."
-    },
-    {
-      "id": "faq-10",
-      "num": "10",
-      "category": "ĐỘI NGŨ CHUYÊN MÔN",
-      "question": "Nhân sự trực tiếp thực hiện dự án có trình độ chuyên môn ra sao?",
-      "answer": "100% dự án tại Gotek được dẫn dắt bởi Solution Architect và Senior Developer có từ 5-8 năm kinh nghiệm thực chiến trong các bài toán High-Load và Enterprise Architecture."
+      "category": "BẢO HÀNH & BẢO TRÌ",
+      "question": "Chính sách bảo hành, bảo trì và hỗ trợ kỹ thuật sau bàn giao ra sao?",
+      "answer": "Gotek cam kết đồng hành kỹ thuật, hỗ trợ 24/7 xử lý sự cố khẩn cấp, giám sát máy chủ và sao lưu dữ liệu tự động định kỳ, bảo vệ an toàn cho website của bạn trên mọi chặng đường phát triển."
     }
   ]
 }
