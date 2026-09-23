@@ -1907,7 +1907,7 @@ footer {
 }
 
 .partner-text-block {
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -1916,7 +1916,7 @@ footer {
   font-weight: 600;
   color: var(--navy);
   line-height: 1.7;
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto 16px auto;
   text-align: center;
   text-wrap: balance;
@@ -1930,7 +1930,7 @@ footer {
   font-size: 0.95rem;
   color: #4A5568;
   line-height: 1.75;
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto 28px auto;
   text-align: center;
   text-wrap: balance;
