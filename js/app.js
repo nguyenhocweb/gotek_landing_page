@@ -204,9 +204,8 @@ function renderProjectSections(groups) {
     }).join('');
   }
 
-  // Khởi chạy render
+  // Khởi chạy render ngay khi dữ liệu sẵn sàng
   updateProjectLayout();
-  try { initProjectsScrollAnimation(); } catch (e) {}
 
   // Lắng nghe thay đổi kích thước màn hình để tự động cập nhật số cột và độ rộng thẻ
   let resizeTimer;
@@ -215,6 +214,49 @@ function renderProjectSections(groups) {
     resizeTimer = setTimeout(() => {
       updateProjectLayout();
     }, 100);
+  });
+
+  // Hỗ trợ tương tác click/tap trên iPad / Tablet / Mobile:
+  // Khi người dùng click/tap vào item, kích hoạt tự động cuộn (automation scroll) của item đó
+  container.addEventListener('click', (e) => {
+    const card = e.target.closest('.project-card');
+    if (!card) return;
+
+    const isTouchOrTablet = window.innerWidth <= 1024 || ('ontouchstart' in window);
+    if (isTouchOrTablet) {
+      if (!card.classList.contains('is-scrolling')) {
+        // Lần click đầu: Ngăn chuyển trang, bật animation tự động cuộn ảnh chậm cho đến hết ảnh
+        e.preventDefault();
+        container.querySelectorAll('.project-card.is-scrolling').forEach(c => {
+          if (c !== card) c.classList.remove('is-scrolling');
+        });
+        card.classList.add('is-scrolling');
+
+        // Tạm dừng chạy ngang của khung trong lúc item đang tự cuộn
+        const parentSaas = card.closest('.project-saas');
+        if (parentSaas) {
+          container.querySelectorAll('.project-saas.has-scrolling-item').forEach(s => s.classList.remove('has-scrolling-item'));
+          parentSaas.classList.add('has-scrolling-item');
+        }
+      } else {
+        // Nếu thẻ đang trong trạng thái cuộn: kiểm tra nếu link là liên kết nội bộ (#contact) thì thu gọn lại
+        const link = card.querySelector('a')?.getAttribute('href');
+        if (!link || link === '#contact' || link.startsWith('#')) {
+          e.preventDefault();
+          card.classList.remove('is-scrolling');
+          const parentSaas = card.closest('.project-saas');
+          if (parentSaas) parentSaas.classList.remove('has-scrolling-item');
+        }
+      }
+    }
+  });
+
+  // Chạm ra ngoài để dừng cuộn và tiếp tục chạy marquee
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.project-card')) {
+      container.querySelectorAll('.project-card.is-scrolling').forEach(c => c.classList.remove('is-scrolling'));
+      container.querySelectorAll('.project-saas.has-scrolling-item').forEach(s => s.classList.remove('has-scrolling-item'));
+    }
   });
 }
 
