@@ -1847,7 +1847,7 @@ footer {
    BỎ 2 nút bấm, dải 6 số liệu thống kê trong khung bo mềm mại
    ========================================================================== */
 .about-partner-section {
-  padding: 56px 0 44px 0;
+  padding: 48px 0 16px 0;
   background-color: #FFFFFF;
   position: relative;
   border: none;
@@ -2018,7 +2018,7 @@ footer {
 
 @media (max-width: 640px) {
   .about-partner-section {
-    padding: 70px 0 80px 0;
+    padding: 40px 0 16px 0;
   }
 
   .partner-title {
@@ -2282,7 +2282,7 @@ footer {
    - Khoảng cách các mục đồng đều, gọn gàng chuẩn Hình 4
    ========================================================================== */
 .why-choose-section {
-  padding: 68px 0 76px;
+  padding: 24px 0 72px;
   background: #FFFFFF;
   position: relative;
   border-bottom: 1px solid rgba(226, 232, 240, 0.6);
@@ -2499,7 +2499,7 @@ footer {
 
 @media (max-width: 768px) {
   .why-choose-section {
-    padding: 56px 0 64px;
+    padding: 24px 0 56px;
   }
 
   .solutions-header {
