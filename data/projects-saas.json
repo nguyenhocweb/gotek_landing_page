@@ -1,5 +1,5 @@
 {
-  "categoryTitle": "Website Doanh Nghiệp",
+  "categoryTitle": "Website doanh nghiệp",
   "items": [
     {
       "id": "dohwa-biomass",
@@ -17,7 +17,7 @@
     },
     {
       "id": "god-restaurant",
-      "name": "GÖD Restaurant Fine Dining",
+      "name": "GOD Restaurant Fine Dining",
       "image": "assets/images/projects/long_godrestaurant.jpg",
       "desc": "Website thương hiệu nhà hàng ẩm thực Việt Nam cao cấp tại Đà Nẵng.",
       "link": "#contact"
@@ -28,6 +28,13 @@
       "image": "assets/images/projects/long_gotek.jpg",
       "desc": "Cổng thông tin giải pháp công nghệ và hệ sinh thái phần mềm doanh nghiệp.",
       "link": "https://gotek.asia/"
+    },
+    {
+      "id": "wechoice-awards-2025",
+      "name": "Cổng bình chọn quốc gia",
+      "image": "assets/images/projects/long_wechoice.jpg",
+      "desc": "Cổng thông tin và hệ thống bình chọn giải thưởng quốc gia WeChoice Awards.",
+      "link": "#contact"
     }
   ]
 }

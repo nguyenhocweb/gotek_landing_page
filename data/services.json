@@ -1,7 +1,7 @@
 [
   {
     "id": "web-corporate",
-    "title": "Thiết Kế Website Doanh Nghiệp",
+    "title": "Thiết kế website doanh nghiệp",
     "description": "Xây dựng website nhận diện đẳng cấp, thể hiện trọn vẹn vị thế thương hiệu, chuẩn SEO 100% Google và tối ưu trải nghiệm đa thiết bị.",
     "icon": "globe",
     "image": "assets/images/services/service-1.jpg",
@@ -15,7 +15,7 @@
   },
   {
     "id": "web-ecommerce",
-    "title": "Website Bán Hàng & E-Commerce",
+    "title": "Website bán hàng & e-commerce",
     "description": "Tối ưu hóa hành trình mua sắm và tỷ lệ chuyển đổi (CRO), tích hợp thanh toán tự động, quản lý đơn hàng và báo cáo doanh thu thông minh.",
     "icon": "shopping-cart",
     "image": "assets/images/services/service-2.jpg",
@@ -29,7 +29,7 @@
   },
   {
     "id": "web-saas-portal",
-    "title": "Cổng Thông Tin & Web Ứng Dụng",
+    "title": "Cổng thông tin & web ứng dụng",
     "description": "Phát triển web app, cổng thông tin dữ liệu lớn và hệ thống số hóa nghiệp vụ chuyên biệt với kiến trúc mở rộng linh hoạt.",
     "icon": "layers",
     "image": "assets/images/services/service-3.jpg",
@@ -43,7 +43,7 @@
   },
   {
     "id": "uiux-prototype",
-    "title": "Thiết Kế UI/UX & Prototype",
+    "title": "Thiết kế UI/UX & prototype",
     "description": "Nghiên cứu hành vi người dùng (UX Research), xây dựng Wireframe và Prototype tương tác thực tế trước khi bắt tay lập trình.",
     "icon": "palette",
     "image": "assets/images/services/service-4.jpg",
@@ -57,7 +57,7 @@
   },
   {
     "id": "seo-performance",
-    "title": "Tối Ưu Tốc Độ & SEO Tổng Thể",
+    "title": "Tối ưu tốc độ & SEO tổng thể",
     "description": "Nâng cấp website hiện có lên điểm số PageSpeed 95+, tối ưu cấu trúc Technical SEO và thiết lập các phễu tự động hóa.",
     "icon": "zap",
     "image": "assets/images/services/service-5.jpg",
@@ -71,7 +71,7 @@
   },
   {
     "id": "hosting-infrastructure",
-    "title": "Hạ Tầng Cloud & Vận Hành 24/7",
+    "title": "Hạ tầng Cloud & vận hành 24/7",
     "description": "Cung cấp hosting tốc độ cao, VPS riêng biệt và dịch vụ giám sát chủ động, bảo trì định kỳ đảm bảo website vận hành liên tục.",
     "icon": "server",
     "image": "assets/images/services/service-1.jpg",

@@ -5,7 +5,7 @@
     "ribbonTag": "GÓI DOANH NGHIỆP",
     "categoryBadge": "GÓI DOANH NGHIỆP",
     "levelTag": "Web Standard",
-    "planName": "Website Doanh Nghiệp",
+    "planName": "Website doanh nghiệp",
     "planDesc": "Dành cho doanh nghiệp cần sự hiện diện trực tuyến đẳng cấp, giới thiệu năng lực công ty, chuẩn SEO và dễ quản trị.",
     "investmentLabel": "MỨC ĐẦU TƯ DỰ KIẾN",
     "price": "Từ 15.000.000đ",
@@ -19,7 +19,7 @@
       "Hệ quản trị nội dung CMS thân thiện, dễ dùng không cần code",
       "Bàn giao toàn bộ mã nguồn sạch & bảo hành kỹ thuật 12 tháng"
     ],
-    "buttonText": "Nhận Tư Vấn Kỹ Thuật",
+    "buttonText": "Nhận tư vấn kỹ thuật",
     "buttonLink": "#contact"
   },
   {
@@ -28,7 +28,7 @@
     "ribbonTag": "PHỔ BIẾN NHẤT",
     "categoryBadge": "GÓI BÁN HÀNG & CRO",
     "levelTag": "Web E-Commerce",
-    "planName": "Website Thương Mại & Cổng Dịch Vụ",
+    "planName": "Website thương mại & cổng dịch vụ",
     "planDesc": "Tối ưu hóa phễu chuyển đổi (CRO) bứt phá doanh thu, tích hợp giỏ hàng, thanh toán trực tuyến và tự động hóa marketing.",
     "investmentLabel": "MỨC ĐẦU TƯ DỰ KIẾN",
     "price": "Từ 28.000.000đ",
@@ -42,7 +42,7 @@
       "Cấu hình Cache đa tầng (Redis/LiteSpeed) & bảo mật SSL, Firewall",
       "Đồng hành đào tạo vận hành nội bộ & hỗ trợ kỹ thuật 24/7 trọn đời"
     ],
-    "buttonText": "Đăng Ký Tư Vấn Ngay",
+    "buttonText": "Đăng ký tư vấn ngay",
     "buttonLink": "#contact"
   },
   {
@@ -51,10 +51,10 @@
     "ribbonTag": "HỆ THỐNG RIÊNG",
     "categoryBadge": "HỆ THỐNG & SAAS",
     "levelTag": "Enterprise Custom",
-    "planName": "Hệ Thống Web & Nền Tảng Riêng",
+    "planName": "Hệ thống web & nền tảng riêng",
     "planDesc": "Thiết kế và phát triển nền tảng web phức tạp, cổng thông tin dữ liệu lớn hoặc SaaS may đo theo đặc thù vận hành.",
     "investmentLabel": "MỨC ĐẦU TƯ DỰ KIẾN",
-    "price": "Tùy Chỉnh Scope",
+    "price": "Tùy chỉnh scope",
     "unit": "/ theo bài toán",
     "featuresLabel": "BAO GỒM CÁC HẠNG MỤC:",
     "features": [
@@ -65,7 +65,7 @@
       "Bàn giao 100% Source Code + Pipeline CI/CD tự động",
       "Solution Architect đồng hành giám sát và nâng cấp dài hạn"
     ],
-    "buttonText": "Nhận Tư Vấn Kỹ Thuật",
+    "buttonText": "Nhận tư vấn kỹ thuật",
     "buttonLink": "#contact"
   }
 ]

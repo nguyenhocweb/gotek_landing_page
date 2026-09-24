@@ -7,7 +7,7 @@ import { initHeaderLogic } from './components/header.js';
 import { initMagneticButtons } from './components/magneticBtn.js';
 import { initLeadForm } from './components/form.js';
 import { initCapabilityTabs } from './components/tabs.js';
-import { initProcessConnectors } from './components/processConnectors.js?v=23';
+import { initProcessConnectors } from './components/processConnectors.js?v=24';
 import { initCircuitConnectors } from './components/circuitConnectors.js?v=1';
 import { initMetricCounters } from './components/counter.js?v=3';
 import { 
@@ -17,10 +17,10 @@ import {
   initSolutionsHeaderAnimation,
   initProjectsScrollAnimation,
   initPricingScrollAnimation
-} from './components/scrollAnimations.js?v=13';
+} from './components/scrollAnimations.js?v=14';
 import { initHeroInteractive } from './components/heroInteractive.js?v=9';
 import { initFooterAccordion } from './components/footer.js?v=1';
-import { initApp } from './app.js?v=31';
+import { initApp } from './app.js?v=38';
 
 function startApp() {
   console.log('🚀 Gotek Web Application Initialized.');

@@ -9,21 +9,21 @@
     content="Gotek thiết kế website theo mục tiêu kinh doanh, tối ưu trải nghiệm, hiệu năng, SEO và khả năng vận hành lâu dài cho doanh nghiệp." />
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Be Vietnam Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheets (Pure Vanilla CSS) -->
-  <link rel="stylesheet" href="css/style.css?v=90" />
-  <link rel="stylesheet" href="css/footer.css?v=22" />
+  <link rel="stylesheet" href="css/style.css?v=111" />
+  <link rel="stylesheet" href="css/footer.css?v=24" />
 
   <!-- GSAP Core (Tương tự landing_page_gotek) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
-<body>
+<body class="gotek-website-service-page">
 
   <!-- =========================================================================
        1. HEADER (FLOATING PILL - LẤY Y NHƯ CỦA LANDING_PAGE_GOTEK)
@@ -130,7 +130,7 @@
         <a href="#careers" class="mobile-nav-item">Tuyển dụng</a>
         <a href="#contact"
           class="mobile-nav-item mobile-cta-item text-[#0055FF] inline-flex items-center gap-2 group whitespace-nowrap">
-          <span>Bắt Đầu Trao Đổi Ngay</span>
+          <span>Bắt đầu trao đổi ngay</span>
           <svg class="shrink-0 transform group-hover:translate-x-1 transition-transform" fill="none"
             stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -143,170 +143,22 @@
 
   <main>
     <!-- =========================================================================
-         HERO SECTION: 5 GÓC VUÔNG GOTEK FULL MÀN HÌNH (KHÔNG BO VIỀN, KHÔNG BG CHỮ)
+         HERO BANNER: DỊCH VỤ THIẾT KẾ WEBSITE CHUẨN GOTEK.ASIA
          ========================================================================= -->
-    <section id="hero" class="hero-five-corners-section">
-      <!-- 1. Lớp SVG Nền 5 Góc Vuông Full Màn Hình (preserveAspectRatio="xMidYMid slice" ôm sát 100% mép màn hình) -->
-      <div class="hero-five-corners-bg">
-        <svg class="hero-svg-desktop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%"
-          preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <filter id="shadow-solid" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#0A1F68" flood-opacity="0.12" />
-              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0A1F68" flood-opacity="0.08" />
-            </filter>
-
-            <linearGradient id="solid-royal" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#2B63FF" />
-              <stop offset="100%" stop-color="#173BFF" />
-            </linearGradient>
-
-            <linearGradient id="solid-cyan" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#22DDE0" />
-              <stop offset="100%" stop-color="#00B4D8" />
-            </linearGradient>
-          </defs>
-
-          <style>
-            .bold-title {
-              font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-              font-size: 40px;
-              font-weight: 800;
-              fill: #FFFFFF;
-              fill-opacity: 0.50;
-              letter-spacing: 0.06em;
-            }
-
-            .bold-desc {
-              font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-              font-size: 15px;
-              font-weight: 600;
-              fill: #FFFFFF;
-              fill-opacity: 0.35;
-            }
-          </style>
-
-          <!-- Nền trắng tinh khôi -->
-          <rect width="1920" height="1080" fill="#FFFFFF" />
-
-          <!-- 1. GÓC TRÊN TRÁI: TÍN (Gotek Royal Blue) -->
-          <g id="wrap-tin" class="hero-svg-corner" data-corner="tin" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tín">
-            <g transform="translate(-140, -160) rotate(19, 360, 360)" filter="url(#shadow-solid)">
-              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
-              <text x="375" y="440" text-anchor="middle" class="bold-title">TÍN</text>
-              <text x="375" y="472" text-anchor="middle" class="bold-desc">Trọn Vẹn Chữ Tín</text>
-            </g>
-          </g>
-
-          <!-- 2. GÓC TRÊN PHẢI: CHUẨN (Gotek Tech Cyan) -->
-          <g id="wrap-chuan" class="hero-svg-corner" data-corner="chuan" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Chuẩn">
-            <g transform="translate(1500, -180) rotate(-22, 260, 260)" filter="url(#shadow-solid)">
-              <rect width="520" height="520" rx="36" fill="url(#solid-cyan)" />
-              <text x="145" y="440" text-anchor="middle" class="bold-title">CHUẨN</text>
-              <text x="145" y="472" text-anchor="middle" class="bold-desc">Chuẩn Mực Bền Vững</text>
-            </g>
-          </g>
-
-          <!-- 3. GÓC DƯỚI PHẢI: TIÊN (Gotek Royal Blue) -->
-          <g id="wrap-tien" class="hero-svg-corner" data-corner="tien" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tiên">
-            <g transform="translate(1520, 710) rotate(22, 260, 260)" filter="url(#shadow-solid)">
-              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
-              <text x="145" y="100" text-anchor="middle" class="bold-title">TIÊN</text>
-              <text x="145" y="132" text-anchor="middle" class="bold-desc">Tiên Phong Giải Pháp</text>
-            </g>
-          </g>
-
-          <!-- 4. DƯỚI GIỮA: NHÂN (Gotek Tech Cyan) -->
-          <g id="wrap-nhan" class="hero-svg-corner" data-corner="nhan" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Nhân">
-            <g transform="translate(710, 850) rotate(45, 250, 250)" filter="url(#shadow-solid)">
-              <rect width="500" height="500" rx="36" fill="url(#solid-cyan)" />
-              <text x="95" y="90" text-anchor="middle" class="bold-title" transform="rotate(-45, 95, 90)">NHÂN</text>
-              <text x="95" y="122" text-anchor="middle" class="bold-desc" transform="rotate(-45, 95, 90)">Nhân Văn Làm
-                Gốc</text>
-            </g>
-          </g>
-
-          <!-- 5. GỐC DƯỚI TRÁI: TỐC (Gotek Royal Blue) -->
-          <g id="wrap-toc" class="hero-svg-corner" data-corner="toc" role="button" tabindex="0" aria-label="Giá trị cốt lõi: Tốc">
-            <g transform="translate(-160, 700) rotate(-25, 260, 260)" filter="url(#shadow-solid)">
-              <rect width="520" height="520" rx="36" fill="url(#solid-royal)" />
-              <text x="375" y="100" text-anchor="middle" class="bold-title">TỐC</text>
-              <text x="375" y="132" text-anchor="middle" class="bold-desc">Tốc Độ &amp; Bứt Phá</text>
-            </g>
-          </g>
-        </svg>
-
-        <!-- 5 THẺ GÓC GOTEK CHO GIAO DIỆN ĐIỆN THOẠI & IPAD (< 1024px) -->
-        <div class="hero-cards-responsive" aria-label="5 Trụ cột Gotek">
-          <!-- 1. Góc Trên Trái: TÍN (Gotek Royal Blue) -->
-          <div class="hero-rcard hero-rcard-tin" data-corner="tin" role="button" tabindex="0" aria-label="Trụ cột Tín">
-            <div class="hero-rcard-content">
-              <span class="hero-rcard-title">TÍN</span>
-              <span class="hero-rcard-desc">Trọn Vẹn Chữ Tín</span>
-            </div>
-          </div>
-
-          <!-- 2. Góc Trên Phải: CHUẨN (Gotek Tech Cyan) -->
-          <div class="hero-rcard hero-rcard-chuan" data-corner="chuan" role="button" tabindex="0" aria-label="Trụ cột Chuẩn">
-            <div class="hero-rcard-content">
-              <span class="hero-rcard-title">CHUẨN</span>
-              <span class="hero-rcard-desc">Chuẩn Mực Bền Vững</span>
-            </div>
-          </div>
-
-          <!-- 3. Góc Dưới Trái: TỐC (Gotek Royal Blue) -->
-          <div class="hero-rcard hero-rcard-toc" data-corner="toc" role="button" tabindex="0" aria-label="Trụ cột Tốc">
-            <div class="hero-rcard-content">
-              <span class="hero-rcard-title">TỐC</span>
-              <span class="hero-rcard-desc">Tốc Độ &amp; Bứt Phá</span>
-            </div>
-          </div>
-
-          <!-- 4. Góc Dưới Phải: TIÊN (Gotek Royal Blue) -->
-          <div class="hero-rcard hero-rcard-tien" data-corner="tien" role="button" tabindex="0" aria-label="Trụ cột Tiên">
-            <div class="hero-rcard-content">
-              <span class="hero-rcard-title">TIÊN</span>
-              <span class="hero-rcard-desc">Tiên Phong Giải Pháp</span>
-            </div>
-          </div>
-
-          <!-- 5. Dưới Giữa: NHÂN (Gotek Tech Cyan) -->
-          <div class="hero-rcard hero-rcard-nhan" data-corner="nhan" role="button" tabindex="0" aria-label="Trụ cột Nhân">
-            <div class="hero-rcard-content">
-              <span class="hero-rcard-title">NHÂN</span>
-              <span class="hero-rcard-desc">Nhân Văn Làm Gốc</span>
-            </div>
+    <section id="hero" class="gotek-editorial-intro about-hero about-hero--renewed gotek-service-hero gotek-service-hero--website" aria-labelledby="gotek-editorial-intro-title">
+      <div class="about-hero__wash" aria-hidden="true"></div>
+      <div class="gotek-service-hero__shell about-wrap about-hero__grid">
+        <div class="gotek-service-hero__copy about-hero__copy">
+          <p class="about-kicker">DỊCH VỤ THIẾT KẾ WEBSITE</p>
+          <h1 id="gotek-editorial-intro-title">Từ chiến lược rõ ràng.<br><strong>Đến website tạo kết quả.</strong></h1>
+          <p class="gotek-service-hero__description about-hero__description">Gotek làm rõ mục tiêu, hành trình người dùng và cấu trúc nội dung trước khi thiết kế, để website chỉn chu, dễ sử dụng, dễ quản trị và sẵn sàng phát triển dài hạn.</p>
+          <div class="about-hero__actions">
+            <a class="about-button" href="#contact">TRAO ĐỔI DỰ ÁN</a>
           </div>
         </div>
-      </div>
-
-      <!-- 2. Lớp Phủ Trắng Mờ Nhẹ Tinh Tế -->
-      <div class="hero-five-corners-overlay"></div>
-
-      <!-- 2.5 Ảnh Nền Mờ Đội Ngũ Nhân Viên Gotek & Logo Trên Tường Nằm Phía Sau Chữ -->
-      <div class="hero-team-backdrop" aria-hidden="true">
-        <img src="./assets/images/team/gotek-team-hero.jpg" alt="Đội ngũ kỹ sư nhân viên Gotek và logo trên tường" class="hero-team-img" />
-      </div>
-
-      <!-- 2.7 Logo Gotek Mờ (Chỉ Biểu Tượng Ngôi Sao) & Hào Quang Xanh Tròn Tỏa Dần Từ Trung Tâm Ra -->
-      <div class="hero-watermark-center" aria-hidden="true">
-        <div class="hero-watermark-glow"></div>
-        <img src="./assets/images/logo-icon.png" alt="" class="hero-watermark-logo" />
-      </div>
-
-      <!-- 3. Nội Dung Tinh Gọn Ở Giữa - Bỏ Hoàn Toàn Background Của Chữ -->
-      <div class="hero-clean-content">
-        <div class="hero-text-anim-wrap" id="heroTextAnimWrap">
-          <h1 class="hero-clean-title" id="heroTitle">
-            Kiến Tạo Nền Tảng Số, <br />
-            <span class="hero-clean-highlight">Hiệu Quả Tối Đa &amp; Chuẩn Bền Vững.</span>
-          </h1>
-          <p class="hero-clean-desc" id="heroDesc">
-            Gotek đồng hành cùng doanh nghiệp kiến tạo website độc bản, phát triển ứng dụng di động và hệ thống SaaS chịu
-            tải cao — cam kết <strong class="text-blue-accent">mượt mà 60FPS</strong>, bảo mật tuyệt đối và thúc đẩy
-            chuyển đổi thực chất.
-          </p>
-        </div>
+        <figure class="gotek-service-hero__media about-hero__media">
+          <img class="about-hero__image" src="./assets/images/gotek-web-design-3d-hero-v4.png" alt="Không gian mô phỏng quy trình thiết kế website responsive tại Gotek" width="1280" height="1280" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
     </section>
 
@@ -388,7 +240,7 @@
       <div class="about-partner-inner">
         <!-- Tiêu đề chính -->
         <h2 class="partner-title">
-          Thiết Kế Website Chuyên Nghiệp · <span class="text-brand-gradient">Trọn Gói &amp; Chuẩn SEO</span>
+          <span class="whitespace-nowrap inline-block">Thiết kế website</span> chuyên nghiệp · <span class="text-brand-gradient">trọn gói &amp; chuẩn SEO</span>
         </h2>
 
         <!-- Khung chứa văn bản giới thiệu -->
@@ -433,7 +285,7 @@
         <!-- Header Section: Tiêu đề + Phụ đề -->
         <div class="solutions-header">
           <h2 class="solutions-title">
-            Giải Pháp <span class="text-brand-gradient">Thiết Kế Website</span>
+            Giải pháp <span class="text-brand-gradient whitespace-nowrap inline-block">thiết kế website</span>
           </h2>
           <p class="solutions-lead">
             Hệ thống website độc bản, chuẩn SEO và tối ưu chuyển đổi giúp doanh nghiệp bứt phá doanh thu.
@@ -463,7 +315,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Thiết Kế UI/UX Độc Bản</h3>
+                <h3 class="why-feature-title">Thiết kế UI/UX độc bản</h3>
                 <p class="why-feature-desc">Không dùng giao diện mẫu có sẵn. Mỗi website là một tác phẩm sáng tạo riêng biệt, chuẩn UX/UI tôn vinh bản sắc thương hiệu.</p>
               </div>
             </div>
@@ -479,7 +331,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Tối Ưu Hóa SEO Từ Lõi</h3>
+                <h3 class="why-feature-title">Tối ưu hóa SEO từ lõi</h3>
                 <p class="why-feature-desc">Cấu trúc code sạch, HTML ngữ nghĩa và Schema đầy đủ ngay từ khởi đầu giúp website dễ dàng leo top Google.</p>
               </div>
             </div>
@@ -494,7 +346,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Tương Thích Hoàn Hảo Di Động</h3>
+                <h3 class="why-feature-title">Tương thích hoàn hảo di động</h3>
                 <p class="why-feature-desc">Hiển thị mượt mà trên mọi thiết bị di động, tablet và desktop với trải nghiệm đồng nhất và trực quan.</p>
               </div>
             </div>
@@ -514,7 +366,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Tối Ưu Tỷ Lệ Chuyển Đổi (CRO)</h3>
+                <h3 class="why-feature-title">Tối ưu tỷ lệ chuyển đổi (CRO)</h3>
                 <p class="why-feature-desc">Bố cục được nghiên cứu kỹ lưỡng để dẫn dắt người dùng thực hiện hành động liên hệ và mua hàng.</p>
               </div>
             </div>
@@ -527,7 +379,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Tốc Độ Tải Trang Siêu Tốc</h3>
+                <h3 class="why-feature-title">Tốc độ tải trang siêu tốc</h3>
                 <p class="why-feature-desc">Next.js, React kết hợp Redis Caching tối ưu Core Web Vitals xanh tuyệt đối, tăng điểm xếp hạng SEO.</p>
               </div>
             </div>
@@ -541,7 +393,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Bảo Mật Cao &amp; Dễ Quản Trị</h3>
+                <h3 class="why-feature-title">Bảo mật cao &amp; dễ quản trị</h3>
                 <p class="why-feature-desc">Trang bị SSL, tường lửa WAF và hệ thống CMS thân thiện giúp dễ dàng cập nhật nội dung mà không cần code.</p>
               </div>
             </div>
@@ -554,7 +406,7 @@
                 </svg>
               </div>
               <div class="why-feature-content">
-                <h3 class="why-feature-title">Bảo Hành &amp; Đồng Hành Dài Hạn</h3>
+                <h3 class="why-feature-title">Bảo hành &amp; đồng hành dài hạn</h3>
                 <p class="why-feature-desc">Hỗ trợ kỹ thuật 24/7, giám sát server và cam kết bảo trì định kỳ cho mọi sản phẩm website sau bàn giao.</p>
               </div>
             </div>
@@ -576,8 +428,8 @@
         <!-- Header Section -->
         <div class="projects-header">
           <h2 class="projects-title">
-            <span class="projects-title-main">Dự Án <span class="text-brand-gradient">Tiêu Biểu</span></span>
-            <span class="projects-title-sub">Đã Triển Khai</span>
+            <span class="projects-title-main">Dự án <span class="text-brand-gradient">tiêu biểu</span></span>
+            <span class="projects-title-sub">đã triển khai</span>
           </h2>
           <p class="projects-lead">
             Những sản phẩm số tinh hoa được Gotek thiết kế và phát triển độc bản, mang lại giá trị đo lường được cho các
@@ -585,8 +437,8 @@
           </p>
         </div>
 
-        <div class="project-3-saas-web-hatang" id="projectsContainer">
-          <!-- Các nhóm dự án được nạp và render tự động từ các tệp JSON độc lập bởi JavaScript -->
+        <div class="projects-showcase-container project-3-saas-web-hatang" id="projectsContainer">
+          <!-- Các dự án tiêu biểu được nạp và render tự động bởi JavaScript theo mẫu hình 2 -->
         </div>
     </section>
 
@@ -604,7 +456,7 @@
         <!-- Header -->
         <div class="pricing-header">
           <h2 class="pricing-title">
-            Bảng Báo Giá <span class="text-brand-gradient">Dịch Vụ</span>
+            Bảng báo giá <span class="text-brand-gradient">dịch vụ</span>
           </h2>
           <p class="pricing-lead">
             Lựa chọn gói dịch vụ phù hợp với quy mô và tham vọng công nghệ của doanh nghiệp bạn.
@@ -618,6 +470,162 @@
       </div>
     </section>
 
+<!-- =========================================================================
+         11. SECTION KHÁCH HÀNG NHẬP FORM ĐỂ GOTEK TƯ VẤN (B2B CONSULTATION FORM)
+         - Phía sau là ảnh đội ngũ Gotek phủ gradient màu công ty Gotek
+         - Làm y như mẫu thiết kế chuẩn từng trường nhập liệu & bố cục
+         - Tuân thủ quy tắc chỉ viết hoa chữ đầu (Sentence Case)
+         ========================================================================= -->
+    <section id="consultation" class="registration-section">
+      <div class="registration-container">
+        
+        <!-- Tiêu đề Section Tư vấn -->
+        <div class="consultation-section-header">
+          <h2 class="consultation-section-title">
+            Đăng ký <span class="text-brand-gradient">tư vấn giải pháp</span>
+          </h2>
+          <p class="consultation-section-subtitle">
+            Khảo sát bài toán, nhận tư vấn kiến trúc kỹ thuật và phương án khả thi từ đội ngũ chuyên gia Gotek.
+          </p>
+        </div>
+
+        <div class="registration-card">
+
+          <!-- CỘT TRÁI: ẢNH NỀN ĐỘI NGŨ HIỆN RÕ NÉT + THÔNG ĐIỆP KHỞI ĐẦU DỰ ÁN -->
+          <div class="reg-visual-col">
+            <div class="reg-visual-bottom-content">
+              <h2 class="reg-hero-headline">
+                Khởi đầu <br />
+                <span class="reg-hero-bold">dự án của bạn</span>
+              </h2>
+              <p class="reg-hero-desc">
+                Đồng hành cùng đội ngũ kỹ sư Gotek khảo sát bài toán thực tế, tư vấn cấu trúc tối ưu và nhận giải pháp công nghệ đo ni đóng giày cho doanh nghiệp bạn.
+              </p>
+            </div>
+          </div>
+
+          <!-- CỘT PHẢI: FORM KHÁCH HÀNG NHẬP ĐỂ GOTEK TƯ VẤN -->
+          <div class="reg-form-col">
+            <form class="reg-form" id="consultationForm" onsubmit="event.preventDefault(); window.handleConsultationSubmit ? window.handleConsultationSubmit(this) : alert('Cảm ơn bạn! Gotek sẽ liên hệ tư vấn trong 24h.');">
+              
+              <!-- Hàng 1: Họ và tên + Tên doanh nghiệp (2 cột) -->
+              <div class="reg-grid-2">
+                <div class="reg-input-box has-icon is-focused-preview">
+                  <svg class="reg-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <input type="text" name="fullName" placeholder="Họ và tên của bạn *" required class="reg-control" />
+                </div>
+                <div class="reg-input-box has-icon">
+                  <svg class="reg-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                  <input type="text" name="companyName" placeholder="Tên công ty hoặc doanh nghiệp" class="reg-control" />
+                </div>
+              </div>
+
+              <!-- Hàng 2: Email công việc + Số điện thoại liên hệ (2 cột) -->
+              <div class="reg-grid-2">
+                <div class="reg-input-box has-icon">
+                  <svg class="reg-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <input type="email" name="email" placeholder="Địa chỉ email công việc *" required class="reg-control" />
+                </div>
+                <div class="reg-input-box has-icon">
+                  <svg class="reg-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.65 2.62a2 2 0 0 1-.45 2.11L8.04 9.72a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0 1 22 16.92Z"></path>
+                  </svg>
+                  <input type="tel" name="phone" placeholder="Số điện thoại liên hệ (có Zalo) *" required class="reg-control" />
+                </div>
+              </div>
+              <p class="reg-phone-note">
+                Vui lòng cung cấp số điện thoại chính xác để chuyên gia kỹ thuật Gotek liên hệ tư vấn và gửi báo giá chi tiết trong 24 giờ.
+              </p>
+
+              <!-- Hàng 3: Dịch vụ quan tâm (1 cột toàn chiều rộng) -->
+              <div class="reg-select-box">
+                <select name="serviceNeeded" class="reg-select-control" required>
+                  <option value="" disabled selected>Dịch vụ bạn đang quan tâm *</option>
+                  <option value="corporate">Thiết kế website doanh nghiệp độc bản</option>
+                  <option value="ecommerce">Website bán hàng và thương mại điện tử</option>
+                  <option value="platform">Hệ thống web app và nền tảng số riêng</option>
+                  <option value="uiux">Thiết kế UI/UX và bản mẫu tương tác (Figma)</option>
+                  <option value="seo">Tối ưu hóa SEO và tốc độ tải trang 60FPS</option>
+                  <option value="cro">Nâng cấp, bảo trì và tối ưu chuyển đổi (CRO)</option>
+                  <option value="other">Dịch vụ khác hoặc cần tư vấn thêm</option>
+                </select>
+                <svg class="reg-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+
+              <!-- Tiêu đề phụ: Thông tin bổ sung -->
+              <div class="reg-sub-section">
+                <h4 class="reg-sub-title">Thông tin bổ sung</h4>
+
+                <!-- Hàng 4: Khu vực doanh nghiệp + Kênh biết đến Gotek (2 cột) -->
+                <div class="reg-grid-2">
+                  <div class="reg-select-box">
+                    <select name="location" class="reg-select-control">
+                      <option value="" disabled selected>Khu vực của doanh nghiệp</option>
+                      <option value="danang">Đà Nẵng và miền Trung</option>
+                      <option value="hanoi">Hà Nội và miền Bắc</option>
+                      <option value="hcm">TP. Hồ Chí Minh và miền Nam</option>
+                      <option value="other">Tỉnh thành khác hoặc nước ngoài</option>
+                    </select>
+                    <svg class="reg-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="reg-select-box">
+                    <select name="heardAboutUs" class="reg-select-control">
+                      <option value="" disabled selected>Bạn biết đến Gotek qua đâu?</option>
+                      <option value="google">Tìm kiếm Google (chuẩn SEO)</option>
+                      <option value="social">Mạng xã hội (Facebook / Threads)</option>
+                      <option value="partner">Khách hàng cũ hoặc đối tác giới thiệu</option>
+                      <option value="ecosystem">Hệ sinh thái Go Media và GoNetwork</option>
+                      <option value="other">Kênh khác</option>
+                    </select>
+                    <svg class="reg-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Hàng 5: Website hiện tại (1 cột) -->
+                <div class="reg-input-box has-icon">
+                  <svg class="reg-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                  <input type="text" name="currentWebsite" placeholder="Website hoặc Fanpage hiện tại (nếu có)" class="reg-control" />
+                </div>
+
+                <!-- Hàng 6: Mô tả yêu cầu dự án (Textarea) -->
+                <div class="reg-textarea-box">
+                  <textarea name="projectBrief" class="reg-textarea" placeholder="Mô tả ngắn gọn về yêu cầu hoặc ý tưởng dự án của bạn (ví dụ: mục tiêu kinh doanh, tính năng mong muốn, đối tượng khách hàng...)" rows="3"></textarea>
+                </div>
+              </div>
+
+              <!-- Hàng 7: Nút Gửi yêu cầu tư vấn -->
+              <div class="reg-submit-wrap">
+                <button type="submit" class="reg-submit-button">
+                  <span>Gửi yêu cầu tư vấn ngay</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- =========================================================================
          6. SECTION QUY TRÌNH THỰC THI (STAGGERED STAIRCASE FLOW - 6 BƯỚC AGILE)
          ========================================================================= -->
@@ -627,8 +635,8 @@
         <!-- Section Header -->
         <div class="process-section-header">
           <h2 class="process-main-title">
-            <span class="process-title-main">Quy Trình Triển Khai</span>
-            <span class="process-title-sub text-brand-gradient">Website Tại Gotek</span>
+            <span class="process-title-main">Quy trình triển khai</span>
+            <span class="process-title-sub text-brand-gradient">website tại Gotek</span>
           </h2>
           <p class="process-main-desc">
             Chúng tôi không chỉ làm website "cho có", mà xây dựng một hệ thống kinh doanh và vận hành tự động thực sự qua 6 cột mốc chuyên sâu.
@@ -659,7 +667,7 @@
               <div class="step-card tone-azure" id="card1">
                 <div class="step-card-header">
                   <span class="step-card-num">1.</span>
-                  <h3 class="step-card-title">Phân Tích Mục Tiêu &amp; Lõi Kinh Doanh</h3>
+                  <h3 class="step-card-title">Phân tích mục tiêu &amp;<br>lõi kinh doanh</h3>
                 </div>
                 <p class="step-card-desc">
                   Làm rõ mục tiêu bán hàng, SEO hoặc lead gen; phân tích phễu chuyển đổi và hoạch định hạ tầng VPS/CDN/Cache.
@@ -670,7 +678,7 @@
               <div class="step-card" id="card3">
                 <div class="step-card-header">
                   <span class="step-card-num">3.</span>
-                  <h3 class="step-card-title">Thiết Kế UI/UX Độc Bản &amp; Prototype</h3>
+                  <h3 class="step-card-title">Thiết kế UI/UX độc bản &amp;<br>prototype</h3>
                 </div>
                 <p class="step-card-desc">
                   Thiết kế giao diện độc bản dựa trên hành vi khách hàng (UX-driven), mapping rõ luồng chuyển đổi và demo tương tác Figma.
@@ -681,7 +689,7 @@
               <div class="step-card tone-azure" id="card5">
                 <div class="step-card-header">
                   <span class="step-card-num">5.</span>
-                  <h3 class="step-card-title">Kiểm Thử Đa Thiết Bị &amp; Automation</h3>
+                  <h3 class="step-card-title">Kiểm thử đa thiết bị &amp; automation</h3>
                 </div>
                 <p class="step-card-desc">
                   Kiểm tra chức năng trên thiết bị thật, kích hoạt bảo mật SSL/Firewall, cài đặt tracking chuyển đổi và automation.
@@ -689,13 +697,13 @@
               </div>
             </div>
 
-            <!-- CỘT PHẢI: Bước 2, Bước 4, Bước 6 (So le chúc xuống 135px) -->
+            <!-- CỘT PHẢI: Bước 2, Bước 4, Bước 6 (So le chúc xuống) -->
             <div class="staircase-col col-right">
               <!-- BƯỚC 2 -->
               <div class="step-card" id="card2">
                 <div class="step-card-header">
                   <span class="step-card-num">2.</span>
-                  <h3 class="step-card-title">Thiết Kế Kiến Trúc &amp; Cấu Trúc SEO</h3>
+                  <h3 class="step-card-title">Thiết kế kiến trúc &amp; cấu trúc SEO</h3>
                 </div>
                 <p class="step-card-desc">
                   Chọn Stack tối ưu (WordPress / Next.js / Laravel), thiết kế cơ sở dữ liệu, URL chuẩn SEO và logic nội dung bài bản.
@@ -706,7 +714,7 @@
               <div class="step-card tone-azure" id="card4">
                 <div class="step-card-header">
                   <span class="step-card-num">4.</span>
-                  <h3 class="step-card-title">Lập Trình Chuẩn SEO &amp; Tốc Độ 60FPS</h3>
+                  <h3 class="step-card-title">Lập trình chuẩn SEO &amp;<br>tốc độ 60FPS</h3>
                 </div>
                 <p class="step-card-desc">
                   Code sạch chuẩn W3C, responsive hoàn hảo mọi thiết bị, tối ưu Core Web Vitals tuyệt đối và cấu hình cache đa tầng.
@@ -717,7 +725,7 @@
               <div class="step-card is-final" id="card6">
                 <div class="step-card-header">
                   <span class="step-card-num">6.</span>
-                  <h3 class="step-card-title">Bàn Giao Toàn Diện &amp; Bảo Hành 24/7</h3>
+                  <h3 class="step-card-title">Bàn giao toàn diện &amp;<br>bảo hành 24/7</h3>
                 </div>
                 <p class="step-card-desc">
                   Chuyển giao 100% full source code và server, hướng dẫn quản trị nội dung dễ dàng cùng cam kết hỗ trợ kỹ thuật trọn đời.
@@ -740,8 +748,8 @@
         <!-- Header -->
         <div class="testimonials-header">
           <h2 class="testimonials-title" id="testimonialsTitle">
-            <span class="testimonials-title-main">Khách Hàng</span>
-            <span class="testimonials-title-sub text-brand-gradient">Nói Gì Về Gotek</span>
+            <span class="testimonials-title-main">Khách hàng</span>
+            <span class="testimonials-title-sub text-brand-gradient">nói gì về Gotek</span>
           </h2>
         </div>
 
@@ -752,11 +760,13 @@
           </div>
         </div>
 
-        <!-- Dưới phần cong là các nút tròn chuyển slide (Tối đa đúng 3 nút tròn) -->
+        <!-- Dưới phần cong là các nút tròn chuyển slide (Tối đa 5 nút dạng sliding window) -->
         <div class="testimonials-pagination-dots" id="testimonialsDots">
-          <button class="testimonials-dot active" data-slide="0" aria-label="Trang đánh giá 1"></button>
-          <button class="testimonials-dot" data-slide="1" aria-label="Trang đánh giá 2"></button>
-          <button class="testimonials-dot" data-slide="2" aria-label="Trang đánh giá 3"></button>
+          <button class="testimonials-dot dot-small" data-card-index="0" aria-label="Đánh giá 1"></button>
+          <button class="testimonials-dot" data-card-index="1" aria-label="Đánh giá 2"></button>
+          <button class="testimonials-dot active" data-card-index="2" aria-label="Đánh giá 3"></button>
+          <button class="testimonials-dot" data-card-index="3" aria-label="Đánh giá 4"></button>
+          <button class="testimonials-dot dot-small" data-card-index="4" aria-label="Đánh giá 5"></button>
         </div>
       </div>
     </section>
@@ -786,7 +796,7 @@
         <!-- Section Header: Ở trên là tiêu đề một hệ sinh thái (Đã bỏ MÔ HÌNH HỢP TÁC CHIẾN LƯỢC theo yêu cầu) -->
         <div class="ecosystem-teams-header">
           <h2 class="ecosystem-teams-title" id="ecosystemTeamsTitle">
-            Một Hệ Sinh Thái. <br class="hidden sm:inline" /><span class="text-brand-gradient">Ba Đội Ngũ</span>, Ba Phần Việc.
+            Một hệ sinh thái. <br class="hidden sm:inline" /><span class="text-brand-gradient">Ba đội ngũ</span>, ba phần việc.
           </h2>
           <p class="ecosystem-teams-desc" id="ecosystemTeamsDesc">
             Doanh nghiệp có thể bắt đầu từ một nhu cầu cụ thể rồi kết nối thêm năng lực phù hợp khi dự án cần mở rộng.
@@ -815,10 +825,6 @@
               <div class="ecosystem-zigzag-action">
                 <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
                   <span>Khám phá Go Media</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </a>
               </div>
             </div>
@@ -852,10 +858,6 @@
               <div class="ecosystem-zigzag-action">
                 <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
                   <span>Khám phá Go Network</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </a>
               </div>
             </div>
@@ -889,10 +891,6 @@
               <div class="ecosystem-zigzag-action">
                 <a href="#" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
                   <span>Khám phá Go Tek</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </a>
               </div>
             </div>
@@ -917,7 +915,7 @@
         <!-- Header ở trên (Không màu nền) -->
         <div class="faq-header">
           <h2 class="faq-title" id="faqTitle">
-            Câu Hỏi <span class="text-brand-gradient">Thường Gặp</span>
+            Câu hỏi thường gặp về <span class="text-brand-gradient whitespace-nowrap inline-block">thiết kế website</span>
           </h2>
           <p class="faq-subtitle" id="faqSubtitle">
             Giải đáp những thắc mắc phổ biến nhất để bạn hoàn toàn an tâm khi lựa chọn Gotek làm đối tác công nghệ chiến
@@ -946,6 +944,15 @@
         </div>
       </div>
     </section>
+
+    <!-- =========================================================================
+         11. SECTION ĐĂNG KÝ TƯ VẤN & KHỞI ĐẦU DỰ ÁN (B2B CONSULTATION FORM)
+         - Khách hàng nhập form để Gotek tư vấn giải pháp & báo giá chi tiết
+         - Phía sau là ảnh đội ngũ Gotek phủ gradient màu công ty Gotek
+         - Giữ nguyên bố cục 2 cột sang trọng chuẩn mẫu thiết kế
+         ========================================================================= -->
+    
+
     <!-- SVG Icon Sprite for Gotek Footer -->
     <svg class="gotek-icon-sprite" style="display: none;" aria-hidden="true">
       <symbol id="gotek-icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></symbol>
@@ -995,8 +1002,7 @@
           <h3>Thông tin</h3>
           <address><a class="gotek-footer-office-title" href="https://share.google/7CH8yM1CBF2qkzYtL" target="_blank" rel="noopener noreferrer"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-map-pin"></use></svg><span>Go&nbsp;Media Agency Đà&nbsp;Nẵng</span></a><span>91 Thành Thái, Cẩm Lệ, Đà Nẵng</span></address>
           <a class="gotek-footer-info-contact" href="mailto:info@gotek.asia"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-mail"></use></svg><span>info@gotek.asia</span></a>
-          <a class="gotek-footer-info-contact" href="tel:0943581185"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>0943 581 185 (Tư vấn)</span></a>
-          <a class="gotek-footer-info-contact" href="tel:0942568685"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>0942 568 685 (Kỹ thuật)</span></a>
+          <a class="gotek-footer-info-contact" href="tel:+84978970605"><svg class="gotek-icon " aria-hidden="true" focusable="false"><use href="#gotek-icon-phone"></use></svg><span>+84 97 897 0605</span></a>
           <a href="https://gotek.asia/sitemap/">Sơ đồ website</a>
         </div>
       </div>
@@ -1015,9 +1021,9 @@
 
   <!-- Scripts -->
   <!-- 1. Nạp GotekDataStore trước (chứa dữ liệu hoặc fetch từ data/*.json) -->
-  <script src="data/data-store.js?v=5"></script>
-  <!-- 2. Nạp main logic (module ES) -->
-  <script type="module" src="js/main.js?v=58"></script>
+  <script src="data/data-store.js?v=6"></script>
+  <!-- 2. Nạp main logic (Tương thích 100% cả mở trực tiếp file:/// và chạy trên server) -->
+  <script src="js/bundle.js?v=1"></script>
 </body>
 
 </html>

@@ -7,9 +7,8 @@
     "yearFounded": 2020
   },
   "contact": {
-    "hotline": "0943581185",
-    "phoneDisplay": "0943 581 185",
-    "technicalHotline": "0942 568 685",
+    "hotline": "+84978970605",
+    "phoneDisplay": "+84 97 897 0605",
     "companyPhone": "+84 97 897 0605",
     "email": "info@gotek.asia",
     "address": "Go Media Agency Đà Nẵng — 91 Thành Thái, Cẩm Lệ, Đà Nẵng",
@@ -21,6 +20,7 @@
     { "label": "Dịch vụ", "href": "#services" },
     { "label": "Dự án", "href": "#projects" },
     { "label": "Bảng giá", "href": "#pricing" },
+    { "label": "Tư vấn", "href": "#consultation" },
     { "label": "Quy trình", "href": "#process" },
     { "label": "Đánh giá", "href": "#testimonials" },
     { "label": "Hệ sinh thái", "href": "#ecosystem-teams" },

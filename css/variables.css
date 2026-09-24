@@ -15,9 +15,10 @@
   
   /* --- Màu Trung Tính & Bề Mặt (Neutral & Surface) --- */
   --bg-body: #FFFFFF;
-  --bg-subtle: #F8FAFC;
+  --bg-subtle: #FCFDFF;
+  --bg-section-alt: #FCFDFF;        /* Cực kỳ sát màu trắng #FFFFFF, chuyển tiếp êm dịu, tinh tế, không phân tách rõ rệt */
   --bg-surface: #FFFFFF;
-  --bg-card-hover: #F1F5F9;
+  --bg-card-hover: #F8FAFC;
   
   /* --- Màu Văn Bản (Text Hierarchy) --- */
   --text-main: #0A1F68;
@@ -27,7 +28,9 @@
   --text-white-muted: rgba(255, 255, 255, 0.75);
 
   /* --- Đường Viền & Chia Cắt (Borders) --- */
-  --border-hairline: 1px solid rgba(10, 31, 104, 0.08);
+  --border-section: 1px solid rgba(10, 31, 104, 0.04);
+  --border-section-alt: 1px solid rgba(10, 31, 104, 0.04);
+  --border-hairline: 1px solid rgba(10, 31, 104, 0.04);
   --border-card: 1px solid rgba(10, 31, 104, 0.12);
   --border-focus: 2px solid #2B63FF;
   --border-glass: 1px solid rgba(255, 255, 255, 0.15);
@@ -46,8 +49,11 @@
   --shadow-glow: 0 0 25px rgba(43, 99, 255, 0.25);
   --shadow-cyan-glow: 0 0 25px rgba(34, 221, 224, 0.3);
 
-  /* --- Phông Chữ & Khoảng Cách Dòng (Typography) --- */
-  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* --- Phông Chữ Chuẩn Hoá 100% Be Vietnam Pro --- */
+  --font-family: 'Be Vietnam Pro', sans-serif;
+  --font-display: 'Be Vietnam Pro', sans-serif;
+  --font-vietnamese: 'Be Vietnam Pro', sans-serif;
+  --section-title-size: 1.55rem;
   --container-max: 1240px;
   --header-height: 80px;
 

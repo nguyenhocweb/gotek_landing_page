@@ -12,7 +12,14 @@
  *    - Phần tử bên phải trượt vào từ Phải sang
  */
 
+if (typeof document !== 'undefined' && document.body) {
+  document.body.classList.add('has-scroll-animations');
+}
+
 export function initAboutScrollAnimation() {
+  if (typeof document !== 'undefined' && document.body) {
+    document.body.classList.add('has-scroll-animations');
+  }
   const aboutSec = document.querySelector('.about-partner-section');
   if (!aboutSec) return;
 
@@ -35,27 +42,60 @@ export function initAboutScrollAnimation() {
   }
 }
 
-export function initBentoScrollAnimation() {
-  const bentoContainer = document.querySelector('.bento-container');
-  if (!bentoContainer) return;
+/**
+ * 2. Section Giải Pháp Thiết Kế Website (Why Choose / Solutions):
+ *    - Header: Slide up & Fade in
+ *    - Kỹ Sư Gotek (Cột Trái): Trượt vào từ bên trái với ambient aura
+ *    - Lưới 7 tính năng (Cột Phải): Xuất hiện so le (staggered cascade)
+ */
+export function initWhyChooseScrollAnimation() {
+  const section = document.querySelector('.why-choose-section') || document.querySelector('.solutions-bento-section');
+  if (!section) return;
+
+  const header = section.querySelector('.solutions-header');
+  const leftImage = section.querySelector('.why-choose-left-image');
+  const items = section.querySelectorAll('.why-feature-item');
+  const borderedCol = section.querySelector('.why-feature-col--bordered');
+
+  const triggerAnimation = () => {
+    section.classList.add('animate-in', 'animate-header-in');
+    if (leftImage) leftImage.classList.add('animate-in');
+    if (borderedCol) borderedCol.classList.add('animate-in');
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('animate-in');
+      }, 50 + index * 75);
+    });
+  };
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          bentoContainer.classList.add('animate-in');
+          triggerAnimation();
           observer.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.15,
+      threshold: 0.1,
       rootMargin: '0px 0px -40px 0px'
     });
 
-    observer.observe(bentoContainer);
+    observer.observe(section);
   } else {
-    bentoContainer.classList.add('animate-in');
+    triggerAnimation();
   }
+
+  // Fallback an toàn sau 2.5s nếu chưa được kích hoạt
+  setTimeout(() => {
+    if (!section.classList.contains('animate-in')) {
+      triggerAnimation();
+    }
+  }, 2500);
+}
+
+export function initBentoScrollAnimation() {
+  initWhyChooseScrollAnimation();
 }
 
 export function initEcosystemScrollAnimation() {
@@ -103,30 +143,10 @@ export function initEcosystemScrollAnimation() {
 }
 
 /**
- * 4. Ảnh 1: Header Giải Pháp Chuyên Sâu từ từ hiện ra
+ * 4. Header & Section Giải Pháp Chuyên Sâu từ từ hiện ra
  */
 export function initSolutionsHeaderAnimation() {
-  const section = document.querySelector('.solutions-bento-section');
-  const header = document.querySelector('.solutions-header');
-  if (!section || !header) return;
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          section.classList.add('animate-header-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    observer.observe(header);
-  } else {
-    section.classList.add('animate-header-in');
-  }
+  initWhyChooseScrollAnimation();
 }
 
 /**

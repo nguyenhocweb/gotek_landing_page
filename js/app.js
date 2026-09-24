@@ -23,7 +23,7 @@ export async function initApp() {
   // 2. Render từng section có bọc try/catch độc lập
   try { renderSiteConfig(data.config); } catch (e) { console.error('Error in renderSiteConfig:', e); }
   try { renderServices(data.services); } catch (e) { console.error('Error in renderServices:', e); }
-  try { renderProjectSections([data.projectsSaas, data.projectsWeb, data.projectsCustom]); } catch (e) { console.error('Error in renderProjectSections:', e); }
+  try { renderProjectSections([data.projectsWeb, data.projectsSaas]); } catch (e) { console.error('Error in renderProjectSections:', e); }
   try { renderPricing(data.pricing); } catch (e) { console.error('Error in renderPricing:', e); }
   try { renderEcosystem(data.ecosystem); } catch (e) { console.error('Error in renderEcosystem:', e); }
   try { renderTeam(data.team); } catch (e) { console.error('Error in renderTeam:', e); }
@@ -91,27 +91,35 @@ function renderServices(services) {
 }
 
 /**
- * Render danh sách dự án tiêu biểu theo từng nhóm độc lập (SaaS, Web, Dịch vụ tùy chỉnh)
- * - Tự động phát hiện số cột hiển thị theo kích thước màn hình (Desktop: 3 cột, Tablet: 2 cột, Mobile: 1 cột)
- * - Nếu số thẻ > số cột (lớn hơn khung cột): Kích hoạt animation chạy mượt mà
- *   + Nhóm 1 (Cái đầu): Chạy từ Phải sang Trái (RTL)
- *   + Nhóm 2 (Cái thứ 2): Chạy từ Trái sang Phải (LTR)
- *   + Nhóm 3 (Cái thứ 3): Chạy từ Phải sang Trái (RTL)
- * - Nếu số thẻ <= số cột (nhỏ hơn hoặc bằng khung): Đứng im tĩnh (Static)
+ * Render danh sách dự án tiêu biểu theo mẫu chuẩn Hình 2:
+ * - Thẻ đứng viền xanh thanh thoát (#6BA6FF), bo góc lớn 20px, nền trắng tinh khôi (#FFFFFF)
+ * - Tiêu đề dự án nằm trên cùng căn giữa, màu xanh Gotek (#0055FF), đậm và sắc nét
+ * - Ảnh chụp website toàn trang dài ở dưới, tự động cuộn mượt khi hover
+ * - Hiển thị 5 cột trên màn hình Desktop lớn (>= 1200px), tự động chạy marquee vô tận khi số lượng vượt quá số cột
+ * - Tạm dừng animation khi hover chuột vào bất kỳ thẻ nào
  */
 function renderProjectSections(groups) {
-  const container = $('#projectsContainer') || $('.project-3-saas-web-hatang');
+  const container = $('#projectsContainer') || $('.projects-showcase-container') || $('.project-3-saas-web-hatang');
   if (!container || !groups) return;
 
-  const validGroups = groups.filter(g => g && g.items && g.items.length > 0);
-  if (validGroups.length === 0) return;
+  // Thu thập tất cả các items từ các nguồn dữ liệu vào một danh sách duy nhất
+  let allItems = [];
+  if (Array.isArray(groups)) {
+    groups.forEach(g => {
+      if (g && Array.isArray(g.items)) {
+        allItems = allItems.concat(g.items);
+      } else if (g && Array.isArray(g)) {
+        allItems = allItems.concat(g);
+      }
+    });
+  }
+  if (allItems.length === 0) return;
 
-  function renderCard(item) {
-    const link = item.link || '#contact';
-    const isExt = link.startsWith('http');
+  // Render thẻ chuẩn dạng tương tác: KHÔNG DÙNG THẺ <a> ĐỂ KHÔNG CHUYỂN TRANG
+  function renderCard(item, idx) {
     return `
-      <article class="project-card">
-        <a href="${link}" ${isExt ? 'target="_blank" rel="noopener noreferrer"' : ''} class="project-card-link" aria-label="${item.name || ''}">
+      <article class="project-card" data-index="${idx}" data-name="${item.name || item.title || ''}">
+        <div class="project-card-link" role="button" tabindex="0" aria-label="${item.name || item.title || ''}">
           <div class="project-card-header">
             <h3 class="project-card-title">${item.name || item.title || ''}</h3>
           </div>
@@ -119,144 +127,255 @@ function renderProjectSections(groups) {
             <img src="${item.image}" alt="${item.name || item.title || ''}"
                  class="project-scroll-img" loading="lazy" />
           </div>
-        </a>
+        </div>
       </article>
     `;
   }
 
+  let marqueeRafId = null;
+  let activeCard = null;
+  let isHovered = false;
+  let isDragging = false;
+  let hasDragged = false;
+  let dragStartX = 0;
+  let dragScrollLeft = 0;
+  let resumeTimer = null;
+
   function updateProjectLayout() {
-    const containerW = container.clientWidth || 1032;
+    if (marqueeRafId) cancelAnimationFrame(marqueeRafId);
+
+    const containerW = container.clientWidth || 1200;
     const screenW = window.innerWidth;
-    // Ngưỡng cột theo màn hình:
-    // Laptop / Desktop lớn: 3 cột để 3 thẻ chiếm vừa vặn 100% khung lớn
-    // Tablet (640px - 991px): 2 cột
-    // Mobile (< 640px): 1.15 cột
+
+    // Ngưỡng cột theo màn hình chuẩn mẫu Hình 2:
+    // Desktop lớn (>= 1200px): 5 cột (5 thẻ hiển thị đồng thời như Hình 2)
+    // Laptop (992px - 1199px): 4 cột
+    // Tablet ngang (768px - 991px): 3 cột
+    // Tablet đứng (540px - 767px): 2 cột
+    // Mobile (< 540px): 1.18 cột
     let visibleCols;
     let gap;
-    if (screenW >= 992) {
-      visibleCols = 3;
+    if (screenW >= 1200) {
+      visibleCols = 5;
       gap = 16;
-    } else if (screenW >= 640) {
-      visibleCols = 2;
+    } else if (screenW >= 992) {
+      visibleCols = 4;
       gap = 14;
-    } else {
-      visibleCols = 1.15;
+    } else if (screenW >= 768) {
+      visibleCols = 3;
       gap = 12;
+    } else if (screenW >= 540) {
+      visibleCols = 2;
+      gap = 12;
+    } else {
+      visibleCols = 1.18;
+      gap = 10;
     }
 
-    // Padding bên trong của khung .project-saas
-    const saasPadding = screenW >= 1200 ? 36 : (screenW >= 768 ? 28 : 20);
-    const trackVisibleW = Math.max(200, containerW - saasPadding);
-
-    // Độ rộng mỗi thẻ co giãn tương thích: 3 thẻ chiếm vừa khít khung lớn (~315px - 330px trên desktop)
+    const trackVisibleW = containerW;
     let cardW = Math.floor((trackVisibleW - (visibleCols - 1) * gap) / visibleCols);
-    cardW = Math.max(220, Math.min(cardW, 360));
+    cardW = Math.max(180, Math.min(cardW, 300));
 
-    const isLaptop = screenW >= 992;
+    // Render 3 bộ items để tạo đường chạy vô tận (infinite seamless loop)
+    const singleSetCardsHtml = allItems.map((item, idx) => renderCard(item, idx)).join('');
+    const fullTrackHtml = singleSetCardsHtml + singleSetCardsHtml + singleSetCardsHtml;
 
-    container.innerHTML = validGroups.map((group, gIdx) => {
-      const itemsCount = group.items.length;
-      // Tính tổng độ rộng thực tế của tất cả items (bao gồm thẻ cardW và khoảng cách gap)
-      const totalItemsWidth = itemsCount > 0 ? (itemsCount * cardW + (itemsCount - 1) * gap) : 0;
-
-      // FEEDBACK:
-      // - Chỉ áp dụng với laptop (screenW >= 992px):
-      //   + Nếu có từ 4 cái trở lên (itemsCount >= 4): CÓ AUTOMATION (chạy marquee lặp vô tận)
-      //   + Dưới 4 cái (< 4): KHÔNG CÓ AUTOMATION (đứng im tĩnh hoàn toàn)
-      // - Với mobile / tablet (screenW < 992px):
-      //   + Tự động chạy marquee nếu số thẻ vượt quá số cột nhìn thấy (tràn khung)
-      let isOverflow;
-      if (isLaptop) {
-        isOverflow = itemsCount >= 4;
-      } else {
-        const fullCols = Math.floor(visibleCols);
-        isOverflow = itemsCount > fullCols || totalItemsWidth > trackVisibleW;
-      }
-
-      // Hướng chạy khi có overflow:
-      // Cái đầu (gIdx 0): Phải sang Trái (RTL)
-      // Cái thứ 2 (gIdx 1): Trái sang Phải (LTR)
-      // Cái thứ 3 (gIdx 2): Phải sang Trái (RTL)
-      const direction = (gIdx % 2 === 0) ? 'rtl' : 'ltr';
-
-      // Nếu lớn hơn khung cột (overflow): nhân đôi danh sách thẻ để tạo vòng lặp chạy vô tận
-      // Nếu nhỏ hơn hoặc bằng khung cột (không overflow): chỉ render đúng số thẻ ban đầu và đứng im
-      const cardsHtml = isOverflow
-        ? group.items.map(renderCard).join('') + group.items.map(renderCard).join('')
-        : group.items.map(renderCard).join('');
-
-      // Tốc độ animation tính theo số lượng thẻ để luôn trôi mượt
-      const duration = Math.max(20, itemsCount * 7.5);
-
-      return `
-        <div class="project-saas-web-hatang" data-group-index="${gIdx}">
-          <div class="project-type-pill">
-            <h2>${group.categoryTitle || ''}</h2>
-          </div>
-          <div class="project-saas ${isOverflow ? `is-marquee dir-${direction}` : 'is-static'}"
-               style="--card-w: ${cardW}px; --project-gap: ${gap}px; --marquee-duration: ${duration}s;">
-            <div class="project-track">
-              ${cardsHtml}
-            </div>
-          </div>
+    container.innerHTML = `
+      <div class="projects-track-wrapper" style="--card-w: ${cardW}px; --project-gap: ${gap}px;">
+        <div class="projects-track">
+          ${fullTrackHtml}
         </div>
-      `;
-    }).join('');
+      </div>
+    `;
+
+    const trackWrapper = container.querySelector('.projects-track-wrapper');
+    const singleSetWidth = allItems.length * (cardW + gap);
+
+    // Bắt đầu ở bộ thứ 2 (chính giữa)
+    if (trackWrapper && singleSetWidth > 0) {
+      trackWrapper.scrollLeft = singleSetWidth;
+    }
+
+    applyScrollDurationToImages();
+    setupInteractions(trackWrapper, singleSetWidth);
+    startMarqueeLoop(trackWrapper, singleSetWidth);
   }
 
-  // Khởi chạy render ngay khi dữ liệu sẵn sàng
+  function startMarqueeLoop(trackWrapper, singleSetWidth) {
+    if (!trackWrapper || singleSetWidth <= 0) return;
+    if (marqueeRafId) cancelAnimationFrame(marqueeRafId);
+
+    let lastTime = performance.now();
+    // Vận tốc trôi mượt mà (~45px mỗi giây)
+    const speed = 0.045;
+
+    function loop(currentTime) {
+      const delta = currentTime - lastTime;
+      lastTime = currentTime;
+
+      // Chỉ tự động chạy khi không hover, không drag, và không có thẻ nào đang active ở giữa
+      if (!isHovered && !isDragging && !activeCard) {
+        trackWrapper.scrollLeft += speed * Math.min(delta, 50);
+
+        // Vòng lặp vô tận liền mạch
+        if (trackWrapper.scrollLeft >= singleSetWidth * 2) {
+          trackWrapper.scrollLeft -= singleSetWidth;
+        } else if (trackWrapper.scrollLeft <= singleSetWidth * 0.3) {
+          trackWrapper.scrollLeft += singleSetWidth;
+        }
+      }
+
+      marqueeRafId = requestAnimationFrame(loop);
+    }
+
+    marqueeRafId = requestAnimationFrame(loop);
+  }
+
+  function setupInteractions(trackWrapper, singleSetWidth) {
+    if (!trackWrapper) return;
+
+    // Hover chuột vào track
+    trackWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    trackWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+      isDragging = false;
+    });
+
+    // Kéo thả chuột (Mouse drag to scroll)
+    trackWrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      hasDragged = false;
+      dragStartX = e.pageX - trackWrapper.offsetLeft;
+      dragScrollLeft = trackWrapper.scrollLeft;
+      isHovered = true;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        setTimeout(() => {
+          hasDragged = false;
+        }, 50);
+      }
+    });
+
+    trackWrapper.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - trackWrapper.offsetLeft;
+      const walk = x - dragStartX;
+      if (Math.abs(walk) > 4) {
+        hasDragged = true;
+        trackWrapper.scrollLeft = dragScrollLeft - walk;
+        if (trackWrapper.scrollLeft >= singleSetWidth * 2) {
+          trackWrapper.scrollLeft -= singleSetWidth;
+          dragScrollLeft -= singleSetWidth;
+        } else if (trackWrapper.scrollLeft <= singleSetWidth * 0.3) {
+          trackWrapper.scrollLeft += singleSetWidth;
+          dragScrollLeft += singleSetWidth;
+        }
+      }
+    });
+
+    // CLICK VÀO THẺ:
+    // 1. Không phải thẻ <a>, không chuyển trang đến #contact
+    // 2. Thẻ đó animation mượt mà ra chính giữa màn hình
+    // 3. Chạy dạng hover: ảnh tự động cuộn từ trên xuống dưới
+    trackWrapper.addEventListener('click', (e) => {
+      if (hasDragged) return;
+
+      const card = e.target.closest('.project-card');
+      if (!card) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Nếu click lại chính thẻ đang active: đóng lại và tiếp tục marquee sau 1 giây
+      if (card === activeCard && card.classList.contains('is-active-center')) {
+        card.classList.remove('is-active-center');
+        activeCard = null;
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+          isHovered = false;
+        }, 1000);
+        return;
+      }
+
+      // Xóa active cũ
+      if (activeCard) {
+        activeCard.classList.remove('is-active-center');
+      }
+
+      // Kích hoạt thẻ mới: chạy dạng hover (cuộn ảnh)
+      card.classList.add('is-active-center');
+      activeCard = card;
+
+      // ANIMATION RA GIỮA:
+      // Tính toán vị trí tâm của thẻ so với tâm của khung trackWrapper
+      const wrapperRect = trackWrapper.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const diff = cardCenter - wrapperCenter;
+
+      // Cuộn mượt thẻ vào chính giữa màn hình
+      trackWrapper.scrollBy({
+        left: diff,
+        behavior: 'smooth'
+      });
+    });
+
+    // Bấm ra ngoài vùng dự án: Đóng active card và tiếp tục marquee
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#projectsContainer')) {
+        if (activeCard) {
+          activeCard.classList.remove('is-active-center');
+          activeCard = null;
+          isHovered = false;
+        }
+      }
+    });
+  }
+
+  function applyScrollDurationToImages() {
+    const images = container.querySelectorAll('.project-scroll-img');
+    images.forEach(img => {
+      function calculateDuration() {
+        const naturalH = img.naturalHeight || 0;
+        const naturalW = img.naturalWidth || 1;
+        const currentW = img.clientWidth || 240;
+        const displayedH = naturalH > 0 ? (naturalH * (currentW / naturalW)) : (img.offsetHeight || 1400);
+        const viewportEl = img.closest('.project-scroll-viewport');
+        const viewportH = viewportEl ? viewportEl.clientHeight : 420;
+        const scrollDistance = Math.max(100, displayedH - viewportH);
+
+        const speedPxPerSec = 170;
+        const duration = Math.max(9, Math.round(scrollDistance / speedPxPerSec));
+
+        img.style.setProperty('--scroll-duration', `${duration}s`);
+      }
+
+      if (img.complete && img.naturalHeight > 0) {
+        calculateDuration();
+      } else {
+        img.addEventListener('load', calculateDuration, { once: true });
+      }
+    });
+  }
+
+  // Khởi chạy
   updateProjectLayout();
 
-  // Lắng nghe thay đổi kích thước màn hình để tự động cập nhật số cột và độ rộng thẻ
+  // Resize window
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       updateProjectLayout();
-    }, 100);
-  });
-
-  // Hỗ trợ tương tác click/tap trên iPad / Tablet / Mobile:
-  // Khi người dùng click/tap vào item, kích hoạt tự động cuộn (automation scroll) của item đó
-  container.addEventListener('click', (e) => {
-    const card = e.target.closest('.project-card');
-    if (!card) return;
-
-    const isTouchOrTablet = window.innerWidth <= 1024 || ('ontouchstart' in window);
-    if (isTouchOrTablet) {
-      if (!card.classList.contains('is-scrolling')) {
-        // Lần click đầu: Ngăn chuyển trang, bật animation tự động cuộn ảnh chậm cho đến hết ảnh
-        e.preventDefault();
-        container.querySelectorAll('.project-card.is-scrolling').forEach(c => {
-          if (c !== card) c.classList.remove('is-scrolling');
-        });
-        card.classList.add('is-scrolling');
-
-        // Tạm dừng chạy ngang của khung trong lúc item đang tự cuộn
-        const parentSaas = card.closest('.project-saas');
-        if (parentSaas) {
-          container.querySelectorAll('.project-saas.has-scrolling-item').forEach(s => s.classList.remove('has-scrolling-item'));
-          parentSaas.classList.add('has-scrolling-item');
-        }
-      } else {
-        // Nếu thẻ đang trong trạng thái cuộn: kiểm tra nếu link là liên kết nội bộ (#contact) thì thu gọn lại
-        const link = card.querySelector('a')?.getAttribute('href');
-        if (!link || link === '#contact' || link.startsWith('#')) {
-          e.preventDefault();
-          card.classList.remove('is-scrolling');
-          const parentSaas = card.closest('.project-saas');
-          if (parentSaas) parentSaas.classList.remove('has-scrolling-item');
-        }
-      }
-    }
-  });
-
-  // Chạm ra ngoài để dừng cuộn và tiếp tục chạy marquee
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.project-card')) {
-      container.querySelectorAll('.project-card.is-scrolling').forEach(c => c.classList.remove('is-scrolling'));
-      container.querySelectorAll('.project-saas.has-scrolling-item').forEach(s => s.classList.remove('has-scrolling-item'));
-    }
+    }, 120);
   });
 }
 
@@ -524,38 +643,30 @@ function renderTestimonials(testimonialsData) {
     if (dots.length === 0) return;
 
     const total = dots.length;
-    if (window.innerWidth >= 768) {
-      // Desktop / Laptop: Hiển thị các chấm điều hướng tương ứng từng thẻ, active lướt theo từng thẻ
-      dots.forEach((d, i) => {
+    // Đồng bộ cơ chế phân trang tối đa 5 nút gọn gàng (Sliding Window) cho cả Desktop, iPad và Mobile:
+    // Nút ở giữa là active pill, 2 nút kế bên cỡ vừa, 2 nút ở 2 mép thu nhỏ (dot-small), các nút còn lại ẩn
+    let startIndex = activeIdx - 2;
+    if (startIndex < 0) startIndex = 0;
+    if (startIndex > total - 5) startIndex = Math.max(0, total - 5);
+    const endIndex = Math.min(total - 1, startIndex + 4);
+
+    dots.forEach((d, i) => {
+      const isActive = (i === activeIdx);
+      d.classList.toggle('active', isActive);
+
+      if (i >= startIndex && i <= endIndex) {
         d.style.display = 'inline-block';
-        d.classList.toggle('active', i === activeIdx);
-        d.classList.remove('dot-small');
-      });
-    } else {
-      // Mobile: Sliding window tối đa 5 nút gọn gàng
-      let startIndex = activeIdx - 2;
-      if (startIndex < 0) startIndex = 0;
-      if (startIndex > total - 5) startIndex = total - 5;
-      const endIndex = startIndex + 4;
-
-      dots.forEach((d, i) => {
-        const isActive = (i === activeIdx);
-        d.classList.toggle('active', isActive);
-
-        if (i >= startIndex && i <= endIndex) {
-          d.style.display = 'inline-block';
-          const dist = Math.abs(i - activeIdx);
-          if (dist >= 2) {
-            d.classList.add('dot-small');
-          } else {
-            d.classList.remove('dot-small');
-          }
+        const dist = Math.abs(i - activeIdx);
+        if (dist >= 2) {
+          d.classList.add('dot-small');
         } else {
-          d.style.display = 'none';
           d.classList.remove('dot-small');
         }
-      });
-    }
+      } else {
+        d.style.display = 'none';
+        d.classList.remove('dot-small');
+      }
+    });
   }
 
   function buildDots() {
@@ -1025,9 +1136,6 @@ function renderEcosystemTeams(data) {
         <div class="ecosystem-zigzag-action">
           <a href="${item.link || '#'}" class="ecosystem-zigzag-cta" target="_blank" rel="noopener noreferrer">
             <span>${item.btntxt || ('Khám phá ' + item.name)}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
           </a>
         </div>
       </div>
@@ -1146,7 +1254,7 @@ function renderFAQ(faqData) {
   const subtitleEl = $('#faqSubtitle');
   if (activeData.section) {
     if (titleEl && activeData.section.title) {
-      titleEl.innerHTML = `${activeData.section.title} <span class="text-brand-gradient">${activeData.section.highlightTitle || ''}</span>`;
+      titleEl.innerHTML = `${activeData.section.title} <span class="text-brand-gradient whitespace-nowrap inline-block">${activeData.section.highlightTitle || ''}</span>`;
     }
     if (subtitleEl && activeData.section.subtitle) subtitleEl.textContent = activeData.section.subtitle;
   }
@@ -1159,67 +1267,110 @@ function renderFAQ(faqData) {
 
   const supportData = activeData.support || defaultFAQ.support;
 
-  // 3. Render danh sách câu hỏi vào track với cấu trúc 5 Set nhân bản để cuộn vòng lặp vô tận (Infinite Looping Cylinder)
-  // Set 2 là Set chính (Canonical). Set 0, 1 nằm trước; Set 3, 4 nằm sau.
-  // Khi ở đầu danh sách (Câu hỏi 1), các câu hỏi cuối (Q8, Q9, Q10) từ Set 1 tự động hiển thị ở trên theo yêu cầu.
+  // 3. Render danh sách câu hỏi đơn (tuyến tính, không nhân bản clone vô tận)
+  // Người dùng có thể lướt tự nhiên từ câu đầu tiên đến hết câu cuối cùng
   const N = activeData.items.length;
-  const numSets = 5;
-  const canonicalSetIndex = 2; // Set 2 ở vị trí trung tâm
   let trackHTML = '';
 
-  for (let s = 0; s < numSets; s++) {
-    const isMainSet = (s === canonicalSetIndex);
-    activeData.items.forEach((item, idx) => {
-      const globalIdx = s * N + idx;
-      const isFirstItemInMain = isMainSet && (idx === 0);
-      const isClone = !isMainSet;
-      const isMobileHidden = isMainSet && (idx >= 5); // Mobile/iPad chỉ hiển thị 5 câu đầu
+  activeData.items.forEach((item, idx) => {
+    const isFirst = (idx === 0);
+    const isMobileHidden = (idx >= 6); // Mobile/iPad chỉ hiển thị 6 câu đầu gọn gàng
 
-      const itemClasses = [
-        'faq-roller-item',
-        isFirstItemInMain ? 'is-center is-open' : '',
-        isClone ? 'is-clone' : 'is-main',
-        isMobileHidden ? 'faq-mobile-hidden' : ''
-      ].filter(Boolean).join(' ');
+    const itemClasses = [
+      'faq-roller-item',
+      isFirst ? 'is-center is-open' : '',
+      isMobileHidden ? 'faq-mobile-hidden' : ''
+    ].filter(Boolean).join(' ');
 
-      trackHTML += `
-        <div class="${itemClasses}" data-index="${idx}" data-set="${s}" data-global-index="${globalIdx}" role="button" tabindex="0" aria-label="${item.question}">
-          <div class="faq-accordion-header">
-            <span class="faq-roller-item-text">${item.question}</span>
-            <span class="faq-roller-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
-          </div>
-          <div class="faq-accordion-body">
-            <div class="faq-accordion-body-inner">
-              <p class="faq-accordion-answer">${item.answer}</p>
-            </div>
+    trackHTML += `
+      <div class="${itemClasses}" data-index="${idx}" role="button" tabindex="0" aria-label="${item.question}">
+        <div class="faq-accordion-header">
+          <span class="faq-roller-item-text">${item.question}</span>
+          <span class="faq-roller-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+        <div class="faq-accordion-body">
+          <div class="faq-accordion-body-inner">
+            <p class="faq-accordion-answer">${item.answer}</p>
           </div>
         </div>
-      `;
-    });
-  }
+      </div>
+    `;
+  });
   trackEl.innerHTML = trackHTML;
 
   const allItems = Array.from(trackEl.querySelectorAll('.faq-roller-item'));
-  let currentGlobalIndex = canonicalSetIndex * N; // Set 2 item 0 (Câu hỏi 1)
-  let currentCenterRealIndex = 0;
+  let currentIndex = 0;
+  let currentDisplayedIndex = -1;
+  let answerTransitionTimer = null;
+  let pendingIndex = null;
 
-  // Hàm cập nhật khung câu trả lời bên phải (dành cho Desktop)
-  function updateAnswerCard(index) {
+  // Hàm cập nhật khung câu trả lời bên phải: Animate TOÀN BỘ KHUNG (Khung cũ biến mất dần, Khung mới hiện lên mượt mà)
+  function updateAnswerCard(index, immediate = false) {
     const item = activeData.items[index];
     if (!item || !answerCardEl) return;
 
-    answerCardEl.classList.remove('faq-fade-in');
-    void answerCardEl.offsetWidth; // trigger reflow
-    answerCardEl.classList.add('faq-fade-in');
+    if (currentDisplayedIndex === index) return;
 
-    answerCardEl.innerHTML = `
-      <h3 class="faq-answer-title">${item.question}</h3>
-      <p class="faq-answer-content">${item.answer}</p>
-    `;
+    // Lần khởi tạo đầu tiên: Render ngay lập tức
+    if (immediate || currentDisplayedIndex === -1) {
+      if (answerTransitionTimer) clearTimeout(answerTransitionTimer);
+      currentDisplayedIndex = index;
+      pendingIndex = null;
+      answerCardEl.className = 'faq-roller-answer-card is-card-entering';
+      answerCardEl.innerHTML = `
+        <h3 class="faq-answer-title">${item.question}</h3>
+        <p class="faq-answer-content">${item.answer}</p>
+      `;
+      return;
+    }
+
+    const prevIndex = currentDisplayedIndex;
+    pendingIndex = index;
+
+    // Nếu KHUNG đang trong giai đoạn exit, chỉ cần lưu pendingIndex để đón câu hỏi mới nhất
+    if (answerCardEl.classList.contains('is-card-exiting-up') || answerCardEl.classList.contains('is-card-exiting-down')) {
+      return;
+    }
+
+    // Xác định chiều chuyển động của khung theo câu hỏi (chuyển tới: lướt lên, quay lại: lướt xuống)
+    const isNext = (index >= prevIndex);
+    const exitClass = isNext ? 'is-card-exiting-up' : 'is-card-exiting-down';
+    const enterStartClass = isNext ? 'is-card-entering-start-up' : 'is-card-entering-start-down';
+
+    // 1. Toàn bộ KHUNG câu hỏi ban đầu biến mất dần mượt mà
+    answerCardEl.classList.remove('is-card-entering');
+    answerCardEl.classList.add(exitClass);
+
+    if (answerTransitionTimer) clearTimeout(answerTransitionTimer);
+    answerTransitionTimer = setTimeout(() => {
+      const targetIdx = (pendingIndex !== null) ? pendingIndex : index;
+      pendingIndex = null;
+      currentDisplayedIndex = targetIdx;
+
+      const targetItem = activeData.items[targetIdx];
+      if (!targetItem) return;
+
+      // Cập nhật nội dung câu hỏi mới vào khung
+      answerCardEl.innerHTML = `
+        <h3 class="faq-answer-title">${targetItem.question}</h3>
+        <p class="faq-answer-content">${targetItem.answer}</p>
+      `;
+
+      // 2. Định vị KHUNG ở vị trí bắt đầu
+      answerCardEl.classList.remove(exitClass);
+      answerCardEl.classList.add(enterStartClass);
+
+      // Kích hoạt reflow
+      void answerCardEl.offsetWidth;
+
+      // 3. Toàn bộ KHUNG câu hỏi tiếp theo hiện lên mượt mà
+      answerCardEl.classList.remove(enterStartClass);
+      answerCardEl.classList.add('is-card-entering');
+    }, 180);
   }
 
   // Hàm cuộn item vào chính giữa con lăn (chỉ cuộn viewportEl trên Desktop)
@@ -1228,20 +1379,26 @@ function renderFAQ(faqData) {
 
   function scrollItemToCenter(item, smooth = true, callback = null) {
     if (window.innerWidth < 1024 || !item) return;
+    const idx = parseInt(item.getAttribute('data-index') || '0', 10);
+    const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
     const vRect = viewportEl.getBoundingClientRect();
     const iRect = item.getBoundingClientRect();
     const currentScroll = viewportEl.scrollTop;
     const offset = (iRect.top + iRect.height / 2) - (vRect.top + vRect.height / 2);
-    const target = currentScroll + offset;
+    
+    let target = currentScroll + offset;
+    if (idx === 0) {
+      target = 0;
+    } else if (idx === allItems.length - 1) {
+      target = maxScroll;
+    } else {
+      target = Math.max(0, Math.min(target, maxScroll));
+    }
 
     if (!smooth) {
-      viewportEl.style.scrollSnapType = 'none';
       viewportEl.scrollTop = target;
-      requestAnimationFrame(() => {
-        viewportEl.style.scrollSnapType = '';
-        updateRollerPhysics();
-        if (callback) callback();
-      });
+      updateRollerPhysics();
+      if (callback) callback();
       return;
     }
 
@@ -1257,7 +1414,7 @@ function renderFAQ(faqData) {
       isProgrammaticScrolling = false;
       updateRollerPhysics();
       if (callback) callback();
-    }, 380);
+    }, 450);
   }
 
   // Hàm tính toán hiệu ứng mờ dần theo khoảng cách đến tâm (chỉ chạy trên Desktop)
@@ -1265,25 +1422,41 @@ function renderFAQ(faqData) {
     if (window.innerWidth < 1024) return;
     const vRect = viewportEl.getBoundingClientRect();
     const centerY = vRect.top + vRect.height / 2;
+    const currentScroll = viewportEl.scrollTop;
+    const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
 
-    let closestRealIdx = 0;
-    let closestGlobalIdx = currentGlobalIndex;
+    let closestIdx = 0;
     let minDistance = Infinity;
-    const maxDist = 210;
+    const maxDist = 115;
 
-    allItems.forEach((item) => {
+    // Tìm item gần tâm con lăn nhất
+    allItems.forEach((item, idx) => {
       const iRect = item.getBoundingClientRect();
       const itemCenterY = iRect.top + iRect.height / 2;
       const dist = Math.abs(centerY - itemCenterY);
 
       if (dist < minDistance) {
         minDistance = dist;
-        closestRealIdx = parseInt(item.dataset.index, 10);
-        closestGlobalIdx = parseInt(item.dataset.globalIndex, 10);
+        closestIdx = idx;
       }
+    });
 
-      if (dist < 32) {
-        // Ngay tâm giữa (Center) - RÕ NÉT NHẤT
+    // Khi ở sát đỉnh (scrollTop <= 15px) -> chắc chắn chọn câu 1 (idx = 0)
+    // Giúp giữ nguyên vị trí 4 nút như Ảnh 2 nhưng màu xanh nhảy lên câu 1 như Ảnh 1
+    if (currentScroll <= 15) {
+      closestIdx = 0;
+    } else if (currentScroll >= maxScroll - 20) {
+      closestIdx = allItems.length - 1;
+    }
+
+    // Cập nhật trạng thái hiển thị cho từng item dựa trên closestIdx
+    allItems.forEach((item, idx) => {
+      const iRect = item.getBoundingClientRect();
+      const itemCenterY = iRect.top + iRect.height / 2;
+      const dist = Math.abs(centerY - itemCenterY);
+
+      if (idx === closestIdx) {
+        // Câu đang được chọn: MÀU XANH NỔI BẬT
         item.style.opacity = '1';
         item.style.transform = 'scale(1.03)';
         item.classList.add('is-center');
@@ -1291,43 +1464,22 @@ function renderFAQ(faqData) {
       } else {
         item.classList.remove('is-center');
         if (dist > maxDist) {
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.86)';
-          item.style.pointerEvents = 'none';
+          item.style.opacity = '0.25';
+          item.style.transform = 'scale(0.88)';
         } else {
-          const ratio = (dist - 32) / (maxDist - 32);
-          const opacity = Math.max(0, 0.82 - (ratio * 0.56));
-          const scale = 0.98 - (ratio * 0.10);
+          const ratio = Math.min(1, Math.max(0, (dist - 20) / (maxDist - 20)));
+          const opacity = Math.max(0.25, 0.85 - (ratio * 0.55));
+          const scale = 0.98 - (ratio * 0.08);
           item.style.opacity = opacity.toFixed(2);
           item.style.transform = `scale(${scale.toFixed(3)})`;
-          item.style.pointerEvents = 'auto';
         }
       }
     });
 
     // Cập nhật câu trả lời nếu câu ở giữa thay đổi
-    if (closestRealIdx !== currentCenterRealIndex && minDistance < 42) {
-      currentCenterRealIndex = closestRealIdx;
-      currentGlobalIndex = closestGlobalIdx;
-      updateAnswerCard(closestRealIdx);
-    }
-  }
-
-  // Giữ vị trí cuộn thủ công luôn nằm quanh Set 2 trung tâm, tránh chạm mép track
-  function handleScrollLoop() {
-    if (isProgrammaticScrolling || window.innerWidth < 1024) return;
-    if (allItems.length <= N) return;
-    const singleSetHeight = allItems[N].offsetTop - allItems[0].offsetTop;
-    if (singleSetHeight <= 0) return;
-
-    if (viewportEl.scrollTop >= 3.5 * singleSetHeight) {
-      viewportEl.style.scrollSnapType = 'none';
-      viewportEl.scrollTop -= singleSetHeight;
-      viewportEl.style.scrollSnapType = '';
-    } else if (viewportEl.scrollTop < 1.5 * singleSetHeight) {
-      viewportEl.style.scrollSnapType = 'none';
-      viewportEl.scrollTop += singleSetHeight;
-      viewportEl.style.scrollSnapType = '';
+    if (closestIdx !== currentIndex) {
+      currentIndex = closestIdx;
+      updateAnswerCard(closestIdx);
     }
   }
 
@@ -1337,7 +1489,6 @@ function renderFAQ(faqData) {
     if (window.innerWidth < 1024) return;
     if (!isTicking) {
       requestAnimationFrame(() => {
-        handleScrollLoop();
         updateRollerPhysics();
         isTicking = false;
       });
@@ -1345,82 +1496,102 @@ function renderFAQ(faqData) {
     }
   }, { passive: true });
 
+  // Cuộn con lăn chuột theo từng nấc câu hỏi (1 -> 2 -> 3 và 3 -> 2 -> 1 mượt mà, không bị nhảy vọt)
+  let wheelDebounceTimer = null;
+  viewportEl.addEventListener('wheel', (e) => {
+    if (window.innerWidth < 1024) return;
+    e.preventDefault();
+    pauseFaqTimer();
+
+    if (wheelDebounceTimer) return;
+    wheelDebounceTimer = setTimeout(() => {
+      wheelDebounceTimer = null;
+    }, 280);
+
+    if (e.deltaY > 0) {
+      // Cuộn xuống: chuyển sang câu tiếp theo
+      if (currentIndex < allItems.length - 1) {
+        const nextIdx = currentIndex + 1;
+        currentIndex = nextIdx;
+        updateAnswerCard(nextIdx);
+        scrollItemToCenter(allItems[nextIdx], true);
+      }
+    } else if (e.deltaY < 0) {
+      // Cuộn lên: chuyển về câu trước đó
+      if (currentIndex > 0) {
+        const prevIdx = currentIndex - 1;
+        currentIndex = prevIdx;
+        updateAnswerCard(prevIdx);
+        scrollItemToCenter(allItems[prevIdx], true);
+      }
+    }
+  }, { passive: false });
+
+  viewportEl.addEventListener('touchstart', () => {
+    pauseFaqTimer();
+  }, { passive: true });
+
+  viewportEl.addEventListener('mouseenter', () => {
+    pauseFaqTimer();
+  });
+
+  viewportEl.addEventListener('mouseleave', () => {
+    if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
+      startFaqTimer();
+    }
+  });
+
   // Khi click vào bất kỳ câu hỏi nào
-  allItems.forEach((item) => {
+  allItems.forEach((item, idx) => {
     item.addEventListener('click', () => {
       const isMobile = window.innerWidth < 1024;
       if (isMobile) {
-        // Giao diện nhỏ: Accordion Mẫu 1 (mở / đóng mượt mà)
+        // Giao diện nhỏ: Accordion (mở / đóng mượt mà)
         const wasOpen = item.classList.contains('is-open');
-        allItems.forEach(i => {
-          i.classList.remove('is-open');
-        });
-        if (!wasOpen) {
-          item.classList.add('is-open');
-        }
+        allItems.forEach(i => i.classList.remove('is-open'));
+        if (!wasOpen) item.classList.add('is-open');
       } else {
-        // Desktop: cuộn vào giữa con lăn và cập nhật
-        const gIdx = parseInt(item.dataset.globalIndex, 10);
-        const realIdx = parseInt(item.dataset.index, 10);
-        currentGlobalIndex = gIdx;
-        currentCenterRealIndex = realIdx;
-        updateAnswerCard(realIdx);
-
-        scrollItemToCenter(item, true, () => {
-          // Chuẩn hóa vị trí về lại Set 2 trung tâm (không giật hình)
-          if (currentGlobalIndex < 2 * N || currentGlobalIndex >= 3 * N) {
-            const normalizedGlobal = 2 * N + realIdx;
-            currentGlobalIndex = normalizedGlobal;
-            scrollItemToCenter(allItems[normalizedGlobal], false);
-          }
-        });
-        restartFaqTimer();
+        // Desktop: cuộn câu được chọn vào giữa và cập nhật
+        currentIndex = idx;
+        updateAnswerCard(idx);
+        scrollItemToCenter(item, true);
+        // Tạm dừng timer khi người dùng chủ động click chọn câu hỏi
+        pauseFaqTimer();
       }
     });
   });
 
   // =========================================================================
-  // TỰ ĐỘNG CHUYỂN ĐỔI CÂU HỎI MỖI 2.5 GIÂY (CHỈ ÁP DỤNG TRÊN DESKTOP >= 1024PX)
-  // VÒNG LẶP VÔ TẬN: HẾT CÂU 10 SẼ TỰ ĐỘNG CUỘN TIẾP XUỐNG CÂU 1 MƯỢT MÀ
-  // IPAD VÀ MOBILE: KHÔNG CHẠY ANIMATION NÀY, GIỮ NGUYÊN ACCORDION THỦ CÔNG
+  // AUTOMATION: TỰ ĐỘNG CHUYỂN CÂU HỎI LƯỚT TUẦN TỰ ĐẾN HẾT CÂU CUỐI CÙNG
+  // KHI ĐẾN CÂU CUỐI CÙNG SẼ DỪNG LẠI (KHÔNG LẶP VÔ TẬN)
+  // NGƯỜI DÙNG CÓ THỂ CUỘN LƯỚT TỰ DO TỪ ĐẦU ĐẾN CUỐI BẤT KỲ LÚC NÀO
   // =========================================================================
   let faqAutoTimer = null;
 
   function nextFAQ() {
     if (window.innerWidth < 1024) return;
-    const nextGlobal = currentGlobalIndex + 1;
-    if (nextGlobal >= allItems.length) {
-      currentGlobalIndex = canonicalSetIndex * N;
-      scrollItemToCenter(allItems[currentGlobalIndex], false);
-      return;
-    }
 
-    const nextItem = allItems[nextGlobal];
-    const realIdx = parseInt(nextItem.dataset.index, 10);
-    currentGlobalIndex = nextGlobal;
-    currentCenterRealIndex = realIdx;
-    updateAnswerCard(realIdx);
-
-    scrollItemToCenter(nextItem, true, () => {
-      // Khi đã cuộn vào Set 3 (index >= 3*N), chuẩn hóa êm đềm về Set 2
-      if (currentGlobalIndex >= 3 * N) {
-        const normalizedGlobal = currentGlobalIndex - N;
-        currentGlobalIndex = normalizedGlobal;
-        scrollItemToCenter(allItems[normalizedGlobal], false);
-      }
-    });
-  }
-
-  function startFaqTimer() {
-    // iPad và Mobile: không cần animation tự động chuyển đổi câu hỏi
-    if (window.innerWidth < 1024) {
+    // Khi đã lướt đến câu cuối cùng -> dừng lại
+    if (currentIndex >= allItems.length - 1) {
       pauseFaqTimer();
       return;
     }
+
+    currentIndex++;
+    const nextItem = allItems[currentIndex];
+    if (nextItem) {
+      updateAnswerCard(currentIndex);
+      scrollItemToCenter(nextItem, true);
+    }
+  }
+
+  function startFaqTimer() {
+    if (window.innerWidth < 1024) return;
+    if (currentIndex >= allItems.length - 1) return; // Nếu đã ở câu cuối thì không chạy nữa
     if (faqAutoTimer) clearInterval(faqAutoTimer);
     faqAutoTimer = setInterval(() => {
       nextFAQ();
-    }, 2500);
+    }, 3800);
   }
 
   function pauseFaqTimer() {
@@ -1430,12 +1601,6 @@ function renderFAQ(faqData) {
     }
   }
 
-  function restartFaqTimer() {
-    if (window.innerWidth < 1024) return;
-    pauseFaqTimer();
-    startFaqTimer();
-  }
-
   // Tạm dừng khi rê chuột vào để người dùng đọc câu trả lời (Desktop)
   const faqSection = document.getElementById('faq');
   if (faqSection) {
@@ -1443,16 +1608,18 @@ function renderFAQ(faqData) {
       if (window.innerWidth >= 1024) pauseFaqTimer();
     });
     faqSection.addEventListener('mouseleave', () => {
-      if (window.innerWidth >= 1024) startFaqTimer();
+      if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
+        startFaqTimer();
+      }
     });
   }
 
   // Xử lý resize màn hình giữa Desktop và Giao diện nhỏ
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
-      scrollItemToCenter(allItems[currentGlobalIndex], false);
+      scrollItemToCenter(allItems[currentIndex], false);
       updateRollerPhysics();
-      startFaqTimer();
+      if (currentIndex < allItems.length - 1) startFaqTimer();
     } else {
       pauseFaqTimer();
       allItems.forEach(item => {
@@ -1463,18 +1630,56 @@ function renderFAQ(faqData) {
     }
   });
 
-  // Khởi tạo câu trả lời và vị trí ban đầu (căn giữa Câu hỏi 1 ở Set 2)
-  updateAnswerCard(0);
+  // Khởi tạo câu trả lời và vị trí ban đầu (câu hỏi 1 ở đầu danh sách)
+  updateAnswerCard(0, true);
   if (window.innerWidth >= 1024) {
+    viewportEl.scrollTop = 0;
+    currentIndex = 0;
+    updateRollerPhysics();
     setTimeout(() => {
-      const startItem = allItems[currentGlobalIndex];
-      if (startItem) {
-        scrollItemToCenter(startItem, false);
-        updateRollerPhysics();
-      }
+      viewportEl.scrollTop = 0;
+      updateRollerPhysics();
     }, 60);
-    // Kích hoạt tự động chuyển đổi mỗi 3 giây riêng cho Desktop
     startFaqTimer();
   }
 }
 
+/**
+ * Xử lý gửi form đăng ký tư vấn dự án
+ */
+window.handleConsultationSubmit = function(formEl) {
+  if (!formEl) return;
+  const submitBtn = formEl.querySelector('.reg-submit-button');
+  if (submitBtn) {
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Đang gửi thông tin...</span>';
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>✓ Gửi thành công!</span>';
+      submitBtn.style.background = '#10B981';
+
+      // Toast thông báo chuyên nghiệp
+      let toast = document.createElement('div');
+      toast.className = 'gotek-consultation-toast';
+      toast.innerHTML = `
+        <div style="position: fixed; bottom: 30px; right: 30px; z-index: 99999; background: #0A1F68; color: #FFFFFF; padding: 18px 24px; border-radius: 12px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); display: flex; align-items: center; gap: 14px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.92rem; border-left: 5px solid #0055FF; animation: slideInUp 0.4s ease;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22DDE0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <div>
+            <div style="font-weight: 700; margin-bottom: 2px;">Đăng ký tư vấn thành công!</div>
+            <div style="font-size: 0.82rem; color: #CBD5E1;">Chuyên gia Gotek sẽ liên hệ trực tiếp trong vòng 24 giờ.</div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.background = '';
+        formEl.reset();
+      }, 4000);
+    }, 800);
+  }
+};

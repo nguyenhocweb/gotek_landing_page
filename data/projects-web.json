@@ -1,23 +1,23 @@
 {
-  "categoryTitle": "Website Thương Mại & Cổng Dịch Vụ",
+  "categoryTitle": "Website thương mại & cổng dịch vụ",
   "items": [
     {
       "id": "yolife-vn-ecommerce",
-      "name": "Chăm Sóc Sức Khỏe",
+      "name": "Chăm sóc sức khỏe",
       "image": "assets/images/projects/long_yolife.jpg",
       "desc": "Website thương mại điện tử D2C và Landing Page tối ưu CRO ngành chăm sóc sức khỏe.",
       "link": "https://yolife.vn/"
     },
     {
       "id": "seoulcenter-landing",
-      "name": "Thẩm Mỹ Quốc Tế",
+      "name": "Thẩm mỹ quốc tế",
       "image": "assets/images/projects/long_seoulcenter.jpg",
       "desc": "Trang đích chiến dịch Mua 1 Được 3 của Seoul Center chuẩn y khoa.",
       "link": "#contact"
     },
     {
       "id": "futa-residence",
-      "name": "Bất Động Sản Nghỉ Dưỡng",
+      "name": "Bất động sản nghỉ dưỡng",
       "image": "assets/images/projects/long_futaresidence.jpg",
       "desc": "Landing page dự án bất động sản nghỉ dưỡng hạng sang bên biển Mỹ Khê của FUTA Land.",
       "link": "#contact"

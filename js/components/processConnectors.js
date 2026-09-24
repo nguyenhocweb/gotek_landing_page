@@ -1,14 +1,12 @@
 /**
- * PROCESS CONNECTORS COMPONENT WITH PROGRESSIVE STEP-BY-STEP REVEAL
- * Tự động tính toán tọa độ và vẽ các đường nét đứt mượt mà uốn lượn (Bezier S-curve)
+ * PROCESS CONNECTORS COMPONENT WITH DUAL-DIRECTION SCROLL-DRIVEN REVEAL & HIDE
+ * Tự động tính toán tọa độ và vẽ các đường nét đứt uốn lượn (Bezier S-curve)
  * kết nối tuần tự từ Bước 1 đến Bước 6 trong quy trình Bậc Thang Sole (Staircase Flow).
  *
- * Hiệu ứng Animation:
- * 1. Khung 1 từ từ hiện ra.
- * 2. Đường cong nét đứt vẽ dần từng đoạn (- - -) từ mép Thẻ 1 uốn lượn cắm vào đỉnh Thẻ 2.
- * 3. Khung 2 từ từ hiện ra.
- * 4. Đường cong nét đứt vẽ dần sang Thẻ 3...
- * ... Tuần tự cho đến khi hiện hết toàn bộ 6 bước!
+ * Tính năng tương tác:
+ * 1. Cuộn tới đâu hiện animation tới đó: Khi từng thẻ lọt vào tầm nhìn, đường nét đứt vẽ tới và thẻ bung mở.
+ * 2. Cuộn ngược về thì thu ẩn dần: Khi cuộn ngược lên, các bước phía dưới thu nhỏ và mờ dần biến mất, đường nối thu lại.
+ * 3. Hỗ trợ responsive tuyệt đối cho Laptop / Desktop, Tablet và Mobile.
  */
 
 export function initProcessConnectors() {
@@ -17,7 +15,11 @@ export function initProcessConnectors() {
   const defs = document.getElementById('staircaseDefs');
   if (!wrap || !group || !defs) return;
 
-  let hasAnimated = false;
+  const cardIds = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6'];
+  const cards = cardIds.map(id => document.getElementById(id)).filter(Boolean);
+  if (cards.length !== 6) return;
+
+  const cardStates = [false, false, false, false, false, false];
   let connectors = [];
 
   function getCardRect(id, wrapRect) {
@@ -68,7 +70,7 @@ export function initProcessConnectors() {
     const maskPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     maskPath.setAttribute('d', d);
     maskPath.setAttribute('stroke', '#ffffff');
-    maskPath.setAttribute('stroke-width', '18');
+    maskPath.setAttribute('stroke-width', '20');
     maskPath.setAttribute('fill', 'none');
     maskPath.setAttribute('stroke-linecap', 'round');
     mask.appendChild(maskPath);
@@ -82,33 +84,48 @@ export function initProcessConnectors() {
     const len = Math.ceil(maskPath.getTotalLength() || 450);
     maskPath.style.strokeDasharray = `${len} ${len}`;
 
-    return {
+    const item = {
       maskPath,
       path,
       length: len,
-      reveal(duration = 750) {
+      isShown: false,
+      reveal(duration = 380) {
+        this.isShown = true;
         maskPath.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(0.35, 0, 0.25, 1)`;
         maskPath.style.strokeDashoffset = '0';
-        // Thêm mũi tên sau khi vẽ gần xong
         setTimeout(() => {
-          path.setAttribute('marker-end', 'url(#arrowhead)');
-        }, duration * 0.85);
+          if (this.isShown) {
+            path.setAttribute('marker-end', 'url(#arrowhead)');
+          }
+        }, duration * 0.75);
+      },
+      hide(duration = 260) {
+        this.isShown = false;
+        path.removeAttribute('marker-end');
+        maskPath.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+        maskPath.style.strokeDashoffset = `${len}`;
       },
       reset() {
+        this.isShown = false;
         maskPath.style.transition = 'none';
         maskPath.style.strokeDashoffset = `${len}`;
         path.removeAttribute('marker-end');
       },
       instantShow() {
+        this.isShown = true;
         maskPath.style.transition = 'none';
         maskPath.style.strokeDashoffset = '0';
-        path.removeAttribute('mask');
         path.setAttribute('marker-end', 'url(#arrowhead)');
       }
     };
+
+    return item;
   }
 
   function renderConnectors() {
+    // Tạm thời vô hiệu hóa transform khi đo để lấy tọa độ chuẩn xác 100%
+    wrap.classList.add('is-measuring');
+
     const wrapRect = wrap.getBoundingClientRect();
     const svg = document.getElementById('staircaseSvg');
     if (svg && wrapRect.width && wrapRect.height) {
@@ -125,142 +142,135 @@ export function initProcessConnectors() {
     const r5 = getCardRect('card5', wrapRect);
     const r6 = getCardRect('card6', wrapRect);
 
+    wrap.classList.remove('is-measuring');
+
     if (!r1 || !r2 || !r3 || !r4 || !r5 || !r6) return;
 
     const isPhone = window.innerWidth <= 640;
 
     if (isPhone) {
-      // Trên Điện Thoại (<= 640px): Nối từ đáy thẻ trên xuống đỉnh thẻ dưới (lùi vào 30% từ 2 mép) tuần tự từ Bước 1 đến Bước 6
+      // Trên Điện Thoại (<= 640px): Nối từ đáy thẻ trên xuống đỉnh thẻ dưới tuần tự
       const pLeft = 0.30;
       const pRight = 0.70;
 
       connectors = [
-        // 1. Thẻ 1 (đáy 30% trái) -> Thẻ 2 (đỉnh 70% phải)
         createCurveWithMask(r1.left + r1.width * pLeft, r1.bottom, r2.left + r2.width * pRight, r2.top - 4, 0, group, defs, true),
-        // 2. Thẻ 2 (đáy 70% phải) -> Thẻ 3 (đỉnh 30% trái)
         createCurveWithMask(r2.left + r2.width * pRight, r2.bottom, r3.left + r3.width * pLeft, r3.top - 4, 1, group, defs, true),
-        // 3. Thẻ 3 (đáy 30% trái) -> Thẻ 4 (đỉnh 70% phải)
         createCurveWithMask(r3.left + r3.width * pLeft, r3.bottom, r4.left + r4.width * pRight, r4.top - 4, 2, group, defs, true),
-        // 4. Thẻ 4 (đáy 70% phải) -> Thẻ 5 (đỉnh 30% trái)
         createCurveWithMask(r4.left + r4.width * pRight, r4.bottom, r5.left + r5.width * pLeft, r5.top - 4, 3, group, defs, true),
-        // 5. Thẻ 5 (đáy 30% trái) -> Thẻ 6 (đỉnh 70% phải)
         createCurveWithMask(r5.left + r5.width * pLeft, r5.bottom, r6.left + r6.width * pRight, r6.top - 4, 4, group, defs, true)
       ];
-
-      if (hasAnimated) {
-        connectors.forEach(c => c.instantShow());
-      } else {
-        connectors.forEach(c => c.reset());
-      }
     } else {
-      // Trên iPad (641px - 1024px) & Desktop (> 1024px): Bậc thang 2 cột sole (1 bên trái, 2 bên phải dưới...)
+      // Trên iPad & Desktop: Bậc thang 2 cột sole (1 bên trái, 2 bên phải dưới...)
       connectors = [
-        createCurveWithMask(r1.right, r1.top + r1.height * 0.38, r2.centerX, r2.top - 2, 0, group, defs, false),
-        createCurveWithMask(r2.left, Math.max(r2.top + r2.height * 0.42, r1.bottom + 12), r3.centerX, r3.top - 2, 1, group, defs, false),
-        createCurveWithMask(r3.right, r3.top + r3.height * 0.38, r4.centerX, r4.top - 2, 2, group, defs, false),
-        createCurveWithMask(r4.left, Math.max(r4.top + r4.height * 0.42, r3.bottom + 12), r5.centerX, r5.top - 2, 3, group, defs, false),
-        createCurveWithMask(r5.right, r5.top + r5.height * 0.38, r6.centerX, r6.top - 2, 4, group, defs, false)
+        createCurveWithMask(r1.right, r1.top + r1.height * 0.38, r2.centerX, r2.top - 3, 0, group, defs, false),
+        createCurveWithMask(r2.left, Math.max(r2.top + r2.height * 0.42, r1.bottom + 12), r3.centerX, r3.top - 3, 1, group, defs, false),
+        createCurveWithMask(r3.right, r3.top + r3.height * 0.38, r4.centerX, r4.top - 3, 2, group, defs, false),
+        createCurveWithMask(r4.left, Math.max(r4.top + r4.height * 0.42, r3.bottom + 12), r5.centerX, r5.top - 3, 3, group, defs, false),
+        createCurveWithMask(r5.right, r5.top + r5.height * 0.38, r6.centerX, r6.top - 3, 4, group, defs, false)
       ];
+    }
 
-      if (hasAnimated) {
-        connectors.forEach(c => c.instantShow());
+    // Khôi phục trạng thái hiển thị của từng connector tương ứng với trạng thái thẻ
+    connectors.forEach((conn, cIdx) => {
+      if (cardStates[cIdx + 1]) {
+        conn.instantShow();
       } else {
-        connectors.forEach(c => c.reset());
+        conn.reset();
+      }
+    });
+  }
+
+  // Bật chế độ hỗ trợ animation qua JS
+  wrap.classList.add('has-js-anim');
+
+  // Khởi tạo tính toán ban đầu
+  renderConnectors();
+  setTimeout(renderConnectors, 120);
+  setTimeout(renderConnectors, 450);
+
+  /**
+   * Kích hoạt animation khi cuộn tới Bước idx
+   */
+  function revealStep(idx) {
+    if (cardStates[idx]) return;
+
+    // Đảm bảo tất cả các bước trước đó đã được hiển thị
+    for (let i = 0; i < idx; i++) {
+      if (!cardStates[i]) {
+        cardStates[i] = true;
+        cards[i]?.classList.add('is-revealed');
+        if (i > 0 && connectors[i - 1]) {
+          connectors[i - 1].instantShow();
+        }
+      }
+    }
+
+    cardStates[idx] = true;
+    const card = cards[idx];
+    if (!card) return;
+
+    if (idx === 0) {
+      card.classList.add('is-revealed');
+    } else {
+      const connIdx = idx - 1;
+      if (connectors[connIdx]) {
+        connectors[connIdx].reveal(380);
+      }
+      setTimeout(() => {
+        if (cardStates[idx]) {
+          card.classList.add('is-revealed');
+        }
+      }, 150);
+    }
+  }
+
+  /**
+   * Thu ẩn dần khi người dùng cuộn ngược về lên trên (Bước idx rơi ra khỏi đáy màn hình)
+   */
+  function hideStep(idx) {
+    if (!cardStates[idx]) return;
+
+    // Khi bước idx rơi xuống dưới, thu ẩn bước này và toàn bộ các bước sau nó
+    for (let j = idx; j < cards.length; j++) {
+      if (cardStates[j]) {
+        cardStates[j] = false;
+        cards[j]?.classList.remove('is-revealed');
+        if (j > 0 && connectors[j - 1]) {
+          connectors[j - 1].hide(240);
+        }
       }
     }
   }
 
-  function playStepByStepAnimation() {
-    if (hasAnimated) return;
-    hasAnimated = true;
-
-    wrap.classList.add('has-js-anim');
-
-    const cards = [
-      document.getElementById('card1'),
-      document.getElementById('card2'),
-      document.getElementById('card3'),
-      document.getElementById('card4'),
-      document.getElementById('card5'),
-      document.getElementById('card6')
-    ];
-
-    // BƯỚC 1: Khung 1 xuất hiện nhanh, dứt khoát
-    if (cards[0]) cards[0].classList.add('is-revealed');
-
-    // BƯỚC 2: Đường cong 1 (Thẻ 1 -> Thẻ 2) vẽ nhanh trong 420ms
-    setTimeout(() => {
-      if (connectors[0]) connectors[0].reveal(420);
-    }, 180);
-
-    // BƯỚC 3: Khung 2 xuất hiện
-    setTimeout(() => {
-      if (cards[1]) cards[1].classList.add('is-revealed');
-    }, 600);
-
-    // BƯỚC 4: Đường cong 2 (Thẻ 2 -> Thẻ 3) vẽ nhanh trong 420ms
-    setTimeout(() => {
-      if (connectors[1]) connectors[1].reveal(420);
-    }, 780);
-
-    // BƯỚC 5: Khung 3 xuất hiện
-    setTimeout(() => {
-      if (cards[2]) cards[2].classList.add('is-revealed');
-    }, 1200);
-
-    // BƯỚC 6: Đường cong 3 (Thẻ 3 -> Thẻ 4) vẽ nhanh trong 420ms
-    setTimeout(() => {
-      if (connectors[2]) connectors[2].reveal(420);
-    }, 1380);
-
-    // BƯỚC 7: Khung 4 xuất hiện
-    setTimeout(() => {
-      if (cards[3]) cards[3].classList.add('is-revealed');
-    }, 1800);
-
-    // BƯỚC 8: Đường cong 4 (Thẻ 4 -> Thẻ 5) vẽ nhanh trong 420ms
-    setTimeout(() => {
-      if (connectors[3]) connectors[3].reveal(420);
-    }, 1980);
-
-    // BƯỚC 9: Khung 5 xuất hiện
-    setTimeout(() => {
-      if (cards[4]) cards[4].classList.add('is-revealed');
-    }, 2400);
-
-    // BƯỚC 10: Đường cong 5 (Thẻ 5 -> Thẻ 6) vẽ nhanh trong 420ms
-    setTimeout(() => {
-      if (connectors[4]) connectors[4].reveal(420);
-    }, 2580);
-
-    // BƯỚC 11: Khung 6 (Cột mốc hoàn thành) xuất hiện nổi bật
-    setTimeout(() => {
-      if (cards[5]) cards[5].classList.add('is-revealed');
-    }, 3000);
-  }
-
-  // Khởi tạo tính toán ban đầu
-  renderConnectors();
-  setTimeout(renderConnectors, 100);
-  setTimeout(renderConnectors, 400);
-
-  // Kích hoạt IntersectionObserver khi người dùng cuộn đến khu vực quy trình
+  // Thiết lập IntersectionObserver độc lập cho từng thẻ
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
+    const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const card = entry.target;
+        const idx = cards.indexOf(card);
+        if (idx === -1) return;
+
         if (entry.isIntersecting) {
-          playStepByStepAnimation();
-          observer.unobserve(entry.target);
+          // Cuộn tới đâu hiện animation tới đó
+          revealStep(idx);
+        } else {
+          // Khi cuộn ngược về: nếu thẻ trôi xuống dưới đáy màn hình (top > 0), thu ẩn dần
+          if (entry.boundingClientRect.top > 0) {
+            hideStep(idx);
+          }
         }
       });
     }, {
-      threshold: 0.05,
-      rootMargin: '50px 0px 50px 0px'
+      threshold: 0.18,
+      rootMargin: '0px 0px -40px 0px'
     });
 
-    observer.observe(wrap);
+    cards.forEach(c => cardObserver.observe(c));
   } else {
-    playStepByStepAnimation();
+    // Dự phòng khi trình duyệt không hỗ trợ Observer
+    cards.forEach(c => c.classList.add('is-revealed'));
+    connectors.forEach(c => c.instantShow());
   }
 
   // Xử lý khi thay đổi kích thước màn hình

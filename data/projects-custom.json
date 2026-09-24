@@ -1,19 +1,4 @@
 {
-  "categoryTitle": "Hệ Thống Web & Nền Tảng Riêng",
-  "items": [
-    {
-      "id": "wechoice-awards-2025",
-      "name": "Cổng Bình Chọn Quốc Gia",
-      "image": "assets/images/projects/long_wechoice.jpg",
-      "desc": "Cổng thông tin và hệ thống bình chọn giải thưởng quốc gia WeChoice Awards.",
-      "link": "#contact"
-    },
-    {
-      "id": "gotek-tech-portal",
-      "name": "Hệ Sinh Thái Gotek",
-      "image": "assets/images/projects/long_gotek.jpg",
-      "desc": "Cổng thông tin nền tảng giải pháp số và dịch vụ phần mềm doanh nghiệp thế hệ mới.",
-      "link": "https://gotek.asia/"
-    }
-  ]
+  "categoryTitle": "Hệ thống web & nền tảng riêng",
+  "items": []
 }
