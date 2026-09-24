@@ -46,6 +46,9 @@ function startApp() {
   // 5.1 Khởi tạo các đường kẻ nối circuit diagram cho Giải Pháp Chuyên Sâu
   try { initCircuitConnectors(); } catch (e) { console.error('Error initCircuitConnectors:', e); }
 
+  // 5.2 Khởi tạo click mở rộng mô tả cho các thẻ giải pháp trên Mobile
+  try { initWhyFeatureAccordion(); } catch (e) { console.error('Error initWhyFeatureAccordion:', e); }
+
   // 6. Khởi tạo animation từ từ hiện ra cho tiêu đề & đoạn văn bản Giới Thiệu
   try { initAboutScrollAnimation(); } catch (e) { console.error('Error initAboutScrollAnimation:', e); }
 
@@ -72,6 +75,106 @@ function startApp() {
 
   // 14. Khởi tạo và nạp dữ liệu động từ thư mục data/
   try { initApp(); } catch (e) { console.error('Error initApp:', e); }
+
+  // 15. Hiệu ứng lướt ngang màu xanh ẩn/hiện mô tả các thẻ bước trên mobile
+  try { initProcessCardWiper(); } catch (e) { console.error('Error initProcessCardWiper:', e); }
+}
+
+function initWhyFeatureAccordion() {
+  const items = document.querySelectorAll('.why-feature-item');
+  if (!items.length) return;
+
+  items.forEach(item => {
+    if (item._hasAccordionListener) return;
+    item._hasAccordionListener = true;
+
+    item.addEventListener('click', (e) => {
+      if (window.innerWidth > 1024) return;
+      const wasOpen = item.classList.contains('is-open');
+      items.forEach(i => i.classList.remove('is-open'));
+      if (!wasOpen) {
+        item.classList.add('is-open');
+      }
+    });
+  });
+}
+
+function initProcessCardWiper() {
+  const cards = document.querySelectorAll('.step-card');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    let wiper = card.querySelector('.step-card-wiper');
+    if (!wiper) {
+      wiper = document.createElement('div');
+      wiper.className = 'step-card-wiper';
+      card.appendChild(wiper);
+    }
+
+    let arrow = card.querySelector('.step-card-arrow');
+    if (!arrow) {
+      arrow = document.createElement('div');
+      arrow.className = 'step-card-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+      card.appendChild(arrow);
+    }
+
+    if (card._hasWiperListener) return;
+    card._hasWiperListener = true;
+
+    card.addEventListener('click', () => {
+      if (window.innerWidth > 768) return;
+      if (card._isWiping) return;
+
+      const isCurrentlyShowingDesc = card.classList.contains('is-desc-active');
+
+      if (!isCurrentlyShowingDesc) {
+        cards.forEach((otherCard) => {
+          if (otherCard !== card && otherCard.classList.contains('is-desc-active')) {
+            const otherWiper = otherCard.querySelector('.step-card-wiper');
+            if (otherWiper && !otherCard._isWiping) {
+              otherCard._isWiping = true;
+              otherWiper.className = 'step-card-wiper is-wiping-reverse';
+              setTimeout(() => {
+                otherCard.classList.remove('is-desc-active');
+              }, 220);
+              setTimeout(() => {
+                otherWiper.className = 'step-card-wiper';
+                otherCard._isWiping = false;
+              }, 460);
+            } else {
+              otherCard.classList.remove('is-desc-active');
+            }
+          }
+        });
+
+        card._isWiping = true;
+        wiper.className = 'step-card-wiper is-wiping-forward';
+
+        setTimeout(() => {
+          card.classList.add('is-desc-active');
+        }, 220);
+
+        setTimeout(() => {
+          wiper.className = 'step-card-wiper';
+          card._isWiping = false;
+        }, 460);
+      } else {
+        card._isWiping = true;
+        wiper.className = 'step-card-wiper is-wiping-reverse';
+
+        setTimeout(() => {
+          card.classList.remove('is-desc-active');
+        }, 220);
+
+        setTimeout(() => {
+          wiper.className = 'step-card-wiper';
+          card._isWiping = false;
+        }, 460);
+      }
+    });
+  });
 }
 
 if (document.readyState === 'loading') {

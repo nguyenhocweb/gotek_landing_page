@@ -172,8 +172,8 @@ export function initProjectsScrollAnimation() {
           }
         });
       }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '120px 0px 0px 0px'
       });
       headerObserver.observe(header);
     }
@@ -188,8 +188,8 @@ export function initProjectsScrollAnimation() {
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '120px 0px 0px 0px'
       });
       contentObserver.observe(content);
     }

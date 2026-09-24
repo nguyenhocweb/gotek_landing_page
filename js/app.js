@@ -206,8 +206,8 @@ function renderProjectSections(groups) {
     if (marqueeRafId) cancelAnimationFrame(marqueeRafId);
 
     let lastTime = performance.now();
-    // Vận tốc trôi mượt mà (~45px mỗi giây)
-    const speed = 0.045;
+    // Vận tốc trôi mượt mà, sinh động (~85px mỗi giây)
+    const speed = 0.085;
 
     function loop(currentTime) {
       const delta = currentTime - lastTime;
@@ -304,12 +304,20 @@ function renderProjectSections(groups) {
         return;
       }
 
+      // Cập nhật tốc độ đồng bộ ngay khi rê chuột vào từng thẻ
+      trackWrapper.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          updateCardScrollDuration(card);
+        });
+      });
+
       // Xóa active cũ
       if (activeCard) {
         activeCard.classList.remove('is-active-center');
       }
 
       // Kích hoạt thẻ mới: chạy dạng hover (cuộn ảnh)
+      updateCardScrollDuration(card);
       card.classList.add('is-active-center');
       activeCard = card;
 
@@ -340,28 +348,36 @@ function renderProjectSections(groups) {
     });
   }
 
+  function updateCardScrollDuration(card) {
+    if (!card) return;
+    const img = card.querySelector('.project-scroll-img');
+    if (!img) return;
+    calculateAndSetImgDuration(img);
+  }
+
+  function calculateAndSetImgDuration(img) {
+    const naturalH = img.naturalHeight || 0;
+    const naturalW = img.naturalWidth || 1;
+    const viewportEl = img.closest('.project-scroll-viewport');
+    const currentW = img.clientWidth || (viewportEl ? viewportEl.clientWidth : 240);
+    const displayedH = (naturalH > 0 && naturalW > 0) ? (naturalH * (currentW / naturalW)) : (img.offsetHeight || 1400);
+    const viewportH = viewportEl ? viewportEl.clientHeight : 350;
+    const scrollDistance = Math.max(0, displayedH - viewportH);
+
+    // ĐỒNG BỘ TỐC ĐỘ LƯỚT 100% ĐỀU NHAU (CONSTANT SPEED: 320 px/giây):
+    const speedPxPerSec = 320;
+    const duration = Number((scrollDistance / speedPxPerSec).toFixed(2));
+    const finalDuration = Math.max(1.6, duration);
+    img.style.setProperty('--scroll-duration', `${finalDuration}s`);
+  }
+
   function applyScrollDurationToImages() {
     const images = container.querySelectorAll('.project-scroll-img');
     images.forEach(img => {
-      function calculateDuration() {
-        const naturalH = img.naturalHeight || 0;
-        const naturalW = img.naturalWidth || 1;
-        const currentW = img.clientWidth || 240;
-        const displayedH = naturalH > 0 ? (naturalH * (currentW / naturalW)) : (img.offsetHeight || 1400);
-        const viewportEl = img.closest('.project-scroll-viewport');
-        const viewportH = viewportEl ? viewportEl.clientHeight : 420;
-        const scrollDistance = Math.max(100, displayedH - viewportH);
-
-        const speedPxPerSec = 170;
-        const duration = Math.max(9, Math.round(scrollDistance / speedPxPerSec));
-
-        img.style.setProperty('--scroll-duration', `${duration}s`);
-      }
-
       if (img.complete && img.naturalHeight > 0) {
-        calculateDuration();
+        calculateAndSetImgDuration(img);
       } else {
-        img.addEventListener('load', calculateDuration, { once: true });
+        img.addEventListener('load', () => calculateAndSetImgDuration(img), { once: true });
       }
     });
   }
@@ -1373,26 +1389,26 @@ function renderFAQ(faqData) {
     }, 180);
   }
 
-  // Hàm cuộn item vào chính giữa con lăn (chỉ cuộn viewportEl trên Desktop)
+  // Hàm cuộn item lên VỊ TRÍ ĐẦU của con lăn (chỉ cuộn viewportEl trên Desktop)
   let isProgrammaticScrolling = false;
   let programmaticScrollTimer = null;
 
-  function scrollItemToCenter(item, smooth = true, callback = null) {
+  function scrollItemToTop(item, smooth = true, callback = null) {
     if (window.innerWidth < 1024 || !item) return;
     const idx = parseInt(item.getAttribute('data-index') || '0', 10);
     const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
-    const vRect = viewportEl.getBoundingClientRect();
-    const iRect = item.getBoundingClientRect();
-    const currentScroll = viewportEl.scrollTop;
-    const offset = (iRect.top + iRect.height / 2) - (vRect.top + vRect.height / 2);
-    
-    let target = currentScroll + offset;
+
+    let target = 0;
     if (idx === 0) {
       target = 0;
-    } else if (idx === allItems.length - 1) {
-      target = maxScroll;
     } else {
-      target = Math.max(0, Math.min(target, maxScroll));
+      const vRect = viewportEl.getBoundingClientRect();
+      const iRect = item.getBoundingClientRect();
+      const currentScroll = viewportEl.scrollTop;
+      // Căn đỉnh item vào đỉnh viewport (với lề đệm trên 8px)
+      const targetOffset = 8;
+      const diff = iRect.top - (vRect.top + targetOffset);
+      target = Math.max(0, Math.min(currentScroll + diff, maxScroll));
     }
 
     if (!smooth) {
@@ -1417,23 +1433,23 @@ function renderFAQ(faqData) {
     }, 450);
   }
 
-  // Hàm tính toán hiệu ứng mờ dần theo khoảng cách đến tâm (chỉ chạy trên Desktop)
+  // Hàm tính toán hiệu ứng: Câu hỏi ở VỊ TRÍ ĐẦU nổi bật nhất, các câu bên dưới mờ dần
   function updateRollerPhysics() {
     if (window.innerWidth < 1024) return;
     const vRect = viewportEl.getBoundingClientRect();
-    const centerY = vRect.top + vRect.height / 2;
     const currentScroll = viewportEl.scrollTop;
     const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
 
+    // Mốc chuẩn của câu ở vị trí ĐẦU (cách mép trên viewport khoảng 28px - tâm câu đầu tiên)
+    const topAnchorY = vRect.top + 28;
+
     let closestIdx = 0;
     let minDistance = Infinity;
-    const maxDist = 115;
 
-    // Tìm item gần tâm con lăn nhất
     allItems.forEach((item, idx) => {
       const iRect = item.getBoundingClientRect();
       const itemCenterY = iRect.top + iRect.height / 2;
-      const dist = Math.abs(centerY - itemCenterY);
+      const dist = Math.abs(topAnchorY - itemCenterY);
 
       if (dist < minDistance) {
         minDistance = dist;
@@ -1441,42 +1457,43 @@ function renderFAQ(faqData) {
       }
     });
 
-    // Khi ở sát đỉnh (scrollTop <= 15px) -> chắc chắn chọn câu 1 (idx = 0)
-    // Giúp giữ nguyên vị trí 4 nút như Ảnh 2 nhưng màu xanh nhảy lên câu 1 như Ảnh 1
     if (currentScroll <= 15) {
       closestIdx = 0;
-    } else if (currentScroll >= maxScroll - 20) {
-      closestIdx = allItems.length - 1;
     }
 
-    // Cập nhật trạng thái hiển thị cho từng item dựa trên closestIdx
+    // Cập nhật trạng thái hiển thị cho từng item:
+    // Câu ở ĐẦU nổi bật nhất (MÀU XANH), các câu tiếp theo ở dưới mờ dần
     allItems.forEach((item, idx) => {
-      const iRect = item.getBoundingClientRect();
-      const itemCenterY = iRect.top + iRect.height / 2;
-      const dist = Math.abs(centerY - itemCenterY);
-
       if (idx === closestIdx) {
-        // Câu đang được chọn: MÀU XANH NỔI BẬT
+        // Câu hỏi được chọn ở VỊ TRÍ ĐẦU: Xanh nổi bật, đầy đủ độ đậm và rõ nét
         item.style.opacity = '1';
-        item.style.transform = 'scale(1.03)';
+        item.style.transform = 'scale(1.02)';
         item.classList.add('is-center');
         item.style.pointerEvents = 'auto';
       } else {
         item.classList.remove('is-center');
-        if (dist > maxDist) {
-          item.style.opacity = '0.25';
-          item.style.transform = 'scale(0.88)';
+        const step = idx - closestIdx;
+        if (step === 1) {
+          // Câu ngay tiếp theo phía dưới: thấy rõ
+          item.style.opacity = '0.75';
+          item.style.transform = 'scale(0.98)';
+        } else if (step === 2) {
+          // Câu thứ hai phía dưới: mờ hơn
+          item.style.opacity = '0.45';
+          item.style.transform = 'scale(0.95)';
+        } else if (step > 2) {
+          // Các câu xa hơn phía dưới: mờ hẳn theo gradient đáy
+          item.style.opacity = '0.2';
+          item.style.transform = 'scale(0.92)';
         } else {
-          const ratio = Math.min(1, Math.max(0, (dist - 20) / (maxDist - 20)));
-          const opacity = Math.max(0.25, 0.85 - (ratio * 0.55));
-          const scale = 0.98 - (ratio * 0.08);
-          item.style.opacity = opacity.toFixed(2);
-          item.style.transform = `scale(${scale.toFixed(3)})`;
+          // Các câu đã cuộn qua bên trên đỉnh
+          item.style.opacity = '0.15';
+          item.style.transform = 'scale(0.90)';
         }
       }
     });
 
-    // Cập nhật câu trả lời nếu câu ở giữa thay đổi
+    // Cập nhật câu trả lời tương ứng ở khung bên phải
     if (closestIdx !== currentIndex) {
       currentIndex = closestIdx;
       updateAnswerCard(closestIdx);
@@ -1496,7 +1513,7 @@ function renderFAQ(faqData) {
     }
   }, { passive: true });
 
-  // Cuộn con lăn chuột theo từng nấc câu hỏi (1 -> 2 -> 3 và 3 -> 2 -> 1 mượt mà, không bị nhảy vọt)
+  // Cuộn con lăn chuột theo từng nấc câu hỏi đưa lên đầu
   let wheelDebounceTimer = null;
   viewportEl.addEventListener('wheel', (e) => {
     if (window.innerWidth < 1024) return;
@@ -1509,20 +1526,20 @@ function renderFAQ(faqData) {
     }, 280);
 
     if (e.deltaY > 0) {
-      // Cuộn xuống: chuyển sang câu tiếp theo
+      // Cuộn xuống: đưa câu tiếp theo lên vị trí đầu
       if (currentIndex < allItems.length - 1) {
         const nextIdx = currentIndex + 1;
         currentIndex = nextIdx;
         updateAnswerCard(nextIdx);
-        scrollItemToCenter(allItems[nextIdx], true);
+        scrollItemToTop(allItems[nextIdx], true);
       }
     } else if (e.deltaY < 0) {
-      // Cuộn lên: chuyển về câu trước đó
+      // Cuộn lên: đưa câu trước đó lên vị trí đầu
       if (currentIndex > 0) {
         const prevIdx = currentIndex - 1;
         currentIndex = prevIdx;
         updateAnswerCard(prevIdx);
-        scrollItemToCenter(allItems[prevIdx], true);
+        scrollItemToTop(allItems[prevIdx], true);
       }
     }
   }, { passive: false });
@@ -1530,16 +1547,6 @@ function renderFAQ(faqData) {
   viewportEl.addEventListener('touchstart', () => {
     pauseFaqTimer();
   }, { passive: true });
-
-  viewportEl.addEventListener('mouseenter', () => {
-    pauseFaqTimer();
-  });
-
-  viewportEl.addEventListener('mouseleave', () => {
-    if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
-      startFaqTimer();
-    }
-  });
 
   // Khi click vào bất kỳ câu hỏi nào
   allItems.forEach((item, idx) => {
@@ -1551,43 +1558,40 @@ function renderFAQ(faqData) {
         allItems.forEach(i => i.classList.remove('is-open'));
         if (!wasOpen) item.classList.add('is-open');
       } else {
-        // Desktop: cuộn câu được chọn vào giữa và cập nhật
+        // Desktop: đưa câu được chọn lên VỊ TRÍ ĐẦU và cập nhật câu trả lời
         currentIndex = idx;
         updateAnswerCard(idx);
-        scrollItemToCenter(item, true);
-        // Tạm dừng timer khi người dùng chủ động click chọn câu hỏi
+        scrollItemToTop(item, true);
         pauseFaqTimer();
       }
     });
   });
 
   // =========================================================================
-  // AUTOMATION: TỰ ĐỘNG CHUYỂN CÂU HỎI LƯỚT TUẦN TỰ ĐẾN HẾT CÂU CUỐI CÙNG
-  // KHI ĐẾN CÂU CUỐI CÙNG SẼ DỪNG LẠI (KHÔNG LẶP VÔ TẬN)
-  // NGƯỜI DÙNG CÓ THỂ CUỘN LƯỚT TỰ DO TỪ ĐẦU ĐẾN CUỐI BẤT KỲ LÚC NÀO
+  // AUTOMATION: TỰ ĐỘNG CHUYỂN CÂU HỎI LƯỚT TUẦN TỰ LÊN VỊ TRÍ ĐẦU
+  // CHỈ BẮT ĐẦU CHẠY KHI NGƯỜI DÙNG CUỘN GẦN TỚI SECTION FAQ
   // =========================================================================
   let faqAutoTimer = null;
+  let isFaqNearView = false;
+  let isUserInteracting = false;
 
   function nextFAQ() {
     if (window.innerWidth < 1024) return;
-
-    // Khi đã lướt đến câu cuối cùng -> dừng lại
-    if (currentIndex >= allItems.length - 1) {
-      pauseFaqTimer();
-      return;
+    let nextIdx = currentIndex + 1;
+    if (nextIdx >= allItems.length) {
+      nextIdx = 0; // Lặp lại tuần hoàn từ câu đầu tiên
     }
 
-    currentIndex++;
+    currentIndex = nextIdx;
     const nextItem = allItems[currentIndex];
     if (nextItem) {
       updateAnswerCard(currentIndex);
-      scrollItemToCenter(nextItem, true);
+      scrollItemToTop(nextItem, true);
     }
   }
 
   function startFaqTimer() {
     if (window.innerWidth < 1024) return;
-    if (currentIndex >= allItems.length - 1) return; // Nếu đã ở câu cuối thì không chạy nữa
     if (faqAutoTimer) clearInterval(faqAutoTimer);
     faqAutoTimer = setInterval(() => {
       nextFAQ();
@@ -1604,11 +1608,39 @@ function renderFAQ(faqData) {
   // Tạm dừng khi rê chuột vào để người dùng đọc câu trả lời (Desktop)
   const faqSection = document.getElementById('faq');
   if (faqSection) {
+    // 2. CHỈ KHI CUỘN GẦN TỚI MỚI CHO AUTOMATION (IntersectionObserver)
+    if ('IntersectionObserver' in window) {
+      const faqObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            isFaqNearView = true;
+            // Khi cuộn gần tới: kích hoạt timer nếu trên desktop và không hover
+            if (window.innerWidth >= 1024 && !isUserInteracting) {
+              startFaqTimer();
+            }
+          } else {
+            // Khi cuộn ra xa khỏi FAQ: dừng timer tự động
+            isFaqNearView = false;
+            pauseFaqTimer();
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '200px 0px 200px 0px', // Cách section 200px là kích hoạt
+        threshold: 0.05
+      });
+
+      faqObserver.observe(faqSection);
+    }
+
     faqSection.addEventListener('mouseenter', () => {
-      if (window.innerWidth >= 1024) pauseFaqTimer();
+      isUserInteracting = true;
+      pauseFaqTimer();
     });
+
     faqSection.addEventListener('mouseleave', () => {
-      if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
+      isUserInteracting = false;
+      if (window.innerWidth >= 1024 && isFaqNearView) {
         startFaqTimer();
       }
     });
@@ -1617,9 +1649,11 @@ function renderFAQ(faqData) {
   // Xử lý resize màn hình giữa Desktop và Giao diện nhỏ
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
-      scrollItemToCenter(allItems[currentIndex], false);
+      scrollItemToTop(allItems[currentIndex], false);
       updateRollerPhysics();
-      if (currentIndex < allItems.length - 1) startFaqTimer();
+      if (isFaqNearView && !isUserInteracting) {
+        startFaqTimer();
+      }
     } else {
       pauseFaqTimer();
       allItems.forEach(item => {
@@ -1630,7 +1664,7 @@ function renderFAQ(faqData) {
     }
   });
 
-  // Khởi tạo câu trả lời và vị trí ban đầu (câu hỏi 1 ở đầu danh sách)
+  // Khởi tạo câu trả lời và vị trí ban đầu (câu hỏi 1 ở VỊ TRÍ ĐẦU danh sách)
   updateAnswerCard(0, true);
   if (window.innerWidth >= 1024) {
     viewportEl.scrollTop = 0;
@@ -1640,7 +1674,8 @@ function renderFAQ(faqData) {
       viewportEl.scrollTop = 0;
       updateRollerPhysics();
     }, 60);
-    startFaqTimer();
+    // KHÔNG gọi startFaqTimer() ở đây nữa!
+    // Automation chỉ khởi chạy khi người dùng cuộn gần tới section FAQ (qua IntersectionObserver)
   }
 }
 

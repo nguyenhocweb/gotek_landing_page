@@ -1,5 +1,5 @@
 (() => {
-  // gotek/js/components/header.js
+  // js/components/header.js
   function initHeaderLogic() {
     const header = document.getElementById("main-header");
     if (!header) return;
@@ -123,7 +123,7 @@
     });
   }
 
-  // gotek/js/components/magneticBtn.js
+  // js/components/magneticBtn.js
   function initMagneticButtons() {
     const magneticBtns = document.querySelectorAll(".magnetic-btn");
     magneticBtns.forEach((btn) => {
@@ -145,11 +145,11 @@
     });
   }
 
-  // gotek/js/utils/helpers.js
+  // js/utils/helpers.js
   var $ = (selector, context = document) => context.querySelector(selector);
   var $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
 
-  // gotek/js/components/form.js
+  // js/components/form.js
   function initLeadForm() {
     const form = $("#leadConsultationForm");
     if (!form) return;
@@ -182,7 +182,7 @@
     });
   }
 
-  // gotek/js/components/tabs.js
+  // js/components/tabs.js
   function initCapabilityTabs() {
     const tabButtons = document.querySelectorAll(".matrix-tab-btn");
     const statNum = document.getElementById("matrixBigStat");
@@ -249,7 +249,7 @@
     });
   }
 
-  // gotek/js/components/processConnectors.js?v=24
+  // js/components/processConnectors.js?v=24
   function initProcessConnectors() {
     const wrap = document.getElementById("staircaseWrap");
     const group = document.getElementById("staircasePathGroup");
@@ -475,7 +475,7 @@
     }
   }
 
-  // gotek/js/components/circuitConnectors.js?v=1
+  // js/components/circuitConnectors.js?v=1
   function initCircuitConnectors() {
     const wrap = document.getElementById("circuitWrapper");
     const svg = document.getElementById("circuitSvg");
@@ -585,7 +585,7 @@
     setTimeout(updateLines, 1200);
   }
 
-  // gotek/js/components/counter.js?v=3
+  // js/components/counter.js?v=3
   function initMetricCounters() {
     const container = document.querySelector(".partner-metrics-strip");
     const items = document.querySelectorAll(".partner-metrics-strip .metric-number");
@@ -650,7 +650,7 @@
     }
   }
 
-  // gotek/js/components/scrollAnimations.js?v=14
+  // js/components/scrollAnimations.js?v=14
   if (typeof document !== "undefined" && document.body) {
     document.body.classList.add("has-scroll-animations");
   }
@@ -775,8 +775,8 @@
             }
           });
         }, {
-          threshold: 0.15,
-          rootMargin: "0px 0px -40px 0px"
+          threshold: 0.05,
+          rootMargin: "120px 0px 0px 0px"
         });
         headerObserver.observe(header);
       }
@@ -789,8 +789,8 @@
             }
           });
         }, {
-          threshold: 0.1,
-          rootMargin: "0px 0px -40px 0px"
+          threshold: 0.05,
+          rootMargin: "120px 0px 0px 0px"
         });
         contentObserver.observe(content);
       }
@@ -837,7 +837,7 @@
     }
   }
 
-  // gotek/js/components/heroInteractive.js?v=9
+  // js/components/heroInteractive.js?v=9
   var HERO_PILLARS = {
     default: {
       title: 'Ki\u1EBFn T\u1EA1o N\u1EC1n T\u1EA3ng S\u1ED1, <br /><span class="hero-clean-highlight">Hi\u1EC7u Qu\u1EA3 T\u1ED1i \u0110a &amp; Chu\u1EA9n B\u1EC1n V\u1EEFng.</span>',
@@ -1004,7 +1004,7 @@
     console.log("\u2728 Gotek Hero Interactive: Auto-cycle 2.4s, Inactive Dimming 0.28, User Hover/Click Dwell 3.6s.");
   }
 
-  // gotek/js/components/footer.js?v=1
+  // js/components/footer.js?v=1
   function initFooterAccordion() {
     const footerAccordions = Array.from(document.querySelectorAll("[data-footer-accordion]"));
     if (!footerAccordions.length) return;
@@ -1044,7 +1044,7 @@
     }
   }
 
-  // gotek/js/components/scrollAnimations.js?v=13
+  // js/components/scrollAnimations.js?v=13
   if (typeof document !== "undefined" && document.body) {
     document.body.classList.add("has-scroll-animations");
   }
@@ -1125,7 +1125,7 @@
     }
   }
 
-  // gotek/js/app.js?v=38
+  // js/app.js?v=38
   async function initApp() {
     if (!window.GotekDataStore) {
       console.error("[GotekApp] Kh\xF4ng t\xECm th\u1EA5y GotekDataStore!");
@@ -1308,7 +1308,7 @@
       if (!trackWrapper || singleSetWidth <= 0) return;
       if (marqueeRafId) cancelAnimationFrame(marqueeRafId);
       let lastTime = performance.now();
-      const speed = 0.045;
+      const speed = 0.085;
       function loop(currentTime) {
         const delta = currentTime - lastTime;
         lastTime = currentTime;
@@ -1365,6 +1365,13 @@
           }
         }
       });
+      // Cập nhật tốc độ đồng bộ ngay khi rê chuột vào từng thẻ
+      trackWrapper.querySelectorAll(".project-card").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          updateCardScrollDuration(card);
+        });
+      });
+
       trackWrapper.addEventListener("click", (e) => {
         if (hasDragged) return;
         const card = e.target.closest(".project-card");
@@ -1383,6 +1390,7 @@
         if (activeCard) {
           activeCard.classList.remove("is-active-center");
         }
+        updateCardScrollDuration(card);
         card.classList.add("is-active-center");
         activeCard = card;
         const wrapperRect = trackWrapper.getBoundingClientRect();
@@ -1405,25 +1413,39 @@
         }
       });
     }
+
+    function updateCardScrollDuration(card) {
+      if (!card) return;
+      const img = card.querySelector(".project-scroll-img");
+      if (!img) return;
+      calculateAndSetImgDuration(img);
+    }
+
+    function calculateAndSetImgDuration(img) {
+      const naturalH = img.naturalHeight || 0;
+      const naturalW = img.naturalWidth || 1;
+      const viewportEl = img.closest(".project-scroll-viewport");
+      const currentW = img.clientWidth || (viewportEl ? viewportEl.clientWidth : 240);
+      const displayedH = (naturalH > 0 && naturalW > 0) ? (naturalH * (currentW / naturalW)) : (img.offsetHeight || 1400);
+      const viewportH = viewportEl ? viewportEl.clientHeight : 350;
+      const scrollDistance = Math.max(0, displayedH - viewportH);
+
+      // ĐỒNG BỘ TỐC ĐỘ LƯỚT 100% ĐỀU NHAU (CONSTANT SPEED: 320 px/giây):
+      // Dù ảnh ngắn 800px hay dài 5000px, tốc độ di chuyển mỗi giây đều hoàn toàn như nhau!
+      // Loại bỏ việc clamp min 3.2s / max 5.5s gây lỗi "ảnh dài cuộn quá nhanh, ảnh ngắn cuộn quá chậm"
+      const speedPxPerSec = 320;
+      const duration = Number((scrollDistance / speedPxPerSec).toFixed(2));
+      const finalDuration = Math.max(1.6, duration);
+      img.style.setProperty("--scroll-duration", `${finalDuration}s`);
+    }
+
     function applyScrollDurationToImages() {
       const images = container.querySelectorAll(".project-scroll-img");
       images.forEach((img) => {
-        function calculateDuration() {
-          const naturalH = img.naturalHeight || 0;
-          const naturalW = img.naturalWidth || 1;
-          const currentW = img.clientWidth || 240;
-          const displayedH = naturalH > 0 ? naturalH * (currentW / naturalW) : img.offsetHeight || 1400;
-          const viewportEl = img.closest(".project-scroll-viewport");
-          const viewportH = viewportEl ? viewportEl.clientHeight : 420;
-          const scrollDistance = Math.max(100, displayedH - viewportH);
-          const speedPxPerSec = 170;
-          const duration = Math.max(9, Math.round(scrollDistance / speedPxPerSec));
-          img.style.setProperty("--scroll-duration", `${duration}s`);
-        }
         if (img.complete && img.naturalHeight > 0) {
-          calculateDuration();
+          calculateAndSetImgDuration(img);
         } else {
-          img.addEventListener("load", calculateDuration, { once: true });
+          img.addEventListener("load", () => calculateAndSetImgDuration(img), { once: true });
         }
       });
     }
@@ -2248,21 +2270,20 @@
     }
     let isProgrammaticScrolling = false;
     let programmaticScrollTimer = null;
-    function scrollItemToCenter(item, smooth = true, callback = null) {
+    function scrollItemToTop(item, smooth = true, callback = null) {
       if (window.innerWidth < 1024 || !item) return;
       const idx = parseInt(item.getAttribute("data-index") || "0", 10);
       const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
-      const vRect = viewportEl.getBoundingClientRect();
-      const iRect = item.getBoundingClientRect();
-      const currentScroll = viewportEl.scrollTop;
-      const offset = iRect.top + iRect.height / 2 - (vRect.top + vRect.height / 2);
-      let target = currentScroll + offset;
+      let target = 0;
       if (idx === 0) {
         target = 0;
-      } else if (idx === allItems.length - 1) {
-        target = maxScroll;
       } else {
-        target = Math.max(0, Math.min(target, maxScroll));
+        const vRect = viewportEl.getBoundingClientRect();
+        const iRect = item.getBoundingClientRect();
+        const currentScroll = viewportEl.scrollTop;
+        const targetOffset = 8;
+        const diff = iRect.top - (vRect.top + targetOffset);
+        target = Math.max(0, Math.min(currentScroll + diff, maxScroll));
       }
       if (!smooth) {
         viewportEl.scrollTop = target;
@@ -2285,16 +2306,15 @@
     function updateRollerPhysics() {
       if (window.innerWidth < 1024) return;
       const vRect = viewportEl.getBoundingClientRect();
-      const centerY = vRect.top + vRect.height / 2;
       const currentScroll = viewportEl.scrollTop;
       const maxScroll = Math.max(0, viewportEl.scrollHeight - viewportEl.clientHeight);
+      const topAnchorY = vRect.top + 28;
       let closestIdx = 0;
       let minDistance = Infinity;
-      const maxDist = 115;
       allItems.forEach((item, idx) => {
         const iRect = item.getBoundingClientRect();
         const itemCenterY = iRect.top + iRect.height / 2;
-        const dist = Math.abs(centerY - itemCenterY);
+        const dist = Math.abs(topAnchorY - itemCenterY);
         if (dist < minDistance) {
           minDistance = dist;
           closestIdx = idx;
@@ -2302,29 +2322,28 @@
       });
       if (currentScroll <= 15) {
         closestIdx = 0;
-      } else if (currentScroll >= maxScroll - 20) {
-        closestIdx = allItems.length - 1;
       }
       allItems.forEach((item, idx) => {
-        const iRect = item.getBoundingClientRect();
-        const itemCenterY = iRect.top + iRect.height / 2;
-        const dist = Math.abs(centerY - itemCenterY);
         if (idx === closestIdx) {
           item.style.opacity = "1";
-          item.style.transform = "scale(1.03)";
+          item.style.transform = "scale(1.02)";
           item.classList.add("is-center");
           item.style.pointerEvents = "auto";
         } else {
           item.classList.remove("is-center");
-          if (dist > maxDist) {
-            item.style.opacity = "0.25";
-            item.style.transform = "scale(0.88)";
+          const step = idx - closestIdx;
+          if (step === 1) {
+            item.style.opacity = "0.75";
+            item.style.transform = "scale(0.98)";
+          } else if (step === 2) {
+            item.style.opacity = "0.45";
+            item.style.transform = "scale(0.95)";
+          } else if (step > 2) {
+            item.style.opacity = "0.2";
+            item.style.transform = "scale(0.92)";
           } else {
-            const ratio = Math.min(1, Math.max(0, (dist - 20) / (maxDist - 20)));
-            const opacity = Math.max(0.25, 0.85 - ratio * 0.55);
-            const scale = 0.98 - ratio * 0.08;
-            item.style.opacity = opacity.toFixed(2);
-            item.style.transform = `scale(${scale.toFixed(3)})`;
+            item.style.opacity = "0.15";
+            item.style.transform = "scale(0.90)";
           }
         }
       });
@@ -2358,28 +2377,20 @@
           const nextIdx = currentIndex + 1;
           currentIndex = nextIdx;
           updateAnswerCard(nextIdx);
-          scrollItemToCenter(allItems[nextIdx], true);
+          scrollItemToTop(allItems[nextIdx], true);
         }
       } else if (e.deltaY < 0) {
         if (currentIndex > 0) {
           const prevIdx = currentIndex - 1;
           currentIndex = prevIdx;
           updateAnswerCard(prevIdx);
-          scrollItemToCenter(allItems[prevIdx], true);
+          scrollItemToTop(allItems[prevIdx], true);
         }
       }
     }, { passive: false });
     viewportEl.addEventListener("touchstart", () => {
       pauseFaqTimer();
     }, { passive: true });
-    viewportEl.addEventListener("mouseenter", () => {
-      pauseFaqTimer();
-    });
-    viewportEl.addEventListener("mouseleave", () => {
-      if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
-        startFaqTimer();
-      }
-    });
     allItems.forEach((item, idx) => {
       item.addEventListener("click", () => {
         const isMobile = window.innerWidth < 1024;
@@ -2390,28 +2401,29 @@
         } else {
           currentIndex = idx;
           updateAnswerCard(idx);
-          scrollItemToCenter(item, true);
+          scrollItemToTop(item, true);
           pauseFaqTimer();
         }
       });
     });
     let faqAutoTimer = null;
+    let isFaqNearView = false;
+    let isUserInteracting = false;
     function nextFAQ() {
       if (window.innerWidth < 1024) return;
-      if (currentIndex >= allItems.length - 1) {
-        pauseFaqTimer();
-        return;
+      let nextIdx = currentIndex + 1;
+      if (nextIdx >= allItems.length) {
+        nextIdx = 0;
       }
-      currentIndex++;
+      currentIndex = nextIdx;
       const nextItem = allItems[currentIndex];
       if (nextItem) {
         updateAnswerCard(currentIndex);
-        scrollItemToCenter(nextItem, true);
+        scrollItemToTop(nextItem, true);
       }
     }
     function startFaqTimer() {
       if (window.innerWidth < 1024) return;
-      if (currentIndex >= allItems.length - 1) return;
       if (faqAutoTimer) clearInterval(faqAutoTimer);
       faqAutoTimer = setInterval(() => {
         nextFAQ();
@@ -2425,20 +2437,45 @@
     }
     const faqSection = document.getElementById("faq");
     if (faqSection) {
+      if ("IntersectionObserver" in window) {
+        const faqObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              isFaqNearView = true;
+              if (window.innerWidth >= 1024 && !isUserInteracting) {
+                startFaqTimer();
+              }
+            } else {
+              isFaqNearView = false;
+              pauseFaqTimer();
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: "200px 0px 200px 0px",
+          // Cách section 200px là kích hoạt
+          threshold: 0.05
+        });
+        faqObserver.observe(faqSection);
+      }
       faqSection.addEventListener("mouseenter", () => {
-        if (window.innerWidth >= 1024) pauseFaqTimer();
+        isUserInteracting = true;
+        pauseFaqTimer();
       });
       faqSection.addEventListener("mouseleave", () => {
-        if (window.innerWidth >= 1024 && currentIndex < allItems.length - 1) {
+        isUserInteracting = false;
+        if (window.innerWidth >= 1024 && isFaqNearView) {
           startFaqTimer();
         }
       });
     }
     window.addEventListener("resize", () => {
       if (window.innerWidth >= 1024) {
-        scrollItemToCenter(allItems[currentIndex], false);
+        scrollItemToTop(allItems[currentIndex], false);
         updateRollerPhysics();
-        if (currentIndex < allItems.length - 1) startFaqTimer();
+        if (isFaqNearView && !isUserInteracting) {
+          startFaqTimer();
+        }
       } else {
         pauseFaqTimer();
         allItems.forEach((item) => {
@@ -2457,11 +2494,21 @@
         viewportEl.scrollTop = 0;
         updateRollerPhysics();
       }, 60);
-      startFaqTimer();
     }
   }
   window.handleConsultationSubmit = function(formEl) {
     if (!formEl) return;
+    const serviceSelect = formEl.querySelector('[name="serviceNeeded"]');
+    if (serviceSelect && !serviceSelect.value) {
+      const box = serviceSelect.closest(".reg-select-box");
+      const trigger = box ? box.querySelector(".custom-select-trigger") : null;
+      if (trigger) {
+        trigger.classList.add("is-invalid");
+        trigger.focus();
+        trigger.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
     const submitBtn = formEl.querySelector(".reg-submit-button");
     if (submitBtn) {
       const originalText = submitBtn.innerHTML;
@@ -2493,7 +2540,7 @@
     }
   };
 
-  // gotek/js/main.js
+  // js/main.js
   function startApp() {
     console.log("\u{1F680} Gotek Web Application Initialized.");
     try {
@@ -2576,7 +2623,285 @@
     } catch (e) {
       console.error("Error initApp:", e);
     }
+    try {
+      initWhyFeatureAccordion();
+    } catch (e) {
+      console.error("Error initWhyFeatureAccordion:", e);
+    }
+    try {
+      initCustomSelects();
+    } catch (e) {
+      console.error("Error initCustomSelects:", e);
+    }
+    try {
+      initProcessCardWiper();
+    } catch (e) {
+      console.error("Error initProcessCardWiper:", e);
+    }
   }
+
+  function initWhyFeatureAccordion() {
+    const items = document.querySelectorAll(".why-feature-item");
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      if (item._hasAccordionListener) return;
+      item._hasAccordionListener = true;
+
+      item.addEventListener("click", (e) => {
+        if (window.innerWidth > 1024) return;
+        const wasOpen = item.classList.contains("is-open");
+        items.forEach((i) => i.classList.remove("is-open"));
+        if (!wasOpen) {
+          item.classList.add("is-open");
+        }
+      });
+    });
+  }
+
+  function initCustomSelects() {
+    const selectBoxes = document.querySelectorAll(".reg-select-box");
+    if (!selectBoxes.length) return;
+
+    selectBoxes.forEach((box) => {
+      const select = box.querySelector("select.reg-select-control");
+      if (!select || box.querySelector(".custom-select-trigger")) return;
+
+      box.classList.add("has-custom-select");
+
+      const options = Array.from(select.options);
+      const selectedOption = select.options[select.selectedIndex] || options[0];
+      const isPlaceholder = select.selectedIndex === 0 && selectedOption && selectedOption.disabled;
+
+      // Custom Trigger
+      const trigger = document.createElement("div");
+      trigger.className = "custom-select-trigger";
+      trigger.setAttribute("tabindex", "0");
+      trigger.setAttribute("role", "combobox");
+      trigger.setAttribute("aria-expanded", "false");
+
+      const label = document.createElement("span");
+      label.className = "custom-select-label" + (isPlaceholder ? "" : " has-value");
+      label.textContent = selectedOption ? selectedOption.textContent : "";
+
+      const arrow = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      arrow.setAttribute("class", "custom-select-arrow");
+      arrow.setAttribute("viewBox", "0 0 24 24");
+      arrow.setAttribute("fill", "none");
+      arrow.setAttribute("stroke", "currentColor");
+      arrow.setAttribute("stroke-width", "2.5");
+      arrow.setAttribute("stroke-linecap", "round");
+      arrow.setAttribute("stroke-linejoin", "round");
+      arrow.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+
+      trigger.appendChild(label);
+      trigger.appendChild(arrow);
+
+      // Custom Dropdown Menu
+      const dropdown = document.createElement("div");
+      dropdown.className = "custom-select-options";
+      dropdown.setAttribute("role", "listbox");
+
+      options.forEach((opt, idx) => {
+        if (opt.disabled && idx === 0) return;
+        const item = document.createElement("div");
+        item.className = "custom-select-option" + (opt.selected ? " is-selected" : "");
+        item.setAttribute("role", "option");
+        item.setAttribute("data-value", opt.value);
+        item.textContent = opt.textContent;
+
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
+          select.value = opt.value;
+          label.textContent = opt.textContent;
+          label.classList.add("has-value");
+          trigger.classList.remove("is-invalid");
+
+          dropdown.querySelectorAll(".custom-select-option").forEach((el) => el.classList.remove("is-selected"));
+          item.classList.add("is-selected");
+
+          closeDropdown();
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+
+        dropdown.appendChild(item);
+      });
+
+      function toggleDropdown(e) {
+        if (e) e.stopPropagation();
+        const isOpen = dropdown.classList.contains("is-open");
+        document.querySelectorAll(".custom-select-options.is-open").forEach((el) => {
+          if (el !== dropdown) {
+            el.classList.remove("is-open");
+            el.closest(".reg-select-box")?.classList.remove("is-active");
+            const trg = el.previousElementSibling;
+            trg?.classList.remove("is-open");
+            trg?.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      }
+
+      function openDropdown() {
+        dropdown.classList.add("is-open");
+        trigger.classList.add("is-open");
+        box.classList.add("is-active");
+        trigger.setAttribute("aria-expanded", "true");
+      }
+
+      function closeDropdown() {
+        dropdown.classList.remove("is-open");
+        trigger.classList.remove("is-open");
+        box.classList.remove("is-active");
+        trigger.setAttribute("aria-expanded", "false");
+      }
+
+      trigger.addEventListener("click", toggleDropdown);
+
+      trigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDropdown();
+        } else if (e.key === "Escape") {
+          closeDropdown();
+        }
+      });
+
+      box.appendChild(trigger);
+      box.appendChild(dropdown);
+
+      // Hide native select visually
+      select.classList.add("is-hidden-native-select");
+
+      select.addEventListener("invalid", () => {
+        trigger.classList.add("is-invalid");
+      });
+
+      select.addEventListener("change", () => {
+        trigger.classList.remove("is-invalid");
+      });
+
+      const form = select.closest("form");
+      if (form) {
+        form.addEventListener("reset", () => {
+          setTimeout(() => {
+            const resetOpt = select.options[select.selectedIndex] || options[0];
+            const isStillPlaceholder = select.selectedIndex === 0 && resetOpt && resetOpt.disabled;
+            label.textContent = resetOpt ? resetOpt.textContent : "";
+            label.className = "custom-select-label" + (isStillPlaceholder ? "" : " has-value");
+            trigger.classList.remove("is-invalid");
+            dropdown.querySelectorAll(".custom-select-option").forEach((el) => {
+              el.classList.toggle("is-selected", el.getAttribute("data-value") === select.value);
+            });
+          }, 20);
+        });
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".reg-select-box")) {
+        document.querySelectorAll(".custom-select-options.is-open").forEach((el) => {
+          el.classList.remove("is-open");
+          el.closest(".reg-select-box")?.classList.remove("is-active");
+          const trg = el.previousElementSibling;
+          trg?.classList.remove("is-open");
+          trg?.setAttribute("aria-expanded", "false");
+        });
+      }
+    });
+  }
+
+  function initProcessCardWiper() {
+    const cards = document.querySelectorAll(".step-card");
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      // 1. Tạo wiper layer nếu chưa tồn tại
+      let wiper = card.querySelector(".step-card-wiper");
+      if (!wiper) {
+        wiper = document.createElement("div");
+        wiper.className = "step-card-wiper";
+        card.appendChild(wiper);
+      }
+
+      // 2. Tạo arrow indicator nếu chưa tồn tại
+      let arrow = card.querySelector(".step-card-arrow");
+      if (!arrow) {
+        arrow = document.createElement("div");
+        arrow.className = "step-card-arrow";
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+        card.appendChild(arrow);
+      }
+
+      if (card._hasWiperListener) return;
+      card._hasWiperListener = true;
+
+      card.addEventListener("click", () => {
+        // Chỉ kích hoạt trên mobile và tablet (<= 768px)
+        if (window.innerWidth > 768) return;
+
+        // Tránh glitch khi người dùng spam click liên tục trong lúc đang chạy animation (460ms)
+        if (card._isWiping) return;
+
+        const isCurrentlyShowingDesc = card.classList.contains("is-desc-active");
+
+        if (!isCurrentlyShowingDesc) {
+          // Thu gọn các thẻ khác đang mở (nếu có) bằng hiệu ứng lướt ngược lại
+          cards.forEach((otherCard) => {
+            if (otherCard !== card && otherCard.classList.contains("is-desc-active")) {
+              const otherWiper = otherCard.querySelector(".step-card-wiper");
+              if (otherWiper && !otherCard._isWiping) {
+                otherCard._isWiping = true;
+                otherWiper.className = "step-card-wiper is-wiping-reverse";
+                setTimeout(() => {
+                  otherCard.classList.remove("is-desc-active");
+                }, 220);
+                setTimeout(() => {
+                  otherWiper.className = "step-card-wiper";
+                  otherCard._isWiping = false;
+                }, 460);
+              } else {
+                otherCard.classList.remove("is-desc-active");
+              }
+            }
+          });
+
+          // LẦN CLICK 1: Lướt màu xanh từ Trái qua Phải -> Ẩn tiêu đề, Hiện mô tả
+          card._isWiping = true;
+          wiper.className = "step-card-wiper is-wiping-forward";
+
+          setTimeout(() => {
+            card.classList.add("is-desc-active");
+          }, 220);
+
+          setTimeout(() => {
+            wiper.className = "step-card-wiper";
+            card._isWiping = false;
+          }, 460);
+        } else {
+          // LẦN CLICK 2 (click lại lần nữa): Lướt màu xanh ngược lại từ Phải qua Trái -> Ẩn mô tả, Hiện lại tiêu đề
+          card._isWiping = true;
+          wiper.className = "step-card-wiper is-wiping-reverse";
+
+          setTimeout(() => {
+            card.classList.remove("is-desc-active");
+          }, 220);
+
+          setTimeout(() => {
+            wiper.className = "step-card-wiper";
+            card._isWiping = false;
+          }, 460);
+        }
+      });
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", startApp);
   } else {
